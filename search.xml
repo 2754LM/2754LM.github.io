@@ -1,0 +1,677 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>2023/12/13</title>
+    <url>/%E6%97%A5%E8%AE%B0/2023-12-13/</url>
+    <content><![CDATA[<p>略记一下最近发生的事</p>
+<p>最近两天qq和微信相继被ban，呜呼，悲矣</p>
+<p>最近主要在看算法和写笔记，顺便在csdn上发发，没学的还有好多，各种板子也难背。上周周赛和双周赛都挺简单的。</p>
+<p>乍暖还寒，温度变化很大~</p>
+<p>有点颓废了，有时间按题目分集中刷刷题。</p>
+<p>接下来干什么呢</p>
+<p>算法继续写着，基础算法要复习复习，dp的话理论还差个区间dp写完，多练练。高级数据结构线段树什么的要学一手，还有图论，看一次忘一次，下次系统的写的最短路什么的。</p>
+<p>哦，还有cet4,425就行（</p>
+]]></content>
+      <categories>
+        <category>日记</category>
+      </categories>
+      <tags>
+        <tag>日记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2023/12/24</title>
+    <url>/%E6%97%A5%E8%AE%B0/2023-12-24/</url>
+    <content><![CDATA[<p>最近打了几场周赛,感觉力扣周赛Q3大部分都是图论.蓝桥小白赛的话构造题比较多.</p>
+<p>双周赛掉大分Q1和Q3一样,但Q1范围不大,可以直接暴力.枚举子数组直接滑动窗口,当时没想到,直接在想Q3的O(n)解法.</p>
+<p>单周赛的Q3是最短路问题, 记得前段时间哪次周赛Q3和这个很像. 一开始直接用dij写,但超时,后面加了个记忆化就过了</p>
+<p>蓝桥小白赛Q4取余,首数组没有处理好.</p>
+<p>计划这两天把这三题整理一下</p>
+]]></content>
+      <categories>
+        <category>日记</category>
+      </categories>
+      <tags>
+        <tag>日记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ST表</title>
+    <url>/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/ST%E8%A1%A8/ST%E8%A1%A8/</url>
+    <content><![CDATA[<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>利用倍增思想,求解静态RMQ(区间最值查询)的算法</p>
+<p>利用O(nlog2n)复杂度预处理,进行O(1)的查询</p>
+<blockquote>
+<p>倍增思想: 2的i次增长</p>
+</blockquote>
+<h1 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h1><p>先谈一下为什么开log2啊? 如果不开,你长度都是2,4,6这样访问,不浪费空间吗?N*N稍微大点直接爆内存了</p>
+<p>而且你初始化个数组查某个数的最大2的次数, 这样和log2比不方便,何况懒得写log2还有自带的函数.</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span>+<span class="number">5</span>;</span><br><span class="line"><span class="type">int</span> st[N][<span class="number">21</span>]; <span class="comment">//st[i][j],i记录的是现在遍历的下标,j记录的是log2(长度)</span></span><br><span class="line"><span class="type">int</span> lg[N]; <span class="comment">//因为二进制就是2的i次,所以用来记录很方便,位移就可以了.</span></span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	lg[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">		lg[i] = lg[i&gt;&gt;<span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">		cin&gt;&gt;st[i][<span class="number">0</span>];</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= lg[n]; j++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n - (<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>)) +<span class="number">1</span>; i++)&#123;</span><br><span class="line">			st[i][j] = <span class="built_in">min</span>(st[i][j<span class="number">-1</span>], st[i + (<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>))][j<span class="number">-1</span>]); <span class="comment">//j-1就是上一个log2(上一层长度),我们&lt;&lt;位移就为了展开来定下i的位置</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">query</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> k = lg[r-l+<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">min</span>(st[l][k], st[r-(<span class="number">1</span>&lt;&lt;k)+<span class="number">1</span>][k]); <span class="comment">//和初始化是同理的,log2上一层就是k</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line">	cin.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="built_in">init</span>();</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i&lt; m; i++)&#123;</span><br><span class="line">		<span class="type">int</span> l,r;</span><br><span class="line">		cin&gt;&gt;l&gt;&gt;r;</span><br><span class="line">		cout&lt;&lt;<span class="built_in">query</span>(l,r)&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>数据结构</category>
+        <category>ST表</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>背包</title>
+    <url>/%E7%AE%97%E6%B3%95/dp/dp/</url>
+    <content><![CDATA[<p><strong>如果求组合数就是外层for循环遍历物品，内层for遍历背包</strong>。</p>
+<p><strong>如果求排列数就是外层for遍历背包，内层for循环遍历物品</strong>。</p>
+<ol>
+<li>确定dp数组（dp table）以及下标的含义</li>
+<li>确定递推公式</li>
+<li>dp数组如何初始化</li>
+<li>确定遍历顺序</li>
+<li>举例推导dp数组</li>
+</ol>
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>dp</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>二叉堆</title>
+    <url>/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E5%A0%86/%E4%BA%8C%E5%8F%89%E5%A0%86/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>平常都用priority_queue,今天来手搓一下</p>
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>二叉堆肯定是个完全二叉树(父节点有左右两节点最底层除外,最底层保证从左到右的连续就可)</p>
+<p>用数组a来存二叉树吧,一共n个节点, a[1]是根节点,i节点的左节点是2i,右节点是2i+1,如果大于了n就没有子节点.同样反过来i的父节点就是i&#x2F;2</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p>实现一个最小堆吧.</p>
+<p><a href="https://www.luogu.com.cn/problem/P3378%E6%B4%9B%E8%B0%B7%E7%9A%84%E5%A0%86%E6%A8%A1%E6%9D%BF">https://www.luogu.com.cn/problem/P3378洛谷的堆模板</a></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e6</span>;</span><br><span class="line"><span class="type">int</span> a[N];</span><br><span class="line"><span class="type">int</span> len = <span class="number">0</span>;<span class="comment">//记现有节点数的 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">push</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;<span class="comment">//上浮(提高优先级的) 添加的优先级最低 </span></span><br><span class="line">	a[++len] = x;</span><br><span class="line">	<span class="type">int</span> i = len;</span><br><span class="line">	<span class="keyword">while</span>(i &gt; <span class="number">1</span> &amp;&amp; a[i] &lt; a[i/<span class="number">2</span>])&#123; <span class="comment">//子比父,父不如子啊 </span></span><br><span class="line">		<span class="built_in">swap</span>(a[i], a[i/<span class="number">2</span>]); <span class="comment">//老登,辈分该改了</span></span><br><span class="line">		i/=<span class="number">2</span>; <span class="comment">//看看爷爷 </span></span><br><span class="line">	&#125; </span><br><span class="line">&#125; ;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pop</span><span class="params">()</span></span>&#123; <span class="comment">//下沉(降低优先级的) 删除的那个优先级最高 </span></span><br><span class="line">	a[<span class="number">1</span>] = a[len--]; <span class="comment">//根节点直接换成叶子节点(因为叶子无牵无挂)</span></span><br><span class="line">	<span class="type">int</span> i = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(i * <span class="number">2</span> &lt;= len)&#123;<span class="comment">//父比子(至少有左子) </span></span><br><span class="line">		<span class="type">int</span> sonL = i * <span class="number">2</span>;<span class="comment">//左子 </span></span><br><span class="line">		<span class="type">int</span> sonR = i * <span class="number">2</span> + <span class="number">1</span>;<span class="comment">//右子 </span></span><br><span class="line">		<span class="keyword">if</span>(a[i] &lt; a[sonL] || a[i] &lt; a[sonR])&#123;</span><br><span class="line">			<span class="keyword">if</span>(a[sonL] &lt; a[sonR] || sonR &gt;= len) &#123;<span class="comment">//左子好或者右子死掉了</span></span><br><span class="line">				<span class="built_in">swap</span>(a[i], a[sonL]); </span><br><span class="line">				i = sonL;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;<span class="comment">//右子好 </span></span><br><span class="line">				<span class="built_in">swap</span>(a[i], a[sonR]);</span><br><span class="line">				i = sonR;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">break</span>; <span class="comment">//父强,不用看了 </span></span><br><span class="line">	&#125; </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//懒狗,不想封个类了,就用一次 </span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> n;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	<span class="keyword">while</span>(n--)&#123;</span><br><span class="line">		<span class="type">int</span> jud;</span><br><span class="line">		cin&gt;&gt;jud;</span><br><span class="line">		<span class="keyword">if</span>(jud == <span class="number">1</span>) &#123;</span><br><span class="line">			<span class="type">int</span> x;</span><br><span class="line">			cin&gt;&gt;x;</span><br><span class="line">			<span class="built_in">push</span>(x); </span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(jud == <span class="number">2</span>) cout&lt;&lt;a[<span class="number">1</span>]&lt;&lt;endl;</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">pop</span>(); </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+]]></content>
+      <categories>
+        <category>数据结构</category>
+        <category>二叉堆</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>二叉树的对称dfs</title>
+    <url>/%E7%AE%97%E6%B3%95/%E6%9D%82%E8%B0%88/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%AF%B9%E7%A7%B0dfs/</url>
+    <content><![CDATA[<p>经典例题,对称二叉树</p>
+<p><a href="https://leetcode.cn/problems/symmetric-tree/description/">https://leetcode.cn/problems/symmetric-tree/description/</a></p>
+<p>代码如图</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">compare</span><span class="params">(TreeNode* left, TreeNode* right)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (left == <span class="literal">NULL</span> &amp;&amp; right == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(left == <span class="literal">NULL</span> || right==<span class="literal">NULL</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (left-&gt;val != right-&gt;val) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">compare</span>(left-&gt;left, right-&gt;right) &amp;&amp; <span class="built_in">compare</span>(left-&gt;right, right-&gt;left);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isSymmetric</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">compare</span>(root-&gt;left, root-&gt;right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这题也可以,反转二叉树的奇数层</p>
+<p><a href="https://leetcode.cn/problems/reverse-odd-levels-of-binary-tree/description/">https://leetcode.cn/problems/reverse-odd-levels-of-binary-tree/description/</a></p>
+<p>代码如下</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">reverseOddLevels</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">dfs</span>(root-&gt;left, root-&gt;right, <span class="literal">true</span>);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(TreeNode *l, TreeNode *r, <span class="type">bool</span> jud)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (l == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (jud) &#123;</span><br><span class="line">            <span class="built_in">swap</span>(l-&gt;val, r-&gt;val);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">dfs</span>(l-&gt;left, r-&gt;right, !jud);</span><br><span class="line">        <span class="built_in">dfs</span>(l-&gt;right, r-&gt;left, !jud);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>画个图</p>
+<p><img src="/%E7%AE%97%E6%B3%95/%E6%9D%82%E8%B0%88/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%AF%B9%E7%A7%B0dfs/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%AF%B9%E7%A7%B0.png"></p>
+<span id="more"></span>
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>杂谈</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>单调栈</title>
+    <url>/%E7%AE%97%E6%B3%95/%E5%8D%95%E8%B0%83%E6%A0%88/%E5%8D%95%E8%B0%83%E6%A0%88/</url>
+    <content><![CDATA[<h1 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>通常是一维数组,记录任一个元素右(左)边第一个比自身大(小)的元素的下标.</p>
+<h2 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h2><p>分为正序构造和逆序构造两种方式.</p>
+<p>下面我以寻找右边第一个比较自己大的单调栈为例</p>
+<blockquote>
+<p>请注意,本文中所提及的栈的单调情况都是基于栈底到栈顶的顺序.如下图为一个单调减小的栈</p>
+</blockquote>
+<p><img src="/%E7%AE%97%E6%B3%95/%E5%8D%95%E8%B0%83%E6%A0%88/%E5%8D%95%E8%B0%83%E6%A0%88/%E5%8D%95%E8%B0%83%E5%87%8F%E5%B0%8F%E6%A0%88%E4%BE%8B%E5%9B%BE.png"></p>
+<p>正序和逆序只是角度不同,简单来说</p>
+<p>正序是把待比较的元素放到栈里,保持栈的单调递减</p>
+<p>逆序是把已经比较过的元素放到栈里,保持栈的单调递减</p>
+<p>无论正序逆天,都要保证栈的有序,并且需要及时去除无用数据</p>
+<span id="more"></span>
+
+<h3 id="正序"><a href="#正序" class="headerlink" title="正序"></a>正序</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">stack&lt;<span class="type">int</span>&gt;st;<span class="comment">//单调递减</span></span><br><span class="line">vector&lt;<span class="type">int</span>&gt;R;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">    <span class="comment">//现数指用来比较的数,这里是nums[i]</span></span><br><span class="line">    <span class="comment">//如果现数小于栈顶,就一定小于栈里任何数.即直接存入不更新</span></span><br><span class="line">    <span class="comment">//如果现数大于栈顶,就开始把栈顶元素的右大值更新</span></span><br><span class="line">    <span class="comment">//这里的栈放的是左边的元素,等待比较</span></span><br><span class="line">    <span class="keyword">while</span>(!s.<span class="built_in">empty</span>() &amp;&amp; nums[i] &gt; nums[s.<span class="built_in">top</span>()])&#123;</span><br><span class="line">        R[s.<span class="built_in">top</span>()] = i;</span><br><span class="line">        s.<span class="built_in">pop</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    st.<span class="built_in">push</span>(i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//在遍历一次后,有一些数没有找到右大(即右边没有比它大的),还在栈里,这时候要单独处理</span></span><br><span class="line"><span class="keyword">while</span>(!s.<span class="built_in">empty</span>())&#123;</span><br><span class="line">    R[s.<span class="built_in">top</span>()] = n;</span><br><span class="line">    s.pop;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="逆序"><a href="#逆序" class="headerlink" title="逆序"></a>逆序</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">stack&lt;<span class="type">int</span>&gt;st;<span class="comment">//单调递减</span></span><br><span class="line">vector&lt;<span class="type">int</span>&gt;R;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i =  nums.<span class="built_in">size</span>() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">    <span class="comment">//现数指待比较的数,这里是 nums[i]</span></span><br><span class="line">    <span class="comment">//如果现数大的话,就一直清栈直到,现数比栈里的小或者栈空</span></span><br><span class="line">    <span class="comment">//如果小的话,就跳出while,进行i的更新</span></span><br><span class="line">    <span class="comment">//这里栈放的是右边的元素,用来比较</span></span><br><span class="line">    <span class="keyword">while</span>(!s.<span class="built_in">empty</span>() &amp;&amp; nums[i] &gt; nums[s.<span class="built_in">top</span>()])&#123;</span><br><span class="line">        s.<span class="built_in">pop</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(s.<span class="built_in">empty</span>()) R[i] = n;<span class="comment">//没找到更大的就记为n</span></span><br><span class="line">    <span class="keyword">else</span> R[i] = st.<span class="built_in">top</span>();</span><br><span class="line">    st.<span class="built_in">push</span>(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="相关题目"><a href="#相关题目" class="headerlink" title="相关题目"></a>相关题目</h2><p>力扣</p>
+<p>496:下一个更大元素1</p>
+<p>难度:简单</p>
+<p><a href="https://leetcode.cn/problems/next-greater-element-i/">https://leetcode.cn/problems/next-greater-element-i/</a></p>
+<p>501:下一个更大元素2</p>
+<p>难度:中等</p>
+<p><a href="https://leetcode.cn/problems/next-greater-element-ii/">https://leetcode.cn/problems/next-greater-element-ii/</a></p>
+<p>739:每日温度</p>
+<p>难度:中等</p>
+<p><a href="https://leetcode.cn/problems/daily-temperatures/">https://leetcode.cn/problems/daily-temperatures/</a></p>
+<p>42:接雨水</p>
+<p>难度:困难</p>
+<p><a href="https://leetcode.cn/problems/trapping-rain-water/">https://leetcode.cn/problems/trapping-rain-water/</a></p>
+<p>84:柱状图中最大的矩形(与接雨水非常相似)</p>
+<p>难度:困难</p>
+<p><a href="https://leetcode.cn/problems/largest-rectangle-in-histogram/">https://leetcode.cn/problems/largest-rectangle-in-histogram/</a></p>
+<p>拓展题目(要构造多个的单调栈)</p>
+<p>2104:子数组范围和</p>
+<p>难度:中等1504分</p>
+<p><a href="https://leetcode.cn/problems/sum-of-subarray-ranges/">https://leetcode.cn/problems/sum-of-subarray-ranges/</a></p>
+<p>907:子数组最小值之和</p>
+<p>难度:中等1976分</p>
+<p><a href="https://leetcode.cn/problems/sum-of-subarray-minimums/">https://leetcode.cn/problems/sum-of-subarray-minimums/</a></p>
+<p>1856:子数组最小乘积的最大值</p>
+<p>难度:中等2051分</p>
+<p><a href="https://leetcode.cn/problems/maximum-subarray-min-product/">https://leetcode.cn/problems/maximum-subarray-min-product/</a></p>
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>单调栈</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>俳句</title>
+    <url>/%E8%AF%97%E8%AF%8D/%E4%BF%B3%E5%8F%A5/</url>
+    <content><![CDATA[<p>我对俳句,和歌之类不是很感兴趣(1是格式本身按音节排,不适合中文.2是感觉格局较小,像是庭院景观),但也有所接触.</p>
+<p>比较有名的和歌如万叶集中的(言叶之庭也有出现)</p>
+<blockquote>
+<p>隐约雷鸣，阴霾天空。但盼风雨来，能留你在此。</p>
+</blockquote>
+<p>俳句我印象深刻的倒是索尼之前办的对马岛俳句大赛,里面有</p>
+<blockquote>
+<p>悲怆如战马，分不清旭日金甲，红了海与沙</p>
+</blockquote>
+<blockquote>
+<p>辉落双影长，浪客转步飞剑芒，碧血黄沙凉</p>
+</blockquote>
+<blockquote>
+<p>白日修罗场，岸边水线如刃长，红花落日光</p>
+</blockquote>
+<h3 id="无题"><a href="#无题" class="headerlink" title="无题"></a>无题</h3><p><strong>轻阴色，江风凉夜泼疏墨，天边染灯火</strong></p>
+<p>背景:第一次写俳句,也是唯一写过的俳句.写作时间大抵是在21年春,月考之时,窗外流云微雨,天气微寒,莫名想到夏日傍晚.<br>&lt;&lt;言语如苏打般涌现&gt;&gt;里有一句如下(因为是直译,格式并不正确)</p>
+<blockquote>
+<p>夕阳时分，抢先偷跑的夏夜灯火</p>
+</blockquote>
+<p>还有王维的</p>
+<blockquote>
+<p>轻阴阁小雨，深院昼慵开</p>
+</blockquote>
+<p>我觉得轻阴这词很有意境诶,还有江风,一下子感觉风的绵延飘逸.</p>
+]]></content>
+      <categories>
+        <category>诗词</category>
+      </categories>
+      <tags>
+        <tag>诗词</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>图构建</title>
+    <url>/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/%E5%9B%BE%E6%9E%84%E5%BB%BA/</url>
+    <content><![CDATA[<p>邻接矩阵不用说ez</p>
+<p>主要讲一下邻接表的数组实现和链式前向星:</p>
+<h1 id="链式前向星"><a href="#链式前向星" class="headerlink" title="链式前向星"></a>链式前向星</h1><p>是一个结构体数组</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn = <span class="number">1005</span>;<span class="comment">//点数最大值</span></span><br><span class="line"><span class="type">int</span> n, m, cnt;<span class="comment">//n个点，m条边</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span></span><br><span class="line">&#123;</span><br><span class="line"> <span class="type">int</span> to, w, next;<span class="comment">//终点，边权，同起点的上一条边的编号</span></span><br><span class="line">&#125;edge[maxn];<span class="comment">//边集</span></span><br><span class="line"><span class="type">int</span> head[maxn];<span class="comment">//head[i],表示以i为起点的第一条边在边集数组的位置（编号）</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span><span class="comment">//初始化</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= n; i++) head[i] = <span class="number">-1</span>;</span><br><span class="line"> cnt = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add_edge</span><span class="params">(<span class="type">int</span> u, <span class="type">int</span> v, <span class="type">int</span> w)</span><span class="comment">//加边，u起点，v终点，w边权</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> edge[cnt].to = v; <span class="comment">//终点</span></span><br><span class="line"> edge[cnt].w = w; <span class="comment">//权值</span></span><br><span class="line"> edge[cnt].next = head[u];<span class="comment">//以u为起点上一条边的编号，也就是与这个边起点相同的上一条边的编号</span></span><br><span class="line"> head[u] = cnt++;<span class="comment">//更新以u为起点上一条边的编号</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line"> <span class="type">int</span> u, v, w;</span><br><span class="line"> <span class="built_in">init</span>();<span class="comment">//初始化</span></span><br><span class="line"> <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++)<span class="comment">//输入m条边</span></span><br><span class="line"> &#123;</span><br><span class="line">     cin &gt;&gt; u &gt;&gt; v &gt;&gt; w;</span><br><span class="line">     <span class="built_in">add_edge</span>(u, v, w);<span class="comment">//加边</span></span><br><span class="line">     <span class="comment">/*</span></span><br><span class="line"><span class="comment">     加双向边</span></span><br><span class="line"><span class="comment">     add_edge(u, v, w);</span></span><br><span class="line"><span class="comment">     add_edge(v, u, w);</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)<span class="comment">//n个起点</span></span><br><span class="line"> &#123;</span><br><span class="line">     cout &lt;&lt; i &lt;&lt; endl;</span><br><span class="line">     <span class="keyword">for</span> (<span class="type">int</span> j = head[i]; j != <span class="number">-1</span>; j = edge[j].next)<span class="comment">//遍历以i为起点的边</span></span><br><span class="line">     &#123;</span><br><span class="line">         cout &lt;&lt; i &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; edge[j].to &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; edge[j].w &lt;&lt; endl;</span><br><span class="line">     &#125;</span><br><span class="line">     cout &lt;&lt; endl;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h1 id="邻接表数组实现"><a href="#邻接表数组实现" class="headerlink" title="邻接表数组实现"></a>邻接表数组实现</h1><p>是多个数组实现</p>
+<blockquote>
+<p>u,v,w是起点,终点,权,first是第一个起点,next是同起点上一个起点</p>
+<p>u其实可以省略,思路就链式前向星类似了,基本一模一样</p>
+</blockquote>
+<p><img src="/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/%E5%9B%BE%E6%9E%84%E5%BB%BA/%E9%82%BB%E6%8E%A5%E8%A1%A8%E6%95%B0%E7%BB%84%E5%AE%9E%E7%8E%B0.png"></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> MaxN = <span class="number">5e5</span>+<span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> first[MaxN],_next[MaxN],to[MaxN],w[MaxN];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//构造邻接表 </span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">creat</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> n,m;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="comment">//初始化</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		first[i]=<span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">		<span class="type">int</span> index;</span><br><span class="line">		cin&gt;&gt;index&gt;&gt;to[i]&gt;&gt;w[i];</span><br><span class="line">		_next[i] = first[index];</span><br><span class="line">		first[index] = i;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="邻接表链表实现"><a href="#邻接表链表实现" class="headerlink" title="邻接表链表实现"></a>邻接表链表实现</h1><p>感觉挺麻烦,我不想写第二次,贴个实现</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//创建有向图的邻接表</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MaxVnum=<span class="number">100</span>;<span class="comment">//顶点数最大值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">char</span> VexType;<span class="comment">//顶点的数据类型为字符型</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">AdjNode</span>&#123; <span class="comment">//定义邻接点类型</span></span><br><span class="line">	<span class="type">int</span> v; <span class="comment">//邻接点下标</span></span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">AdjNode</span> *next; <span class="comment">//指向下一个邻接点</span></span><br><span class="line">&#125;AdjNode;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VexNode</span>&#123; <span class="comment">//定义顶点类型</span></span><br><span class="line">	VexType data; <span class="comment">// VexType为顶点的数据类型，根据需要定义</span></span><br><span class="line">	AdjNode *first; <span class="comment">//指向第一个邻接点</span></span><br><span class="line">&#125;VexNode;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span>&#123;<span class="comment">//定义邻接表类型</span></span><br><span class="line"> VexNode  Vex[MaxVnum];</span><br><span class="line"> <span class="type">int</span> vexnum,edgenum; <span class="comment">//顶点数，边数</span></span><br><span class="line">&#125;ALGragh;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">locatevex</span><span class="params">(ALGragh G,VexType x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;G.vexnum;i++)<span class="comment">//查找顶点信息的下标</span></span><br><span class="line">    <span class="keyword">if</span>(x==G.Vex[i].data)</span><br><span class="line">     <span class="keyword">return</span> i;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">-1</span>;<span class="comment">//没找到</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">insertedge</span><span class="params">(ALGragh &amp;G,<span class="type">int</span> i,<span class="type">int</span> j)</span><span class="comment">//插入一条边</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> AdjNode *s;</span><br><span class="line"> s=<span class="keyword">new</span> AdjNode;</span><br><span class="line"> s-&gt;v=j;</span><br><span class="line"> s-&gt;next=G.Vex[i].first;</span><br><span class="line"> G.Vex[i].first=s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">printg</span><span class="params">(ALGragh G)</span><span class="comment">//输出邻接表</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">cout&lt;&lt;<span class="string">&quot;----------邻接表如下：----------&quot;</span>&lt;&lt;endl;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;G.vexnum;i++)</span><br><span class="line">&#123;</span><br><span class="line">    AdjNode *t=G.Vex[i].first;</span><br><span class="line">    cout&lt;&lt;cout&lt;&lt;G.Vex[i].data&lt;&lt;<span class="string">&quot;：  &quot;</span>;</span><br><span class="line">    <span class="keyword">while</span>(t!=<span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;[&quot;</span>&lt;&lt;t-&gt;v&lt;&lt;<span class="string">&quot;]  &quot;</span>;</span><br><span class="line">        t=t-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">CreateALGraph</span><span class="params">(ALGragh &amp;G)</span><span class="comment">//创建有向图邻接表</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="type">int</span> i,j;</span><br><span class="line"> VexType u,v;</span><br><span class="line"> cout&lt;&lt;<span class="string">&quot;请输入顶点数和边数:&quot;</span>&lt;&lt;endl;</span><br><span class="line"> cin&gt;&gt;G.vexnum&gt;&gt;G.edgenum;</span><br><span class="line"> cout &lt;&lt; <span class="string">&quot;请输入顶点信息:&quot;</span>&lt;&lt;endl;</span><br><span class="line"> <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;G.vexnum;i++)<span class="comment">//输入顶点信息，存入顶点信息数组</span></span><br><span class="line">     cin&gt;&gt;G.Vex[i].data;</span><br><span class="line"> <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;G.vexnum;i++)</span><br><span class="line">     G.Vex[i].first=<span class="literal">NULL</span>;</span><br><span class="line"> cout&lt;&lt;<span class="string">&quot;请依次输入每条边的两个顶点u,v&quot;</span>&lt;&lt;endl;</span><br><span class="line"> <span class="keyword">while</span>(G.edgenum--)</span><br><span class="line"> &#123;</span><br><span class="line">     cin&gt;&gt;u&gt;&gt;v;</span><br><span class="line">     i=<span class="built_in">locatevex</span>(G,u);<span class="comment">//查找顶点u的存储下标</span></span><br><span class="line">     j=<span class="built_in">locatevex</span>(G,v);<span class="comment">//查找顶点v的存储下标</span></span><br><span class="line">     <span class="keyword">if</span>(i!=<span class="number">-1</span>&amp;&amp;j!=<span class="number">-1</span>)</span><br><span class="line">         <span class="built_in">insertedge</span>(G,i,j);</span><br><span class="line">     <span class="keyword">else</span></span><br><span class="line">     &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;输入顶点信息错！请重新输入！&quot;</span>&lt;&lt;endl;</span><br><span class="line">        G.edgenum++;<span class="comment">//本次输入不算</span></span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> ALGragh G;</span><br><span class="line"> <span class="built_in">CreateALGraph</span>(G);<span class="comment">//创建有向图邻接表</span></span><br><span class="line"> <span class="built_in">printg</span>(G);<span class="comment">//输出邻接表</span></span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>三叶姐的最短路和图构建总结</p>
+<p><a href="https://leetcode.cn/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/solutions/2526052/gong-shui-san-xie-han-gai-suo-you-cun-tu-svq7/">https://leetcode.cn/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/solutions/2526052/gong-shui-san-xie-han-gai-suo-you-cun-tu-svq7/</a></p>
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>图论</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>排序</title>
+    <url>/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E6%8E%92%E5%BA%8F/</url>
+    <content><![CDATA[<h2 id="冒泡1"><a href="#冒泡1" class="headerlink" title="冒泡1"></a>冒泡1</h2><p>两个值依次比较</p>
+<blockquote>
+<p>优化方法:每次循环判断是否交换过元素,没有交换过就证明数组已经有序</p>
+</blockquote>
+<h2 id="选排1"><a href="#选排1" class="headerlink" title="选排1"></a>选排1</h2><p>大小n的数组,遍历n次,第一次把最小的移动到索引0,第二次从1开始把第二小的移动到索引1处,以此类推</p>
+<blockquote>
+<p>优化方法:每次遍历同时寻找最小最大值</p>
+</blockquote>
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>从1开始构造有序数组,后面的数依次比较插入数组中对应位置</p>
+<blockquote>
+<p>优化方法:已排序的插入用二分,</p>
+<p>从后往前排序</p>
+</blockquote>
+<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>把数组不断拆分然后合并,如8个数,先分成左4,右4,每个4再细分成2,2排序后回4合并再排序,再回8合并</p>
+<span id="more"></span>
+
+<h2 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h2><blockquote>
+<p>分散到n个桶中,在每个桶中实现有序,桶之间呈递增关系(即2桶的元素都大于1桶)</p>
+</blockquote>
+<h2 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h2><blockquote>
+<p><strong>可以看成是桶排序的一种特殊情况，只是桶的大小粒度不一样</strong>。当要排序的 n 个数据，所处的范围并不大的时候，比如最大值是 k，我们就可以把数据划分成 k 个桶。每个桶内的数据值都是相同的，省掉了桶内排序的时间。</p>
+<p>生成一个有序计数器数组,遍历数组,遍历到1就给计数器数组的1加1,3就3加1,以此类推,然后输出计数器数组</p>
+</blockquote>
+<h2 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h2><blockquote>
+<p>基数排序是非比较型整数排序算法，其原理是将整数按位分割进行排序。基数排序适用于大范围数据排序，打破了计数排序的限制。由于整数也可以表达字符串（比如名字或日期）和特定格式的浮点数，所以基数排序也不是只能使用于整数。</p>
+</blockquote>
+<h2 id="快排"><a href="#快排" class="headerlink" title="快排"></a>快排</h2><blockquote>
+<p>选择一个数(随机就是随机快排,从头到尾就是普通快排),放到0处,比它小的放左边,大的右边,遍历完一次,把0处和最大的小数交换,直到所有数都已选择过</p>
+</blockquote>
+<h2 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2><blockquote>
+<p>将待排序表分割成若干个“特殊”子表，分别进行直接插入排序，当整个表中元素已呈现“基本有序”时，再对全体记录进行一次直接插入排序</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>排序</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数论</title>
+    <url>/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/%E6%95%B0%E8%AE%BA/</url>
+    <content><![CDATA[<h1 id="辗转相除法"><a href="#辗转相除法" class="headerlink" title="辗转相除法"></a>辗转相除法</h1><p>我们将两数中较大的那一个看作是被除数A，将较小的那一个看作是除数B，二者相除的商记作C，余数记作D。这样我们就可以得到一个等式：A &#x3D; B×C + D。而辗转相除法的所要用到的原理则是：(A , B) &#x3D; (B , D)。</p>
+<p>（m，n)表示m%n,直到（ ， ）&#x3D;0，则最后的余数为两个数的最大公因数。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">递归实现</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">gcd</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (b == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">gcd</span>(b, a % b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">迭代实现</span><br><span class="line"><span class="keyword">while</span> (b != <span class="number">0</span>) &#123;</span><br><span class="line">    remainder = a % b;</span><br><span class="line">    a = b;</span><br><span class="line">    b = remainder;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> a;</span><br></pre></td></tr></table></figure>
+
+
+
+<span id="more"></span>
+
+
+
+<h1 id="最小公倍数"><a href="#最小公倍数" class="headerlink" title="最小公倍数"></a>最小公倍数</h1><p>n和m的乘积除以最大公约数&#x3D;最小公倍数</p>
+<h1 id="快速幂"><a href="#快速幂" class="headerlink" title="快速幂"></a>快速幂</h1><blockquote>
+<p>取模</p>
+<p>(a + b) % p &#x3D; (a % p + b % p) % p<br>(a - b) % p &#x3D; (a % p - b % p ) % p<br><strong>(a * b) % p &#x3D; (a % p * b % p) % p</strong></p>
+</blockquote>
+<p>快速幂算法的核心思想就是每一步都把指数分成两半，而相应的底数做平方运算</p>
+<p>3^10&#x3D;(3<em>3)</em>(3<em>3)</em>(3<em>3)</em>(3<em>3)</em>(3*3)</p>
+<p>3^10&#x3D;(3*3)^5</p>
+<p>3^10&#x3D;9^5</p>
+<p>&#x2F;&#x2F;现在我们的问题是如何把指数5变成原来的一半，5是一个奇数，5的一半是2.5，但是我们知道，指数不能为小数，因此我们不能这么简单粗暴的直接执行5&#x2F;2，然而，这里还有另一种方法能表示9^5</p>
+<p>9^5&#x3D;（9^4）*（9^1）</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">fastPower</span><span class="params">(<span class="type">long</span> <span class="type">long</span> base, <span class="type">long</span> <span class="type">long</span> power)</span> </span>&#123;</span><br><span class="line"> <span class="type">long</span> <span class="type">long</span> result = <span class="number">1</span>;</span><br><span class="line"> <span class="keyword">while</span> (power &gt; <span class="number">0</span>) &#123;</span><br><span class="line">     <span class="keyword">if</span> (power % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">         <span class="comment">//如果指数为偶数</span></span><br><span class="line">         power = power / <span class="number">2</span>;<span class="comment">//把指数缩小为一半</span></span><br><span class="line">         base = base * base % <span class="number">1000</span>;<span class="comment">//底数变大成原来的平方</span></span><br><span class="line">     &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         <span class="comment">//如果指数为奇数</span></span><br><span class="line">         power = power - <span class="number">1</span>;<span class="comment">//把指数减去1，使其变成一个偶数</span></span><br><span class="line">         result = result * base % <span class="number">1000</span>;<span class="comment">//此时记得要把指数为奇数时分离出来的底数的一次方收集好</span></span><br><span class="line">         power = power / <span class="number">2</span>;<span class="comment">//此时指数为偶数，可以继续执行操作</span></span><br><span class="line">         base = base * base % <span class="number">1000</span>;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">fastPower</span><span class="params">(<span class="type">long</span> <span class="type">long</span> base, <span class="type">long</span> <span class="type">long</span> power)</span> </span>&#123;</span><br><span class="line"> <span class="type">long</span> <span class="type">long</span> result = <span class="number">1</span>;</span><br><span class="line"> <span class="keyword">while</span> (power &gt; <span class="number">0</span>) &#123;</span><br><span class="line">     <span class="keyword">if</span> (power % <span class="number">2</span> == <span class="number">1</span>) &#123;</span><br><span class="line">         result = result * base % <span class="number">1000</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     power = power / <span class="number">2</span>;</span><br><span class="line">     base = (base * base) % <span class="number">1000</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>数论</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数位dp</title>
+    <url>/%E7%AE%97%E6%B3%95/dp/%E6%95%B0%E4%BD%8Ddp/</url>
+    <content><![CDATA[<h1 id="写在开头"><a href="#写在开头" class="headerlink" title="写在开头"></a>写在开头</h1><p>本文dp数组基础讲的比较简略,看不懂请另查文章. 求解代码部分比较详细.</p>
+<p>这篇写的累死我了(雾</p>
+<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>洛谷p2602数字计数<a href="https://www.luogu.com.cn/problem/P2602">https://www.luogu.com.cn/problem/P2602</a></p>
+<p>给定两个正整数 a 和 b，求在 [a,b] 中的所有整数中，每个数码(digit)各出现了多少次。</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>分别求[0,a]和[0,b]各个数码出现的次数,然后cnt[b] - cnt[a]就行了,这题a,b范围能到10^12^暴力显然超时,因为000-099和100-199和600-699这种后面两位中数码出现的次数是一样的,自然想到DP记录多少位对应多少次</p>
+<h1 id="dp预处理"><a href="#dp预处理" class="headerlink" title="dp预处理"></a>dp预处理</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>dp[i]定义为i位数的每种数字有多少个(例如dp[2]代表00到99中某个数出现的次数,此处加前导0是为了使0和其他数一样)</p>
+<p>一图流</p>
+<p><img src="/%E7%AE%97%E6%B3%95/dp/%E6%95%B0%E4%BD%8Ddp/%E6%95%B0%E4%BD%8Ddp.jpg" alt="数位dp"></p>
+<span id="more"></span>
+
+<h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><p>dp[i] &#x3D; dp[i-1]*10 + 10^i-1^</p>
+<p>递推公式是如何推导来的呢?</p>
+<p>下面以数字2的出现举几个栗子(定义一下dp[0] &#x3D; 0)</p>
+<blockquote>
+<p>0到9,2只出现了一次dp[1] &#x3D; dp[0]*10 + 10^0^</p>
+<p>00到99呢, 我们分成两部分</p>
+<p>一部分是小一位次数即dp[1]*10(因为0到9是1次, 10到19是一次,一共10次所以乘以10)</p>
+<p>另一部分则是当前位次数即10^1^(因为20到29,一共有10^1^次)</p>
+<p>所以我们得到了dp[2] &#x3D; dp[1]*10 + 10^1^ </p>
+<p>最后看一下000到999</p>
+<p>第一部分dp[2]*10(即000到099,100到199直到999一共十次)</p>
+<p>第二部分10^2^(即200到299一共100次)</p>
+<p><em><strong>强调一下22是2次,因为题目求的是2出现的次数,不是有2的数字出现的次数</strong></em></p>
+</blockquote>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>dp[0] &#x3D; 0</p>
+<h2 id="递推顺序"><a href="#递推顺序" class="headerlink" title="递推顺序"></a>递推顺序</h2><p>正序</p>
+<h2 id="举例推导"><a href="#举例推导" class="headerlink" title="举例推导"></a>举例推导</h2><p>公式部分已有列出(强烈建议看下文的一图流)</p>
+<h1 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h1><h2 id="数位限制"><a href="#数位限制" class="headerlink" title="数位限制"></a>数位限制</h2><p>如23,</p>
+<p>01,02,03…09中0出现十次其他0到9的数出现1次</p>
+<p>11,12…..19中1出现十次其他0到9的数都1次</p>
+<p>21…23</p>
+<p>2为数位限制,需特判</p>
+<h2 id="前导0"><a href="#前导0" class="headerlink" title="前导0"></a>前导0</h2><p>01到99时,01,02这种前面的0是多余的,对0要特判</p>
+<h1 id="求解代码"><a href="#求解代码" class="headerlink" title="求解代码"></a>求解代码</h1><h2 id="递推"><a href="#递推" class="headerlink" title="递推"></a>递推</h2><p>我们先设数字为ABCD</p>
+<p>看A000，如果我们要求出它所有数位之和，我们会怎么求？</p>
+<p>鉴于我们其实已经求出了0-9,0-99,0-999。。。上所有数字个数（f[i],且没有考虑前导0）我们何不把这个A000看成0000-1000-2000…A000对于不考虑首位每一个式子的数字的出现个数为 A*f[3]。加上首位出现也就是小于A每一个数都出现了10^3次，再加上，我们就把A000处理完了。</p>
+<p>这样你以为就把第一位处理完了？不不不，首位A还出现了BCD+1次呢，也就是从A000~ABCD，这个A还出现了BCD+1次，所以再加上这些才行呢。那么你发现，我们成功把首位代表的所有数字个数求出来了，剩下的求解与A完全没有任何关系，只是BCD的求解，于是我们发现我们已经把一个大问题，化成了一个个小问题，也即是，对于一个这样n位的数，把他一位位的分离开来。</p>
+<p>当然你还需要处理前导0你会发现前导0一定是0001,0002。。。0012，0013。。。0101,0102.。。0999这样的数，一共出现了10<em>（i-1)+10</em>(i-2)+…10 (i表示数字位数），让0的统计减去这个值，那么恭喜你这道题做完了。</p>
+<p>一图流</p>
+<p><img src="/%E7%AE%97%E6%B3%95/dp/%E6%95%B0%E4%BD%8Ddp/%E6%95%B0%E4%BD%8Ddp%E4%BE%8B.png" alt="数位dp例"></p>
+<p>首先dp预处理,然后我们分别求解a,b的数位出现次数,cnt[b[i]] - cnt[a[i]]就是a到b区间内数位i出现次数</p>
+<p>初始化dp代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">intit</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ten[<span class="number">0</span>] = <span class="number">1</span>; <span class="comment">//10的i次方</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        dp[i] = dp[i<span class="number">-1</span>]*<span class="number">10</span> + ten[i<span class="number">-1</span>];</span><br><span class="line">        ten[i] = <span class="number">10</span> * ten[i<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>求解[0,a]的数位出现次数代码(拆数)</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">(<span class="type">long</span> <span class="type">long</span> a, vector&lt;<span class="type">long</span> <span class="type">long</span>&gt;cnt)</span></span>&#123;</span><br><span class="line">    <span class="comment">//数组按位存储a</span></span><br><span class="line">    <span class="type">int</span> num[n];<span class="comment">//num[i]定义a的第i位数组</span></span><br><span class="line">    <span class="type">int</span> len = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(a)&#123;</span><br><span class="line">        num[++len] = a%<span class="number">10</span>;</span><br><span class="line">        a/=<span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//按位处理a(这里正序逆序都是可以的,只不过逆序和我们上面推导的思路一样,更好理解)</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = len; i &gt;= <span class="number">1</span>; i--)&#123;</span><br><span class="line">        <span class="comment">//求(000-999)*A处理首位以外的数</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt;= <span class="number">9</span>; j++) cnt[j] += dp[i<span class="number">-1</span>] * nums[i];</span><br><span class="line">        <span class="comment">//求0000-A000即处理首位比A小的数,即ten[3]次,(如2,在2000到2999的首位出现1000次)</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; num[i]; j++) cnt[j] += ten[i<span class="number">-1</span>];</span><br><span class="line">        <span class="comment">//求A000到ABCD即求首位A的数,答案即BCD+1次</span></span><br><span class="line">		<span class="type">long</span> <span class="type">long</span> sum = <span class="number">0</span>;求<span class="function">BCD</span></span><br><span class="line"><span class="function">		<span class="title">for</span><span class="params">(<span class="type">int</span> j = i<span class="number">-1</span>; j &gt;= <span class="number">1</span>; j--)</span></span>&#123;</span><br><span class="line">			sum = sum*<span class="number">10</span> + num[j];</span><br><span class="line">		&#125; </span><br><span class="line">		cnt[num[i]] += sum+<span class="number">1</span>;<span class="comment">//A次数加BCD+1</span></span><br><span class="line">        <span class="comment">//特判前导0</span></span><br><span class="line">        cnt[<span class="number">0</span>] -= ten[i<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="记忆化搜索-dfs"><a href="#记忆化搜索-dfs" class="headerlink" title="记忆化搜索(dfs)"></a>记忆化搜索(dfs)</h2><p>每次查找完某一个数出现的次数</p>
+<h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>dp[pos] [sum] [lead] [limit]表示限制条件中某数码出现的次数</p>
+<p>pos表示最低要求的数前有几位</p>
+<p>sum表示要求数开始有几位</p>
+<blockquote>
+<p> 如要求2,dp[2] [1] 就是200-299, dp[2] [2] 表示2200-2299</p>
+</blockquote>
+<p>lead表示有无前导0</p>
+<blockquote>
+<p>有为true,否位false</p>
+</blockquote>
+<p>limit代表数位限制</p>
+<blockquote>
+<p>如果能取到0-9取false,不能则取true</p>
+</blockquote>
+<p>一图流(以处理324的2次数为例)</p>
+<p><img src="/%E7%AE%97%E6%B3%95/dp/%E6%95%B0%E4%BD%8Ddp/%E6%95%B0%E4%BD%8Ddp%E8%AE%B0%E5%BF%86%E5%8C%96.png" alt="数位dp记忆化"></p>
+<p>看不懂没关系,跟着下面的代码一步步分析(求0-a的数码次数)</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">long</span> <span class="type">long</span> dp[n][n][<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line"><span class="type">int</span> num[n];<span class="comment">//num[i]定义为a的第i位</span></span><br><span class="line"><span class="type">int</span> cur;<span class="comment">//当前统计的数字</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> pos, <span class="type">int</span> sum, <span class="type">bool</span> lead, <span class="type">bool</span> limit)</span></span>&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(pos == <span class="number">0</span>) <span class="keyword">return</span> sum; <span class="comment">//因为我们现在求的是cur,sum表示前面有几个cur,比如220求2,sum是2,那我们求221,223,224,225都可以直接用这个dp[pos][sum]...和上面的递推写法区别就在,这里我们返回的是某一个具体数中的数码出现次数,后面可以重复利用这个结论.而递推写法在一开始就推导出来20-29中2的次数,220到229可以推导出来</span></span><br><span class="line">    <span class="keyword">if</span>(dp[pos][sum][lead][limit] != <span class="number">-1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> dp[pos][sum][lead][limit];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> up; <span class="comment">//最高位</span></span><br><span class="line">    <span class="keyword">if</span>(limit) up = num[pos];<span class="comment">//如果有数位限制,那就等于当前数,如324,当前首位位百位的话,就为3</span></span><br><span class="line">    <span class="keyword">else</span> up = <span class="number">9</span>;<span class="comment">//如果无就为9,如324,当前首位为十位的话,没有限制就是9</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//假如我们在求0-324,cur为2,此时up为3</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt;= up; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i == <span class="number">0</span> &amp;&amp; lead) ans += <span class="built_in">dfs</span>(pos<span class="number">-1</span>, sum, <span class="literal">true</span>, limit &amp;&amp; (i==up));</span><br><span class="line">             <span class="comment">//求000-099(有前导0的),进下一层dfs是求000-009,010-019,020-029,......090-099(始终有前导0的)</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(i == cur) ans += <span class="built_in">dfs</span>(pos<span class="number">-1</span>, sum + <span class="number">1</span>, <span class="literal">false</span>, limit &amp;&amp; (i==up));</span><br><span class="line">             <span class="comment">//200-299(首位为要统计的数时),进一层(sum变成了1,代表首位固定是2了),下一层此处求的是220-229</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(i != cur) ans += <span class="built_in">dfs</span>(pos<span class="number">-1</span>, sum, <span class="literal">false</span>, limit &amp;&amp; (i==up));</span><br><span class="line">    	<span class="comment">//求100-199(首位不为要统计的数且无前导0时),进下一层是求110-119,130-139这样的(首位不为0且不为统计数的)</span></span><br><span class="line">       <span class="comment">//还有求300-324,因为此时i==up==3所以下一层还是有限制的,下一层求320-324</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//单独解释一下limit &amp;&amp; (i==up)这个条件,是专门处理300-324,20-24这种限制位的</span></span><br><span class="line">    dp[pos][sum][lead][limit] = ans;<span class="comment">//记忆化</span></span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//按位存a</span></span><br><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> len = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(a)&#123;</span><br><span class="line">        num[++len] = a%<span class="number">10</span>;</span><br><span class="line">        a/=<span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memset</span>(dp, <span class="number">-1</span>, <span class="built_in">sizeof</span>(dp));<span class="comment">//初始化</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">dfs</span>(len,<span class="number">0</span>,<span class="literal">true</span>,<span class="literal">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> a;</span><br><span class="line">    cin&gt;&gt;a;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">9</span>; i++) &#123;</span><br><span class="line">        cur = i;</span><br><span class="line">        cout&lt;&lt;<span class="built_in">solve</span>(a);<span class="comment">//依次输出0到9在[0,a]中出现的次数</span></span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="相关题目"><a href="#相关题目" class="headerlink" title="相关题目"></a>相关题目</h1><p>洛谷P4999 烦人的数学作业</p>
+<p>难度: 普及+&#x2F;提高</p>
+<p><a href="https://www.luogu.com.cn/problem/P4999">https://www.luogu.com.cn/problem/P4999</a></p>
+<p>洛谷P2657windy 数</p>
+<p>难度: 提高+&#x2F;省选-</p>
+<p><a href="https://www.luogu.com.cn/problem/P2657">https://www.luogu.com.cn/problem/P2657</a></p>
+<p>p2657的实现(用的记忆化模板)</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std; </span><br><span class="line"><span class="type">const</span> <span class="type">int</span> n = <span class="number">15</span>;</span><br><span class="line"><span class="type">long</span> <span class="type">long</span> dp[n][n][<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line"><span class="type">int</span> num[n];</span><br><span class="line"><span class="comment">//last表示上一位</span></span><br><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> pos, <span class="type">int</span> last, <span class="type">bool</span> lead, <span class="type">bool</span> limit)</span></span>&#123;</span><br><span class="line">	<span class="type">long</span> <span class="type">long</span> ans= <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(pos == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(dp[pos][last][lead][limit] != <span class="number">-1</span>) <span class="keyword">return</span> dp[pos][last][lead][limit];</span><br><span class="line">	<span class="type">int</span> up = <span class="number">9</span>;</span><br><span class="line">	<span class="keyword">if</span>(limit) up = num[pos];</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt;= up; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">abs</span>(i-last) &lt; <span class="number">2</span>) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span>(i == <span class="number">0</span> &amp;&amp; lead) ans += <span class="built_in">dfs</span>(pos<span class="number">-1</span>,<span class="number">-2</span>,<span class="literal">true</span>,limit&amp;&amp;i==up);<span class="comment">//即都是前导0,后一位随便选..比如0012,0是前导0,当前也是0,1开始才有意义,1的位置随便选 </span></span><br><span class="line">		<span class="keyword">else</span> ans += <span class="built_in">dfs</span>(pos<span class="number">-1</span>,i,<span class="literal">false</span>,limit&amp;&amp;i==up); <span class="comment">//其他情况,哪怕有前导0这里也要记为没有,因为0123的1还是会限制2的选择</span></span><br><span class="line">	&#125;</span><br><span class="line">	dp[pos][last][lead][limit] = ans;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">solve</span><span class="params">(<span class="type">int</span> a)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> len = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(a)&#123;</span><br><span class="line">        num[++len] = a%<span class="number">10</span>;</span><br><span class="line">        a/=<span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memset</span>(dp, <span class="number">-1</span>, <span class="built_in">sizeof</span>(dp));<span class="comment">//初始化</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">dfs</span>(len,<span class="number">-2</span>,<span class="literal">true</span>,<span class="literal">true</span>);<span class="comment">//-2代表随便选 ,首位肯定随便选 </span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> a,b;</span><br><span class="line">    cin&gt;&gt;a&gt;&gt;b;</span><br><span class="line">    cout&lt;&lt;<span class="built_in">solve</span>(b) - <span class="built_in">solve</span>(a<span class="number">-1</span>)&lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>洛谷P4124 手机号码</p>
+<p>难度:提高+&#x2F;省选-</p>
+<p><a href="https://www.luogu.com.cn/problem/P4124">https://www.luogu.com.cn/problem/P4124</a></p>
+<p>洛谷p4798 卡尔文球锦标赛</p>
+<p>难度:省选&#x2F;NOI-</p>
+<p><a href="https://www.luogu.com.cn/problem/P4798">https://www.luogu.com.cn/problem/P4798</a></p>
+<p>洛谷P3281 数数</p>
+<p>难度:省选&#x2F;NOI-</p>
+<p><a href="https://www.luogu.com.cn/problem/P3281">https://www.luogu.com.cn/problem/P3281</a></p>
+<p>洛谷p2518 计数</p>
+<p>难度:省选&#x2F;NOI-</p>
+<p><a href="https://www.luogu.com.cn/problem/P2518">https://www.luogu.com.cn/problem/P2518</a></p>
+<p>洛谷p3286 方伯伯的商场之旅</p>
+<p>难度:省选&#x2F;NOI-</p>
+<p><a href="https://www.luogu.com.cn/problem/P3286">https://www.luogu.com.cn/problem/P3286</a></p>
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>dp</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树形dp</title>
+    <url>/%E7%AE%97%E6%B3%95/dp/%E6%A0%91%E5%BD%A2dp/</url>
+    <content><![CDATA[<h1 id="常见定义"><a href="#常见定义" class="headerlink" title="常见定义"></a>常见定义</h1><p>dp[i]第一维即根节点编号</p>
+<p>一般自底向上类似dfs,即先遍历到底</p>
+<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><h2 id="洛谷p1352上司的舞会-经典"><a href="#洛谷p1352上司的舞会-经典" class="headerlink" title="洛谷p1352上司的舞会(经典)"></a>洛谷p1352上司的舞会(经典)</h2><p><a href="https://www.luogu.com.cn/problem/P1352">https://www.luogu.com.cn/problem/P1352</a></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">6005</span>;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; G[N];</span><br><span class="line"><span class="type">int</span> dp[N][<span class="number">2</span>],val[N],father[N];</span><br><span class="line"></span><br><span class="line"><span class="comment">//dp定义,dp[i][j]选或不选i节点的值(j为1选,0不选) </span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u)</span></span>&#123;</span><br><span class="line">	dp[u][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">	dp[u][<span class="number">1</span>] = val[u];</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i : G[u])&#123;</span><br><span class="line">		<span class="built_in">dfs</span>(i);<span class="comment">//遍历子节点</span></span><br><span class="line">		dp[u][<span class="number">1</span>] += dp[i][<span class="number">0</span>];<span class="comment">//父选子不选 </span></span><br><span class="line">		dp[u][<span class="number">0</span>] += <span class="built_in">max</span>(dp[i][<span class="number">0</span>], dp[i][<span class="number">1</span>]);<span class="comment">//父不选,子选或不选 </span></span><br><span class="line">	&#125;	</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> n;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">		cin&gt;&gt;val[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">		<span class="type">int</span> to,from;</span><br><span class="line">		cin&gt;&gt;to&gt;&gt;from;</span><br><span class="line">		G[from].<span class="built_in">push_back</span>(to);</span><br><span class="line">		father[to] = from;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> t = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(father[t]) t = father[t];<span class="comment">//找根节点</span></span><br><span class="line">	<span class="built_in">dfs</span>(t);</span><br><span class="line">	cout&lt;&lt;<span class="built_in">max</span>(dp[t][<span class="number">0</span>], dp[t][<span class="number">1</span>]);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h2 id="洛谷P2015-二叉苹果树-树形背包"><a href="#洛谷P2015-二叉苹果树-树形背包" class="headerlink" title="洛谷P2015 二叉苹果树(树形背包)"></a>洛谷P2015 二叉苹果树(树形背包)</h2><p><a href="https://www.luogu.com.cn/problem/P2015#submit">https://www.luogu.com.cn/problem/P2015#submit</a></p>
+<p>树形背包,过段时间再写下</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; v[<span class="number">109</span>];</span><br><span class="line"><span class="type">int</span> dp[<span class="number">109</span>][<span class="number">109</span>];</span><br><span class="line"><span class="type">int</span> cost[<span class="number">109</span>][<span class="number">109</span>];</span><br><span class="line"><span class="type">int</span> n,need;</span><br><span class="line"><span class="type">int</span> use[<span class="number">109</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> cur)</span></span>&#123;</span><br><span class="line">	use[cur] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> nx : v[cur])&#123;</span><br><span class="line">		<span class="keyword">if</span>(use[nx] == <span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">		use[nx] = <span class="number">1</span>;</span><br><span class="line">		<span class="built_in">dfs</span>(nx);</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j = need; j &gt;= <span class="number">1</span>; j--)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> k = j<span class="number">-1</span>; k &gt;= <span class="number">0</span>; k--)&#123;</span><br><span class="line">				dp[cur][j] = <span class="built_in">max</span>(dp[cur][j], dp[nx][k] + dp[cur][j-k<span class="number">-1</span>] + cost[cur][nx]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;need;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">		<span class="type">int</span> u,to,w;</span><br><span class="line">		cin&gt;&gt;u&gt;&gt;to&gt;&gt;w;</span><br><span class="line">		v[u].<span class="built_in">push_back</span>(to);</span><br><span class="line">		v[to].<span class="built_in">push_back</span>(u);</span><br><span class="line">		cost[u][to] = w;</span><br><span class="line">		cost[to][u] = w;</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="comment">//dp[i][j]定义i节点,留j个树枝时的最大苹果数</span></span><br><span class="line">	<span class="comment">//方程dp[i][j] = 子节点1[k]+子节点2[j-k]</span></span><br><span class="line">	<span class="comment">//初始化,遇到根结点就返回苹果数</span></span><br><span class="line">	<span class="comment">//方向,树根到叶子</span></span><br><span class="line">	<span class="built_in">dfs</span>(<span class="number">1</span>);</span><br><span class="line">	cout&lt;&lt;dp[<span class="number">1</span>][need];</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="洛谷-P1273-有线电视网-树形背包"><a href="#洛谷-P1273-有线电视网-树形背包" class="headerlink" title="洛谷 P1273 有线电视网(树形背包)"></a>洛谷 P1273 有线电视网(树形背包)</h2><p><a href="https://www.luogu.com.cn/problem/P1273">https://www.luogu.com.cn/problem/P1273</a></p>
+<p>写完这题我只想和树形背包爆了,去***的树形dp</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">3005</span>;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span>&#123;</span><br><span class="line">	<span class="type">int</span> v,w;</span><br><span class="line">	<span class="built_in">node</span>(<span class="type">int</span> v = <span class="number">0</span>, <span class="type">int</span> w = <span class="number">0</span>) : <span class="built_in">v</span>(v),<span class="built_in">w</span>(w)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">vector&lt;node&gt; edge[N];</span><br><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;<span class="built_in">dp</span>(N,<span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(N,INT_MIN/<span class="number">2</span>)); </span><br><span class="line"><span class="type">int</span> val[N];</span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(u&gt;n-m)</span><br><span class="line">	&#123;</span><br><span class="line">		dp[u][<span class="number">1</span>]=val[u];</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; edge[u].<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">		<span class="type">int</span> v = edge[u][i].v, w = edge[u][i].w;</span><br><span class="line">		sum += <span class="built_in">dfs</span>(v);</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j = sum; j &gt;= <span class="number">0</span>; j--)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> k = <span class="number">0</span>; k &lt;= j; k++)&#123;</span><br><span class="line">				dp[u][j] = <span class="built_in">max</span>(dp[u][j], dp[u][j-k] + dp[v][k] - w);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">//构图 </span></span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="type">int</span> u = <span class="number">0</span>; </span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n-m; i++)&#123;</span><br><span class="line">		<span class="type">int</span> k;</span><br><span class="line">		u++;</span><br><span class="line">		cin&gt;&gt;k;</span><br><span class="line">		<span class="keyword">while</span>(k--)&#123;</span><br><span class="line">			<span class="type">int</span> v, w;</span><br><span class="line">			cin&gt;&gt;v&gt;&gt;w;</span><br><span class="line">			edge[u].<span class="built_in">push_back</span>(<span class="built_in">node</span>(v,w));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = n-m+<span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">		cin&gt;&gt;val[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//初始化 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = i; i &lt;= n; i++) dp[i][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">dfs</span>(<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = m; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">		<span class="keyword">if</span>(dp[<span class="number">1</span>][i] &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">			cout&lt;&lt;i;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>dp</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树状数组</title>
+    <url>/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/</url>
+    <content><![CDATA[<p>主要解决两类:</p>
+<p>1:单点修改,区间求和</p>
+<p>​	bit维护节点</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> bit[<span class="number">2000006</span>];</span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lowbit</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x&amp;(-x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> index,<span class="type">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = index;i &lt;= n;i+=<span class="built_in">lowbit</span>(i))&#123;</span><br><span class="line">		bit[i]+=k;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">sum</span><span class="params">(<span class="type">int</span> start,<span class="type">int</span> end)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = end;i;i-=<span class="built_in">lowbit</span>(i))&#123;</span><br><span class="line">		ans+=bit[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> j = start<span class="number">-1</span>;j;j-=<span class="built_in">lowbit</span>(j))&#123;</span><br><span class="line">		ans-=bit[j];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="type">int</span> tmp;</span><br><span class="line">		cin&gt;&gt;tmp;</span><br><span class="line">		<span class="built_in">add</span>(i,tmp);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">		<span class="type">int</span> tmp;</span><br><span class="line">		cin&gt;&gt;tmp;</span><br><span class="line">		<span class="keyword">if</span>(tmp==<span class="number">1</span>)&#123;</span><br><span class="line">			<span class="type">int</span> index,num;</span><br><span class="line">			cin&gt;&gt;index&gt;&gt;num;</span><br><span class="line">			<span class="built_in">add</span>(index,num);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="type">int</span> start,end;</span><br><span class="line">			cin&gt;&gt;start&gt;&gt;end;</span><br><span class="line">			cout&lt;&lt;<span class="built_in">sum</span>(start,end)&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<p>2:区间修改,单点求和</p>
+<p>​	bit维护一个差分</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> bit[<span class="number">2000006</span>];</span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lowbit</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x&amp;(-x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> index,<span class="type">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i= index;i&lt;=n;i+=<span class="built_in">lowbit</span>(i)) bit[i]+=k;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">get</span><span class="params">(<span class="type">int</span> index)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = index;i&gt;=<span class="number">1</span>;i-=<span class="built_in">lowbit</span>(i)) ans+=bit[i];</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="type">int</span> last=<span class="number">0</span>,tmp;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		cin&gt;&gt;tmp;</span><br><span class="line">		<span class="built_in">add</span>(i,tmp-last);</span><br><span class="line">		last=tmp;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">		<span class="type">int</span> tmp;</span><br><span class="line">		cin&gt;&gt;tmp;</span><br><span class="line">		<span class="keyword">if</span>(tmp==<span class="number">1</span>)&#123;</span><br><span class="line">			<span class="type">int</span> start,end,k;</span><br><span class="line">			cin&gt;&gt;start&gt;&gt;end&gt;&gt;k;</span><br><span class="line">			<span class="built_in">add</span>(start,k);</span><br><span class="line">			<span class="built_in">add</span>(end+<span class="number">1</span>,-k);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="type">int</span> index;</span><br><span class="line">			cin&gt;&gt;index;</span><br><span class="line">			cout&lt;&lt;<span class="built_in">get</span>(index)&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>都是区间时线段树</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>数据结构</category>
+        <category>树状数组</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>排序</title>
+    <url>/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91/%E6%A0%91%E7%BB%93%E6%9E%84/</url>
+    <content><![CDATA[<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">TreeNode</span> &#123;</span><br><span class="line"> <span class="type">int</span> val;</span><br><span class="line"> TreeNode *left;</span><br><span class="line"> TreeNode *right;</span><br><span class="line"> <span class="built_in">TreeNode</span>(<span class="type">int</span> x) : <span class="built_in">val</span>(x), <span class="built_in">left</span>(<span class="literal">NULL</span>), <span class="built_in">right</span>(<span class="literal">NULL</span>) &#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<p><strong>二叉树相关属性解释：</strong></p>
+<ul>
+<li><p><strong>结点</strong>：包含一个数据元素及若干指向子树分支的信息。</p>
+</li>
+<li><p><strong>结点的度</strong>：一个结点拥有子树的数目称为结点的度。</p>
+</li>
+<li><p><strong>叶子结点</strong>：也称为终端结点，没有子树的结点或者度为零的结点。</p>
+</li>
+<li><p><strong>分支结点</strong>：也称为非终端结点，度不为零的结点称为非终端结点。</p>
+</li>
+<li><p><strong>树的度</strong>：树中所有结点的度的最大值。</p>
+</li>
+<li><p><strong>结点的层次</strong>：从根结点开始，假设根结点为第1层，根结点的子节点为第2层，依此类推，如果某一个结点位于第L层，则其子节点位于第L+1层。</p>
+</li>
+<li><p><strong>树的深度</strong>：也称为树的高度，树中所有结点的层次最大值称为树的深度。</p>
+</li>
+<li><p><strong>有序树</strong>：如果树中各棵子树的次序是有先后次序，则称该树为有序树。</p>
+</li>
+<li><p><strong>无序树</strong>：如果树中各棵子树的次序没有先后次序，则称该树为无序树。</p>
+</li>
+<li><p>二叉树遍历方式分为三种(根的顺序,左右固定)</p>
+</li>
+<li><ul>
+<li>前序遍历（根左右）： 访问根结点，再访问左子树、再访问右子树。</li>
+<li>中序遍历（左根右）： 先访问左子树，再访问根结点、再访问右子树。</li>
+<li>后续遍历（左右根）： 先访问左子树，再访问右子树，再访问根结点。</li>
+</ul>
+</li>
+<li><blockquote>
+<p>前序:每次输出根节点,然后访问左,左变成根节点</p>
+<p>中序:先把左递归完然后回溯,依次输出左,回溯一下输出根,再输出右</p>
+<p>后序:访问根结点的操作发生在遍历其左右子树之后。就是左右都没了才访问根</p>
+</blockquote>
+</li>
+<li><p>二叉树节点的深度：指从<strong>根</strong>节点到该节点的最长简单路径边的条数或者节点数（取决于深度从0开始还是从1开始）</p>
+</li>
+<li><p>二叉树节点的高度：指从<strong>该</strong>节点到叶子节点的最长简单路径边的条数或者节点数（取决于高度从0开始还是从1开始）</p>
+</li>
+<li><p><strong>根节点的高度就是二叉树的最大深度</strong></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>数据结构</category>
+        <category>树</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>高精度</title>
+    <url>/%E7%AE%97%E6%B3%95/%E5%A4%A7%E6%95%B0%E5%A4%84%E7%90%86/%E9%AB%98%E7%B2%BE%E5%BA%A6/</url>
+    <content><![CDATA[<p>加减乘要逆序</p>
+<p>除法正序</p>
+<h1 id="高精度加法"><a href="#高精度加法" class="headerlink" title="高精度加法"></a>高精度加法</h1><p>使用字符数组存储两个较大的数</p>
+<p>把两个数逆序转化为整数数组</p>
+<p>诸位相加运算，在运算的时候处理进位。</p>
+<p>相加之后的结果最多比原来较长的数多一位，最后逆序输出即可</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> a[N],b[N],c[N];<span class="comment">//数组C存储结果</span></span><br><span class="line"><span class="type">char</span> s1[N],s2[N];<span class="comment">//存储读入的字符串</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cin &gt;&gt; s1 &gt;&gt; s2;</span><br><span class="line">    <span class="type">int</span> la = <span class="built_in">strlen</span>(s1);</span><br><span class="line">    <span class="type">int</span> lb = <span class="built_in">strlen</span>(s2);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>;i &lt; la;i++) a[la - i] = s1[i] - <span class="string">&#x27;0&#x27;</span>;<span class="comment">//倒序存储</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>;i &lt; lb;i++) b[lb - i] = s2[i] - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    <span class="type">int</span> lc = <span class="built_in">max</span>(la,lb) + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>;i &lt;= lc;i++)<span class="comment">//注意此处的下标从1开始(可以使用12345 + 23456模拟)</span></span><br><span class="line">    &#123;</span><br><span class="line">        c[i] += (a[i] + b[i]);<span class="comment">//两式相加</span></span><br><span class="line">        c[i + <span class="number">1</span>] = c[i] / <span class="number">10</span>;<span class="comment">//如果有进位的话,向高位进位</span></span><br><span class="line">        c[i] = c[i] % <span class="number">10</span>;<span class="comment">//如果是两位数,则进位之后需要取模</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//删除前导0</span></span><br><span class="line">    <span class="keyword">if</span> (c[lc] == <span class="number">0</span>) lc --;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = lc;i &gt; <span class="number">0</span>;i --) <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,c[i]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> <span class="built_in">i</span>(<span class="number">1</span>);i&lt;cz;i++)<span class="comment">//cz的长度为max(sz1,sz2)+1;</span></span><br><span class="line">&#123;</span><br><span class="line">		c[i]=n1[i]+n2[i]+x;    </span><br><span class="line">		x=c[i]/<span class="number">10</span>;                   <span class="comment">//其实这里也可以加一个条件 当..x&gt;=10时才执行</span></span><br><span class="line">		c[i]%=<span class="number">10</span>;                    <span class="comment">//%10保存&lt;10的数</span></span><br><span class="line">&#125;</span><br><span class="line">		c[i]=x;<span class="comment">//保存最后的进位;</span></span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h1 id="减法"><a href="#减法" class="headerlink" title="减法"></a>减法</h1><p>如果<code>a &lt; b</code>，则需要先交换a与b，最后在输出结果前加上负号</p>
+<p>在高精度计算时，如果<code>a[i] &lt; b[i]</code>，则需要先向高位借一位</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span> +<span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> a[N],b[N],c[N];<span class="comment">//数组c用来存储结果</span></span><br><span class="line"><span class="type">char</span> s1[N],s2[N],s3[N];<span class="comment">//s3用来帮助交换s1和s2</span></span><br><span class="line"><span class="type">int</span> flag;<span class="comment">//默认为0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//判断s1和s2的大小关系:如果s1 &gt;= s2,返回true;否则,返回false</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp</span><span class="params">(<span class="type">char</span> s1[],<span class="type">char</span> s2[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> u = <span class="built_in">strlen</span>(s1),v = <span class="built_in">strlen</span>(s2);</span><br><span class="line">    <span class="keyword">if</span> (u != v) <span class="keyword">return</span> u &gt; v;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>;i &lt; u;i++)<span class="comment">//执行到这里,说明u == v</span></span><br><span class="line">        <span class="keyword">if</span> (s1[i] != s2[i])</span><br><span class="line">            <span class="keyword">return</span> s1[i] &gt; s2[i];</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;<span class="comment">//s1 == s2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> la,lb,lc; cin &gt;&gt; s1 &gt;&gt; s2;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">cmp</span>(s1,s2))<span class="comment">//表示s1 &lt; s2</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//交换之后可以保证s1 &gt; s2</span></span><br><span class="line">        flag = <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">strcpy</span>(s3,s1);</span><br><span class="line">        <span class="built_in">strcpy</span>(s1,s2);</span><br><span class="line">        <span class="built_in">strcpy</span>(s2,s3);</span><br><span class="line">    &#125;</span><br><span class="line">    la = <span class="built_in">strlen</span>(s1),lb = <span class="built_in">strlen</span>(s2);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将输入的字符串转化为数字并倒序存储</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>;i &lt; la;i++) a[la - i] = s1[i] - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>;i &lt; lb;i++) b[lb - i] = s2[i] - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//高精度算法核心代码</span></span><br><span class="line">    lc = <span class="built_in">max</span>(la,lb);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>;i &lt;= lc;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[i] &lt; b[i])</span><br><span class="line">        &#123;</span><br><span class="line">            a[i + <span class="number">1</span>] --;<span class="comment">//借位</span></span><br><span class="line">            a[i] += <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        c[i] = a[i] - b[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (c[lc] == <span class="number">0</span> &amp;&amp; lc &gt; <span class="number">1</span>) lc --;<span class="comment">//删除前导0</span></span><br><span class="line">    <span class="keyword">if</span> (flag == <span class="number">1</span>) cout &lt;&lt; <span class="string">&quot;-&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = lc;i &gt; <span class="number">0</span>;i--) cout &lt;&lt; c[i];</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">	<span class="comment">//先判断ss1是否比ss2小，如果小就交换两则的顺序</span></span><br><span class="line">	<span class="keyword">if</span> ((ss1.<span class="built_in">size</span>()&lt;ss2.<span class="built_in">size</span>()) || (ss1.<span class="built_in">size</span>() ==ss2.<span class="built_in">size</span>() &amp;&amp; ss1&lt;ss2)) &#123;</span><br><span class="line">		<span class="built_in">swap</span>(ss1, ss2);   <span class="comment">//交换</span></span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;-&quot;</span>;</span><br><span class="line">	&#125;<span class="comment">//并率先输出一个负号&#125; </span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> max_c = <span class="built_in">max</span>(sz1, sz2);    <span class="comment">//这里与加法不同没有+1，因为减法不存在最后多一位的情况</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> <span class="built_in">i</span>(<span class="number">1</span>); i &lt;= max_c; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (a[i] &lt; b[i]) &#123;</span><br><span class="line">			a[i + <span class="number">1</span>] --;                        <span class="comment">//如果a&lt;b我们直接向下一位借位，然后本位加10.</span></span><br><span class="line">			a[i] += <span class="number">10</span>;&#125;</span><br><span class="line">		c[i] = a[i] - b[i];</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h1><p>高精度运算中数组的总结<br>与高精度加法、高精度减法一样，在高精度乘法中，利用两个字符数组s1[N]、s2[N]存储输入的数据，然后将输入的数据(字符)转化为数字并<em><strong>逆序</strong></em>存放在数组a[N]、b[N]中。最后，通过对数组a[N]、b[N]进行操作，将操作的结果保存在c[N]即可。输出结果的时候需要逆序输出c[N]，抵消之前逆序存储带来的影响。</p>
+<p><strong><code>A[i] \* B[j] —&gt; C[i + j - 1]</code></strong></p>
+<p>核心</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">[i + j - <span class="number">1</span>] += (a[i] * b[j]);</span><br><span class="line">c[i + j] += c[i + j - <span class="number">1</span>] / <span class="number">10</span>;</span><br><span class="line">c[i + j - <span class="number">1</span>] %= <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> a[N],b[N],c[N];<span class="comment">//c数组用来保存结果</span></span><br><span class="line"><span class="type">char</span> s1[N],s2[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">cin &gt;&gt; s1 &gt;&gt; s2;<span class="comment">//输入数据</span></span><br><span class="line"><span class="type">int</span> la = <span class="built_in">strlen</span>(s1),lb = <span class="built_in">strlen</span>(s2);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>;i &lt; la;i++) a[la - i] = s1[i] - <span class="string">&#x27;0&#x27;</span>;<span class="comment">//转化为数字再逆序存储</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>;i &lt; lb;i++) b[lb - i] = s2[i] - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> lc = la + lb;    </span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>;i &lt;= la;i++)<span class="comment">//高精度算法核心代码</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>;j &lt;= lb;j++)</span><br><span class="line">  &#123;</span><br><span class="line">      c[i + j - <span class="number">1</span>] += (a[i] * b[j]);<span class="comment">//计算</span></span><br><span class="line">      c[i + j] += c[i + j - <span class="number">1</span>] / <span class="number">10</span>;<span class="comment">//向高位进位</span></span><br><span class="line">      c[i + j - <span class="number">1</span>] %= <span class="number">10</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (c[lc] == <span class="number">0</span> &amp;&amp; lc &gt; <span class="number">1</span>) lc --;<span class="comment">//删除前导0</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = lc;i &gt; <span class="number">0</span>;i--) cout &lt;&lt; c[i];<span class="comment">//输出结果</span></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= a.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">1</span>; j &lt;= b; j++) &#123;</span><br><span class="line">		c[i + j - <span class="number">1</span>] += a[i] * b[j];                  <span class="comment">//看不懂,可以直接记模板</span></span><br><span class="line">		c[i + j] += c[i + j - <span class="number">1</span>] / <span class="number">10</span>;</span><br><span class="line">		c[i + j - <span class="number">1</span>] %= <span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="除法-高除以低"><a href="#除法-高除以低" class="headerlink" title="除法(高除以低)"></a><strong>除法(高除以低)</strong></h2><blockquote>
+<p>算法核心：逐位试商法</p>
+<p>①从被除数的第一位开始，用此数除以除数，得出商和余数</p>
+<p>②用得出的余数与被除数的下一位数字结合继续除以除数，以此类推</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>1、定义存储数组。</p>
+<p>2、读入数据处理。</p>
+<p>3、试商过程。</p>
+<p>4、删除前导 0 。所谓前导零，就是出现类似这样数据 01234，这个 0 实际是不需要的。</p>
+<p>5、输出结果。倒序输出减法的结果数组 C，因为我们的个位是存储在下标为 0 的地方。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> LL;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1E5</span> + <span class="number">10</span>;</span><br><span class="line">LL b,x;<span class="comment">//x代表余数</span></span><br><span class="line">LL a[N],c[N];<span class="comment">//c:结果数组</span></span><br><span class="line"><span class="type">char</span> s1[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cin &gt;&gt; s1 &gt;&gt; b;</span><br><span class="line">    LL la = <span class="built_in">strlen</span>(s1);<span class="comment">//输入数据的长度</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>;i &lt;= la;i++) a[i] = s1[i - <span class="number">1</span>] - <span class="string">&#x27;0&#x27;</span>;<span class="comment">//正序存储输入的数据</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>;i &lt;= la;i++)<span class="comment">//高精度除以单精度核心代码</span></span><br><span class="line">    &#123;</span><br><span class="line">        c[i] = (x * <span class="number">10</span> + a[i]) / b;</span><br><span class="line">        x = (x * <span class="number">10</span> + a[i]) % b;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    LL lc = <span class="number">1</span>;<span class="comment">//输出结果</span></span><br><span class="line">    <span class="keyword">while</span> (c[lc] == <span class="number">0</span> &amp;&amp; lc &lt; la) lc ++;<span class="comment">//删除前导0</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = lc;i &lt;= la;i++) cout &lt;&lt; c[i];</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>大数处理</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>问题集</title>
+    <url>/%E9%97%AE%E9%A2%98%E9%9B%86/%E9%97%AE%E9%A2%98%E9%9B%86/</url>
+    <content><![CDATA[<h1 id="构造连续子序列问题"><a href="#构造连续子序列问题" class="headerlink" title="构造连续子序列问题"></a>构造连续子序列问题</h1><p>问题形如:现有整数数组num,取其中任意个数,和为sum,即记为可以取到sum.</p>
+<p>现问最少添加几个数才能取到1到n的所有数</p>
+<p>一图流</p>
+<p><img src="/%E9%97%AE%E9%A2%98%E9%9B%86/%E9%97%AE%E9%A2%98%E9%9B%86/%E5%8A%9B%E6%89%A31798%E5%9B%BE.png"></p>
+<p>现在可以构造[0,m],想构造m+1时</p>
+<p>假设现在得到了 [0,m] 内的所有整数，如果此时新发现了一个整数 s，那么把 s加到已得到的数字中，就得到了[s,m+s]内的所有整数。</p>
+<p>(1) 如果能找到一个 小于或等于 m + 1 的数,可以直接合并,得到[0,m+s]</p>
+<p>(2) 如果下一个数大于m+1后，就无法构造出m+1,那么就要把 m+1 加到数组中(贪心思想,最大范围嘛,如果加的比m+1小那有点亏),这样就可以得到[m+1,m+m+1]的所有数,合并之前的[0,m]即[0,m+m+1]所有数</p>
+<span id="more"></span>
+
+<p>力扣题目</p>
+<p><a href="https://leetcode.cn/problems/patching-array/description/">https://leetcode.cn/problems/patching-array/description/</a></p>
+<p><img src="/%E9%97%AE%E9%A2%98%E9%9B%86/%E9%97%AE%E9%A2%98%E9%9B%86/%E5%8A%9B%E6%89%A3330.png"></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minPatches</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> m = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(m&lt;n)&#123;</span><br><span class="line">            <span class="keyword">if</span>(index &lt; nums.<span class="built_in">size</span>() &amp;&amp; nums[index] &lt;= m + <span class="number">1</span>)&#123;</span><br><span class="line">                m += nums[index];</span><br><span class="line">                index++;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                m += m +<span class="number">1</span>;</span><br><span class="line">                ans++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p><a href="https://leetcode.cn/problems/maximum-number-of-consecutive-values-you-can-make/">https://leetcode.cn/problems/maximum-number-of-consecutive-values-you-can-make/</a></p>
+<p><img src="/%E9%97%AE%E9%A2%98%E9%9B%86/%E9%97%AE%E9%A2%98%E9%9B%86/%E5%8A%9B%E6%89%A31798.png"></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">getMaximumConsecutive</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; coins)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">sort</span>(coins.<span class="built_in">begin</span>(),coins.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> m = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; coins.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(coins[i] &gt; m+<span class="number">1</span>) <span class="keyword">break</span>;</span><br><span class="line">            m += coins[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> m+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="中位数贪心"><a href="#中位数贪心" class="headerlink" title="中位数贪心"></a>中位数贪心</h1><p><a href="https://leetcode.cn/problems/minimum-moves-to-equal-array-elements-ii/description/">https://leetcode.cn/problems/minimum-moves-to-equal-array-elements-ii/description/</a></p>
+<p>给你一个长度为 <code>n</code> 的整数数组 <code>nums</code> ，返回使所有数组元素相等需要的最小操作数。在一次操作中，你可以使数组中的一个元素加 <code>1</code> 或者减 <code>1</code> 。</p>
+<p>翻译一下就是让这数组里的所有元素都变为一个数,怎么最快.</p>
+<p>直接给个结论,变成中位数最快</p>
+<p>假如现在的数组是1,2,3,4,5手算一下,都变成2需要7步,如果都变成3需要6步</p>
+<p>7是如何到6的呢</p>
+<p><img src="/%E9%97%AE%E9%A2%98%E9%9B%86/%E9%97%AE%E9%A2%98%E9%9B%86/%E4%B8%AD%E4%BD%8D%E6%95%B0%E8%B4%AA%E5%BF%83.png"></p>
+<p>L代表左边有几个数,R代表右边有几个数</p>
+<p>我们远离了1和2,所以1,2到我们的距离分别加一</p>
+<p>我们接近了3,4,5所以3,4,5到我们的距离分别减一</p>
+<p>+2-3&#x3D;-1</p>
+<p>所以7-1&#x3D;6</p>
+<p>假如再往右一步呢,远离1,2,3,接近4,5.总体距离加一变回了7</p>
+<p>所以可以感觉出来中位数就是最小次数(没有严格证明,感受一下吧)</p>
+<h1 id="统计移除递增子数组的数目"><a href="#统计移除递增子数组的数目" class="headerlink" title="统计移除递增子数组的数目"></a>统计移除递增子数组的数目</h1><p><a href="https://leetcode.cn/problems/count-the-number-of-incremovable-subarrays-ii/">https://leetcode.cn/problems/count-the-number-of-incremovable-subarrays-ii/</a></p>
+<p>给你一个下标从 <strong>0</strong> 开始的 <strong>正</strong> 整数数组 <code>nums</code> 。</p>
+<p>如果 <code>nums</code> 的一个子数组满足：移除这个子数组后剩余元素 <strong>严格递增</strong> ，那么我们称这个子数组为 <strong>移除递增</strong> 子数组。比方说，<code>[5, 3, 4, 6, 7]</code> 中的 <code>[3, 4]</code> 是一个移除递增子数组，因为移除该子数组后，<code>[5, 3, 4, 6, 7]</code> 变为 <code>[5, 6, 7]</code> ，是严格递增的。</p>
+<p>请你返回 <code>nums</code> 中 <strong>移除递增</strong> 子数组的总数目。</p>
+<p><strong>注意</strong> ，剩余元素为空的数组也视为是递增的。</p>
+<p><img src="/%E9%97%AE%E9%A2%98%E9%9B%86/%E9%97%AE%E9%A2%98%E9%9B%86/%E7%BB%9F%E8%AE%A1%E7%A7%BB%E9%99%A4%E9%80%92%E5%A2%9E%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%9B%AE.png"></p>
+<p>思路是:逆序部分必须去掉,留下左右两端的有序部分.枚举右边,然后看每次左边能接几个上去保持有序(即左边的最大要小于右边的最小)</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">incremovableSubarrayCount</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> start = <span class="number">0</span>, end = <span class="number">0</span>;<span class="comment">//分别为图中两个红色竖,即第一个逆序的起点和最后一个逆序的终点</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>() - <span class="number">1</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i+<span class="number">1</span>] &lt;= nums[i]) &#123;</span><br><span class="line">                start = i + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = nums.<span class="built_in">size</span>() - <span class="number">1</span>; i &gt; <span class="number">0</span>; i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i<span class="number">-1</span>] &gt;= nums[i]) &#123;</span><br><span class="line">                end = i - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(!start) <span class="keyword">return</span> <span class="number">1ll</span>*n*(n+<span class="number">1</span>)/<span class="number">2</span>; <span class="comment">//没有逆序</span></span><br><span class="line"></span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> r = end; r &lt; n<span class="number">-1</span>; r++)&#123; <span class="comment">//枚举右边界(紫色)</span></span><br><span class="line">            <span class="type">int</span> l = start;</span><br><span class="line">            <span class="keyword">while</span>(l &gt; <span class="number">0</span> &amp;&amp; nums[l<span class="number">-1</span>] &gt;= nums[r+<span class="number">1</span>]) l--; <span class="comment">//看看左边界第几个能接起来(蓝色)</span></span><br><span class="line">            ans += l + <span class="number">1</span>; <span class="comment">//几种情况</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans + start + <span class="number">1</span>; <span class="comment">//最后为空的时候,前面随便去几个,即start+1</span></span><br><span class="line">    &#125;                                                  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="蓝桥取模"><a href="#蓝桥取模" class="headerlink" title="蓝桥取模"></a>蓝桥取模</h1><p><a href="https://www.lanqiao.cn/problems/9989/learning/?contest_id=154">https://www.lanqiao.cn/problems/9989/learning/?contest_id=154</a></p>
+<p>给A,B,low,high</p>
+<p>请问[1,A]任取一个数对[1,B]任取一个数取模结果在[low,high]范围里的可能有几种</p>
+<p>官解一图流</p>
+<p><img src="/%E9%97%AE%E9%A2%98%E9%9B%86/%E9%97%AE%E9%A2%98%E9%9B%86/%E8%93%9D%E6%A1%A5%E5%8F%96%E6%A8%A1.png"></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">func</span><span class="params">(ll a, ll b, ll high)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (high &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (ll i = <span class="number">1</span>; i &lt;= b; i++) &#123;</span><br><span class="line">        ll n = a / i;</span><br><span class="line">        ans += n * (<span class="built_in">min</span>(high, i - <span class="number">1</span>) + <span class="number">1</span>);<span class="comment">//处理前面几段</span></span><br><span class="line">        ans += <span class="built_in">min</span>(high, a % i) + <span class="number">1</span>;<span class="comment">//处理最后一段</span></span><br><span class="line">        ans--;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ll a, b, low, high;</span><br><span class="line">    cin &gt;&gt; a &gt;&gt; b &gt;&gt; low &gt;&gt; high;</span><br><span class="line">    cout &lt;&lt; <span class="built_in">func</span>(a, b, high) - <span class="built_in">func</span>(a, b, low - <span class="number">1</span>) &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="转换字符串的最小成本-最短路问题"><a href="#转换字符串的最小成本-最短路问题" class="headerlink" title="转换字符串的最小成本(最短路问题)"></a>转换字符串的最小成本(最短路问题)</h1><p><a href="https://leetcode.cn/problems/minimum-cost-to-convert-string-i/description/">https://leetcode.cn/problems/minimum-cost-to-convert-string-i/description/</a></p>
+<p>主要想借这题复习一下最短路</p>
+<blockquote>
+<p> 还没写完~</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>问题集</category>
+      </categories>
+      <tags>
+        <tag>问题集</tag>
+      </tags>
+  </entry>
+</search>
