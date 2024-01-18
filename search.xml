@@ -20,22 +20,6 @@
       </tags>
   </entry>
   <entry>
-    <title>2023/12/24</title>
-    <url>/%E6%97%A5%E8%AE%B0/2023-12-24/</url>
-    <content><![CDATA[<p>最近打了几场周赛,感觉力扣周赛Q3大部分都是图论.蓝桥小白赛的话构造题比较多.</p>
-<p>双周赛掉大分Q1和Q3一样,但Q1范围不大,可以直接暴力.枚举子数组直接滑动窗口,当时没想到,直接在想Q3的O(n)解法.</p>
-<p>单周赛的Q3是最短路问题, 记得前段时间哪次周赛Q3和这个很像. 一开始直接用dij写,但超时,后面加了个记忆化就过了</p>
-<p>蓝桥小白赛Q4取余,首数组没有处理好.</p>
-<p>计划这两天把这三题整理一下</p>
-]]></content>
-      <categories>
-        <category>日记</category>
-      </categories>
-      <tags>
-        <tag>日记</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ST表</title>
     <url>/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/ST%E8%A1%A8/ST%E8%A1%A8/</url>
     <content><![CDATA[<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>利用倍增思想,求解静态RMQ(区间最值查询)的算法</p>
@@ -72,6 +56,50 @@
       <categories>
         <category>算法</category>
         <category>dp</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2023/12/24</title>
+    <url>/%E6%97%A5%E8%AE%B0/2023-12-24/</url>
+    <content><![CDATA[<p>最近打了几场周赛,感觉力扣周赛Q3大部分都是图论.蓝桥小白赛的话构造题比较多.</p>
+<p>双周赛掉大分Q1和Q3一样,但Q1范围不大,可以直接暴力.枚举子数组直接滑动窗口,当时没想到,直接在想Q3的O(n)解法.</p>
+<p>单周赛的Q3是最短路问题, 记得前段时间哪次周赛Q3和这个很像. 一开始直接用dij写,但超时,后面加了个记忆化就过了</p>
+<p>蓝桥小白赛Q4取余,首数组没有处理好.</p>
+<p>计划这两天把这三题整理一下</p>
+]]></content>
+      <categories>
+        <category>日记</category>
+      </categories>
+      <tags>
+        <tag>日记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>gcd和lcm和裴蜀定理</title>
+    <url>/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/gcd%E5%92%8Clcm%E5%92%8C%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86/</url>
+    <content><![CDATA[<h1 id="gcd-辗转相除法"><a href="#gcd-辗转相除法" class="headerlink" title="gcd(辗转相除法)"></a>gcd(辗转相除法)</h1><p>我们将两数中较大的那一个看作是被除数A，将较小的那一个看作是除数B，二者相除的商记作C，余数记作D。这样我们就可以得到一个等式：A &#x3D; B×C + D。而辗转相除法的所要用到的原理则是：(A , B) &#x3D; (B , D)。</p>
+<p>（m，n)表示m%n,直到（ ， ）&#x3D;0，则最后的余数为两个数的最大公因数。</p>
+<p>cpp里有库函数可以直接调,也可以手搓一个</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">gcd</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> b ? <span class="built_in">gcd</span>(b, a % b) : a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="lcm-最小公倍数"><a href="#lcm-最小公倍数" class="headerlink" title="lcm( 最小公倍数)"></a>lcm( 最小公倍数)</h1><p>a 乘 b 除以 gcd(a,b) &#x3D; lcm</p>
+<h1 id="裴蜀定理"><a href="#裴蜀定理" class="headerlink" title="裴蜀定理"></a>裴蜀定理</h1><p>属于gcd的拓展</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>a,b为整数,则有整数x和y,使得ax + by &#x3D; d*gcd(a,b)</p>
+<span id="more"></span>
+
+<p>d为正整数(最小为1)</p>
+<h2 id="推论"><a href="#推论" class="headerlink" title="推论"></a>推论</h2><p>a,b<strong>互质</strong>的<strong>充分必要条件</strong>是存在整数x,y 使 <strong>ax+by&#x3D;1</strong></p>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p>洛谷p4549</p>
+<p><a href="https://www.luogu.com.cn/problem/P4549">https://www.luogu.com.cn/problem/P4549</a></p>
+<p>力扣1250</p>
+<p><a href="https://leetcode.cn/problems/check-if-it-is-a-good-array/description/">https://leetcode.cn/problems/check-if-it-is-a-good-array/description/</a></p>
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>数论</category>
       </categories>
       <tags>
         <tag>算法</tag>
@@ -121,6 +149,42 @@
       </categories>
       <tags>
         <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>俳句</title>
+    <url>/%E8%AF%97%E8%AF%8D/%E4%BF%B3%E5%8F%A5/</url>
+    <content><![CDATA[<p>我对俳句,和歌之类不是很感兴趣(1是格式本身按音节排,不适合中文.2是感觉格局较小,像是庭院景观),但也有所接触.</p>
+<p>比较有名的和歌如万叶集中的(言叶之庭也有出现)</p>
+<blockquote>
+<p>隐约雷鸣，阴霾天空。但盼风雨来，能留你在此。</p>
+</blockquote>
+<p>俳句我印象深刻的倒是索尼之前办的对马岛俳句大赛,里面有</p>
+<blockquote>
+<p>悲怆如战马，分不清旭日金甲，红了海与沙</p>
+</blockquote>
+<blockquote>
+<p>辉落双影长，浪客转步飞剑芒，碧血黄沙凉</p>
+</blockquote>
+<blockquote>
+<p>白日修罗场，岸边水线如刃长，红花落日光</p>
+</blockquote>
+<h3 id="无题"><a href="#无题" class="headerlink" title="无题"></a>无题</h3><p><strong>轻阴色，江风凉夜泼疏墨，天边染灯火</strong></p>
+<p>背景:第一次写俳句,也是唯一写过的俳句.写作时间大抵是在21年春,月考之时,窗外流云微雨,天气微寒,莫名想到夏日傍晚.<br>&lt;&lt;言语如苏打般涌现&gt;&gt;里有一句如下(因为是直译,格式并不正确)</p>
+<blockquote>
+<p>夕阳时分，抢先偷跑的夏夜灯火</p>
+</blockquote>
+<p>还有王维的</p>
+<blockquote>
+<p>轻阴阁小雨，深院昼慵开</p>
+</blockquote>
+<p>我觉得轻阴这词很有意境诶,还有江风,一下子感觉风的绵延飘逸.</p>
+]]></content>
+      <categories>
+        <category>诗词</category>
+      </categories>
+      <tags>
+        <tag>诗词</tag>
       </tags>
   </entry>
   <entry>
@@ -181,42 +245,6 @@
       </tags>
   </entry>
   <entry>
-    <title>俳句</title>
-    <url>/%E8%AF%97%E8%AF%8D/%E4%BF%B3%E5%8F%A5/</url>
-    <content><![CDATA[<p>我对俳句,和歌之类不是很感兴趣(1是格式本身按音节排,不适合中文.2是感觉格局较小,像是庭院景观),但也有所接触.</p>
-<p>比较有名的和歌如万叶集中的(言叶之庭也有出现)</p>
-<blockquote>
-<p>隐约雷鸣，阴霾天空。但盼风雨来，能留你在此。</p>
-</blockquote>
-<p>俳句我印象深刻的倒是索尼之前办的对马岛俳句大赛,里面有</p>
-<blockquote>
-<p>悲怆如战马，分不清旭日金甲，红了海与沙</p>
-</blockquote>
-<blockquote>
-<p>辉落双影长，浪客转步飞剑芒，碧血黄沙凉</p>
-</blockquote>
-<blockquote>
-<p>白日修罗场，岸边水线如刃长，红花落日光</p>
-</blockquote>
-<h3 id="无题"><a href="#无题" class="headerlink" title="无题"></a>无题</h3><p><strong>轻阴色，江风凉夜泼疏墨，天边染灯火</strong></p>
-<p>背景:第一次写俳句,也是唯一写过的俳句.写作时间大抵是在21年春,月考之时,窗外流云微雨,天气微寒,莫名想到夏日傍晚.<br>&lt;&lt;言语如苏打般涌现&gt;&gt;里有一句如下(因为是直译,格式并不正确)</p>
-<blockquote>
-<p>夕阳时分，抢先偷跑的夏夜灯火</p>
-</blockquote>
-<p>还有王维的</p>
-<blockquote>
-<p>轻阴阁小雨，深院昼慵开</p>
-</blockquote>
-<p>我觉得轻阴这词很有意境诶,还有江风,一下子感觉风的绵延飘逸.</p>
-]]></content>
-      <categories>
-        <category>诗词</category>
-      </categories>
-      <tags>
-        <tag>诗词</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>图构建</title>
     <url>/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/%E5%9B%BE%E6%9E%84%E5%BB%BA/</url>
     <content><![CDATA[<p>邻接矩阵不用说ez</p>
@@ -247,6 +275,50 @@
       <categories>
         <category>算法</category>
         <category>图论</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>快速幂</title>
+    <url>/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/%E5%BF%AB%E9%80%9F%E5%B9%82/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有两种思想,但代码一样,指数折半或者利用二进制,即从十进制和二进制两种方向理解</p>
+<p>两种方法求解过程,以2的11次为例</p>
+<p>指数折半2.11 </p>
+<p>&#x3D; 2 * 4^5<br>&#x3D;2 * 4 * 8 ^ 2<br>&#x3D;2 * 4 * 16</p>
+<p>二进制2^11,1011嘛</p>
+<p>&#x3D;2 * 4 * 16</p>
+<h1 id="指数折半"><a href="#指数折半" class="headerlink" title="指数折半"></a>指数折半</h1><p>核心思想就是每一步都把指数分成两半，而相应的底数做平方运算</p>
+<p>3^10&#x3D;(3 * 3) ^ 5</p>
+<p>3^10&#x3D;9 ^ 5</p>
+<p>现在我们的问题是如何把指数5变成原来的一半，5是一个奇数，5的一半是2.5，但是我们知道，指数不能为小数，因此我们不能这么简单粗暴的直接执行5&#x2F;2，然而，这里还有另一种方法能表示9^5</p>
+<p>9^5&#x3D;（ 9^4 ）*（ 9^1 ）</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">quick_power</span><span class="params">(<span class="type">int</span> base, <span class="type">int</span> power)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">long</span> <span class="type">long</span> ans = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (power &gt; <span class="number">0</span>)           <span class="comment">//指数大于0进行指数折半，底数变其平方的操作</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (power &amp; <span class="number">1</span>)     <span class="comment">//指数为奇数</span></span><br><span class="line">		&#123;</span><br><span class="line">			power -= <span class="number">1</span>;         <span class="comment">//指数减一,不写也可以int自动取整</span></span><br><span class="line">			ans *= base % mod;     <span class="comment">//分离出当前项并累乘</span></span><br><span class="line">		&#125;</span><br><span class="line">		power &gt;&gt;= <span class="number">1</span>;         <span class="comment">//指数折半</span></span><br><span class="line">		base *= base % mod;       <span class="comment">//底数变其平方</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans % mod;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="二进制"><a href="#二进制" class="headerlink" title="二进制"></a>二进制</h1><p>比如n的11次,把11用二进制拆分,8+0+2+1,即1011.</p>
+<p>从低位开始递推,1次<em>1次等于2次,2次</em>2次等于4次……</p>
+<p>不过代码本质也是在做底数翻倍,比如2 ^ 1到2 ^ 2就是2 ^ 1到4 ^ 1,和指数折半是一样的</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">quick_power</span><span class="params">(<span class="type">int</span> base, <span class="type">int</span> power)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> ans = <span class="number">1</span>;   <span class="comment">//用于存储项累乘与返回最终结果，由于要存储累乘所以要初始化为1</span></span><br><span class="line">    <span class="keyword">while</span> (power &gt; <span class="number">0</span>)           <span class="comment">//指数大于0说明指数的二进制位并没有被左移舍弃完毕</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (power &amp; <span class="number">1</span>)&#123;          <span class="comment">//当前位为1</span></span><br><span class="line">            ans *= base % mod;     <span class="comment">//累乘当前项并存储</span></span><br><span class="line">        &#125;</span><br><span class="line">        power &gt;&gt;= <span class="number">1</span>;            <span class="comment">//指数位右移(区别主要就在这一步的理解上)</span></span><br><span class="line">        base *= base % mod;           <span class="comment">//递推,如n的2次变为n的4次</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans % mod;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h1 id="矩阵快速幂"><a href="#矩阵快速幂" class="headerlink" title="矩阵快速幂"></a>矩阵快速幂</h1><h2 id="矩阵乘法"><a href="#矩阵乘法" class="headerlink" title="矩阵乘法"></a>矩阵乘法</h2><p>矩阵乘法</p>
+<p>m x n的矩阵A乘以n x u的矩阵B得到m x u的矩阵C</p>
+<p>公式&#x3D;<br>$$<br>C[ i ] [ j ]  &#x3D; \sum_{k&#x3D;1}^{n}A[i] [k]  * B[k] [j]<br>$$</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= u; j++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> k = <span class="number">1</span>; k &lt;= n; k++)&#123;</span><br><span class="line">            c[i][j] += a[i][k] * b[k][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="快速幂实现"><a href="#快速幂实现" class="headerlink" title="快速幂实现"></a>快速幂实现</h2><p>贴个矩阵快速幂代码</p>
+<p>题目洛谷p3390</p>
+<p><a href="https://www.luogu.com.cn/problem/P3390">https://www.luogu.com.cn/problem/P3390</a></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;<span class="built_in">func</span>(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; a, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; b)&#123;</span><br><span class="line">	vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;<span class="built_in">c</span>(N, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(N, <span class="number">0</span>));</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; N; j++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> k = <span class="number">0</span>; k &lt; N; k++)&#123;</span><br><span class="line">				c[i][j] += a[i][k]*b[k][j];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> c;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;<span class="built_in">quick_power</span>(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; base, <span class="type">int</span> power)&#123;</span><br><span class="line">	vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;<span class="built_in">ans</span>(N, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(N, <span class="number">0</span>));</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++) ans[i][i] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(power)&#123;</span><br><span class="line">		<span class="keyword">if</span>(power &amp; <span class="number">1</span>) ans = <span class="built_in">func</span>(base, ans);</span><br><span class="line">		base = <span class="built_in">func</span>(base, base);</span><br><span class="line">		power &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="加速递推"><a href="#加速递推" class="headerlink" title="加速递推"></a>加速递推</h2><p>洛谷p1939</p>
+<p><a href="https://www.luogu.com.cn/problem/P1939">https://www.luogu.com.cn/problem/P1939</a></p>
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>数论</category>
       </categories>
       <tags>
         <tag>算法</tag>
@@ -291,43 +363,6 @@
       <categories>
         <category>算法</category>
         <category>排序</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数论</title>
-    <url>/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/%E6%95%B0%E8%AE%BA/</url>
-    <content><![CDATA[<h1 id="辗转相除法"><a href="#辗转相除法" class="headerlink" title="辗转相除法"></a>辗转相除法</h1><p>我们将两数中较大的那一个看作是被除数A，将较小的那一个看作是除数B，二者相除的商记作C，余数记作D。这样我们就可以得到一个等式：A &#x3D; B×C + D。而辗转相除法的所要用到的原理则是：(A , B) &#x3D; (B , D)。</p>
-<p>（m，n)表示m%n,直到（ ， ）&#x3D;0，则最后的余数为两个数的最大公因数。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">递归实现</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">gcd</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (b == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">gcd</span>(b, a % b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">迭代实现</span><br><span class="line"><span class="keyword">while</span> (b != <span class="number">0</span>) &#123;</span><br><span class="line">    remainder = a % b;</span><br><span class="line">    a = b;</span><br><span class="line">    b = remainder;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> a;</span><br></pre></td></tr></table></figure>
-
-
-
-<span id="more"></span>
-
-
-
-<h1 id="最小公倍数"><a href="#最小公倍数" class="headerlink" title="最小公倍数"></a>最小公倍数</h1><p>n和m的乘积除以最大公约数&#x3D;最小公倍数</p>
-<h1 id="快速幂"><a href="#快速幂" class="headerlink" title="快速幂"></a>快速幂</h1><blockquote>
-<p>取模</p>
-<p>(a + b) % p &#x3D; (a % p + b % p) % p<br>(a - b) % p &#x3D; (a % p - b % p ) % p<br><strong>(a * b) % p &#x3D; (a % p * b % p) % p</strong></p>
-</blockquote>
-<p>快速幂算法的核心思想就是每一步都把指数分成两半，而相应的底数做平方运算</p>
-<p>3^10&#x3D;(3<em>3)</em>(3<em>3)</em>(3<em>3)</em>(3<em>3)</em>(3*3)</p>
-<p>3^10&#x3D;(3*3)^5</p>
-<p>3^10&#x3D;9^5</p>
-<p>&#x2F;&#x2F;现在我们的问题是如何把指数5变成原来的一半，5是一个奇数，5的一半是2.5，但是我们知道，指数不能为小数，因此我们不能这么简单粗暴的直接执行5&#x2F;2，然而，这里还有另一种方法能表示9^5</p>
-<p>9^5&#x3D;（9^4）*（9^1）</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">fastPower</span><span class="params">(<span class="type">long</span> <span class="type">long</span> base, <span class="type">long</span> <span class="type">long</span> power)</span> </span>&#123;</span><br><span class="line"> <span class="type">long</span> <span class="type">long</span> result = <span class="number">1</span>;</span><br><span class="line"> <span class="keyword">while</span> (power &gt; <span class="number">0</span>) &#123;</span><br><span class="line">     <span class="keyword">if</span> (power % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">         <span class="comment">//如果指数为偶数</span></span><br><span class="line">         power = power / <span class="number">2</span>;<span class="comment">//把指数缩小为一半</span></span><br><span class="line">         base = base * base % <span class="number">1000</span>;<span class="comment">//底数变大成原来的平方</span></span><br><span class="line">     &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         <span class="comment">//如果指数为奇数</span></span><br><span class="line">         power = power - <span class="number">1</span>;<span class="comment">//把指数减去1，使其变成一个偶数</span></span><br><span class="line">         result = result * base % <span class="number">1000</span>;<span class="comment">//此时记得要把指数为奇数时分离出来的底数的一次方收集好</span></span><br><span class="line">         power = power / <span class="number">2</span>;<span class="comment">//此时指数为偶数，可以继续执行操作</span></span><br><span class="line">         base = base * base % <span class="number">1000</span>;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">fastPower</span><span class="params">(<span class="type">long</span> <span class="type">long</span> base, <span class="type">long</span> <span class="type">long</span> power)</span> </span>&#123;</span><br><span class="line"> <span class="type">long</span> <span class="type">long</span> result = <span class="number">1</span>;</span><br><span class="line"> <span class="keyword">while</span> (power &gt; <span class="number">0</span>) &#123;</span><br><span class="line">     <span class="keyword">if</span> (power % <span class="number">2</span> == <span class="number">1</span>) &#123;</span><br><span class="line">         result = result * base % <span class="number">1000</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     power = power / <span class="number">2</span>;</span><br><span class="line">     base = (base * base) % <span class="number">1000</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <categories>
-        <category>算法</category>
-        <category>数论</category>
       </categories>
       <tags>
         <tag>算法</tag>
@@ -466,34 +501,6 @@
       </tags>
   </entry>
   <entry>
-    <title>树状数组</title>
-    <url>/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/</url>
-    <content><![CDATA[<p>主要解决两类:</p>
-<p>1:单点修改,区间求和</p>
-<p>​	bit维护节点</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> bit[<span class="number">2000006</span>];</span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lowbit</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x&amp;(-x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> index,<span class="type">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = index;i &lt;= n;i+=<span class="built_in">lowbit</span>(i))&#123;</span><br><span class="line">		bit[i]+=k;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">sum</span><span class="params">(<span class="type">int</span> start,<span class="type">int</span> end)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = end;i;i-=<span class="built_in">lowbit</span>(i))&#123;</span><br><span class="line">		ans+=bit[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> j = start<span class="number">-1</span>;j;j-=<span class="built_in">lowbit</span>(j))&#123;</span><br><span class="line">		ans-=bit[j];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="type">int</span> tmp;</span><br><span class="line">		cin&gt;&gt;tmp;</span><br><span class="line">		<span class="built_in">add</span>(i,tmp);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">		<span class="type">int</span> tmp;</span><br><span class="line">		cin&gt;&gt;tmp;</span><br><span class="line">		<span class="keyword">if</span>(tmp==<span class="number">1</span>)&#123;</span><br><span class="line">			<span class="type">int</span> index,num;</span><br><span class="line">			cin&gt;&gt;index&gt;&gt;num;</span><br><span class="line">			<span class="built_in">add</span>(index,num);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="type">int</span> start,end;</span><br><span class="line">			cin&gt;&gt;start&gt;&gt;end;</span><br><span class="line">			cout&lt;&lt;<span class="built_in">sum</span>(start,end)&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
-
-<p>2:区间修改,单点求和</p>
-<p>​	bit维护一个差分</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> bit[<span class="number">2000006</span>];</span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lowbit</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x&amp;(-x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> index,<span class="type">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i= index;i&lt;=n;i+=<span class="built_in">lowbit</span>(i)) bit[i]+=k;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">get</span><span class="params">(<span class="type">int</span> index)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = index;i&gt;=<span class="number">1</span>;i-=<span class="built_in">lowbit</span>(i)) ans+=bit[i];</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="type">int</span> last=<span class="number">0</span>,tmp;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		cin&gt;&gt;tmp;</span><br><span class="line">		<span class="built_in">add</span>(i,tmp-last);</span><br><span class="line">		last=tmp;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">		<span class="type">int</span> tmp;</span><br><span class="line">		cin&gt;&gt;tmp;</span><br><span class="line">		<span class="keyword">if</span>(tmp==<span class="number">1</span>)&#123;</span><br><span class="line">			<span class="type">int</span> start,end,k;</span><br><span class="line">			cin&gt;&gt;start&gt;&gt;end&gt;&gt;k;</span><br><span class="line">			<span class="built_in">add</span>(start,k);</span><br><span class="line">			<span class="built_in">add</span>(end+<span class="number">1</span>,-k);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="type">int</span> index;</span><br><span class="line">			cin&gt;&gt;index;</span><br><span class="line">			cout&lt;&lt;<span class="built_in">get</span>(index)&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
-
-
-
-<blockquote>
-<p>都是区间时线段树</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>数据结构</category>
-        <category>树状数组</category>
-      </categories>
-      <tags>
-        <tag>数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>排序</title>
     <url>/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91/%E6%A0%91%E7%BB%93%E6%9E%84/</url>
     <content><![CDATA[<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">TreeNode</span> &#123;</span><br><span class="line"> <span class="type">int</span> val;</span><br><span class="line"> TreeNode *left;</span><br><span class="line"> TreeNode *right;</span><br><span class="line"> <span class="built_in">TreeNode</span>(<span class="type">int</span> x) : <span class="built_in">val</span>(x), <span class="built_in">left</span>(<span class="literal">NULL</span>), <span class="built_in">right</span>(<span class="literal">NULL</span>) &#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -545,6 +552,34 @@
       <categories>
         <category>数据结构</category>
         <category>树</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树状数组</title>
+    <url>/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/</url>
+    <content><![CDATA[<p>主要解决两类:</p>
+<p>1:单点修改,区间求和</p>
+<p>​	bit维护节点</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> bit[<span class="number">2000006</span>];</span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lowbit</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x&amp;(-x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> index,<span class="type">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = index;i &lt;= n;i+=<span class="built_in">lowbit</span>(i))&#123;</span><br><span class="line">		bit[i]+=k;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">sum</span><span class="params">(<span class="type">int</span> start,<span class="type">int</span> end)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = end;i;i-=<span class="built_in">lowbit</span>(i))&#123;</span><br><span class="line">		ans+=bit[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> j = start<span class="number">-1</span>;j;j-=<span class="built_in">lowbit</span>(j))&#123;</span><br><span class="line">		ans-=bit[j];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="type">int</span> tmp;</span><br><span class="line">		cin&gt;&gt;tmp;</span><br><span class="line">		<span class="built_in">add</span>(i,tmp);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">		<span class="type">int</span> tmp;</span><br><span class="line">		cin&gt;&gt;tmp;</span><br><span class="line">		<span class="keyword">if</span>(tmp==<span class="number">1</span>)&#123;</span><br><span class="line">			<span class="type">int</span> index,num;</span><br><span class="line">			cin&gt;&gt;index&gt;&gt;num;</span><br><span class="line">			<span class="built_in">add</span>(index,num);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="type">int</span> start,end;</span><br><span class="line">			cin&gt;&gt;start&gt;&gt;end;</span><br><span class="line">			cout&lt;&lt;<span class="built_in">sum</span>(start,end)&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<p>2:区间修改,单点求和</p>
+<p>​	bit维护一个差分</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> bit[<span class="number">2000006</span>];</span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lowbit</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x&amp;(-x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> index,<span class="type">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i= index;i&lt;=n;i+=<span class="built_in">lowbit</span>(i)) bit[i]+=k;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">get</span><span class="params">(<span class="type">int</span> index)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = index;i&gt;=<span class="number">1</span>;i-=<span class="built_in">lowbit</span>(i)) ans+=bit[i];</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="type">int</span> last=<span class="number">0</span>,tmp;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		cin&gt;&gt;tmp;</span><br><span class="line">		<span class="built_in">add</span>(i,tmp-last);</span><br><span class="line">		last=tmp;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">		<span class="type">int</span> tmp;</span><br><span class="line">		cin&gt;&gt;tmp;</span><br><span class="line">		<span class="keyword">if</span>(tmp==<span class="number">1</span>)&#123;</span><br><span class="line">			<span class="type">int</span> start,end,k;</span><br><span class="line">			cin&gt;&gt;start&gt;&gt;end&gt;&gt;k;</span><br><span class="line">			<span class="built_in">add</span>(start,k);</span><br><span class="line">			<span class="built_in">add</span>(end+<span class="number">1</span>,-k);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="type">int</span> index;</span><br><span class="line">			cin&gt;&gt;index;</span><br><span class="line">			cout&lt;&lt;<span class="built_in">get</span>(index)&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>都是区间时线段树</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>数据结构</category>
+        <category>树状数组</category>
       </categories>
       <tags>
         <tag>数据结构</tag>

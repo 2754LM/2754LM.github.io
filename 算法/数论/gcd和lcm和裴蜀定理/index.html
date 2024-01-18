@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>数论 |  Kano</title>
+      <title>gcd和lcm和裴蜀定理 |  Kano</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/images/ayer.png" />
@@ -54,7 +54,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-数论"
+  id="post-gcd和lcm和裴蜀定理"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -65,7 +65,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  数论
+  gcd和lcm和裴蜀定理
 </h1>
  
 
@@ -73,8 +73,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/%E6%95%B0%E8%AE%BA/" class="article-date">
-  <time datetime="2023-12-01T01:14:14.941Z" itemprop="datePublished">2023-12-01</time>
+      <a href="/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/gcd%E5%92%8Clcm%E5%92%8C%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86/" class="article-date">
+  <time datetime="2024-01-18T09:32:22.015Z" itemprop="datePublished">2024-01-18</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a> / <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/">数论</a>
@@ -85,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">541</span>
+            <span class="post-count">258</span>
         </span>
     </span>
 
@@ -94,7 +94,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">2 分钟</span>
+            <span class="post-count">1 分钟</span>
         </span>
     </span>
 </div>
@@ -109,31 +109,22 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="辗转相除法"><a href="#辗转相除法" class="headerlink" title="辗转相除法"></a>辗转相除法</h1><p>我们将两数中较大的那一个看作是被除数A，将较小的那一个看作是除数B，二者相除的商记作C，余数记作D。这样我们就可以得到一个等式：A &#x3D; B×C + D。而辗转相除法的所要用到的原理则是：(A , B) &#x3D; (B , D)。</p>
+  <h1 id="gcd-辗转相除法"><a href="#gcd-辗转相除法" class="headerlink" title="gcd(辗转相除法)"></a>gcd(辗转相除法)</h1><p>我们将两数中较大的那一个看作是被除数A，将较小的那一个看作是除数B，二者相除的商记作C，余数记作D。这样我们就可以得到一个等式：A &#x3D; B×C + D。而辗转相除法的所要用到的原理则是：(A , B) &#x3D; (B , D)。</p>
 <p>（m，n)表示m%n,直到（ ， ）&#x3D;0，则最后的余数为两个数的最大公因数。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">递归实现</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">gcd</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (b == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">gcd</span>(b, a % b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">迭代实现</span><br><span class="line"><span class="keyword">while</span> (b != <span class="number">0</span>) &#123;</span><br><span class="line">    remainder = a % b;</span><br><span class="line">    a = b;</span><br><span class="line">    b = remainder;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> a;</span><br></pre></td></tr></table></figure>
+<p>cpp里有库函数可以直接调,也可以手搓一个</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">gcd</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> b ? <span class="built_in">gcd</span>(b, a % b) : a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-
+<h1 id="lcm-最小公倍数"><a href="#lcm-最小公倍数" class="headerlink" title="lcm( 最小公倍数)"></a>lcm( 最小公倍数)</h1><p>a 乘 b 除以 gcd(a,b) &#x3D; lcm</p>
+<h1 id="裴蜀定理"><a href="#裴蜀定理" class="headerlink" title="裴蜀定理"></a>裴蜀定理</h1><p>属于gcd的拓展</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>a,b为整数,则有整数x和y,使得ax + by &#x3D; d*gcd(a,b)</p>
 <span id="more"></span>
 
-
-
-<h1 id="最小公倍数"><a href="#最小公倍数" class="headerlink" title="最小公倍数"></a>最小公倍数</h1><p>n和m的乘积除以最大公约数&#x3D;最小公倍数</p>
-<h1 id="快速幂"><a href="#快速幂" class="headerlink" title="快速幂"></a>快速幂</h1><blockquote>
-<p>取模</p>
-<p>(a + b) % p &#x3D; (a % p + b % p) % p<br>(a - b) % p &#x3D; (a % p - b % p ) % p<br><strong>(a * b) % p &#x3D; (a % p * b % p) % p</strong></p>
-</blockquote>
-<p>快速幂算法的核心思想就是每一步都把指数分成两半，而相应的底数做平方运算</p>
-<p>3^10&#x3D;(3<em>3)</em>(3<em>3)</em>(3<em>3)</em>(3<em>3)</em>(3*3)</p>
-<p>3^10&#x3D;(3*3)^5</p>
-<p>3^10&#x3D;9^5</p>
-<p>&#x2F;&#x2F;现在我们的问题是如何把指数5变成原来的一半，5是一个奇数，5的一半是2.5，但是我们知道，指数不能为小数，因此我们不能这么简单粗暴的直接执行5&#x2F;2，然而，这里还有另一种方法能表示9^5</p>
-<p>9^5&#x3D;（9^4）*（9^1）</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">fastPower</span><span class="params">(<span class="type">long</span> <span class="type">long</span> base, <span class="type">long</span> <span class="type">long</span> power)</span> </span>&#123;</span><br><span class="line"> <span class="type">long</span> <span class="type">long</span> result = <span class="number">1</span>;</span><br><span class="line"> <span class="keyword">while</span> (power &gt; <span class="number">0</span>) &#123;</span><br><span class="line">     <span class="keyword">if</span> (power % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">         <span class="comment">//如果指数为偶数</span></span><br><span class="line">         power = power / <span class="number">2</span>;<span class="comment">//把指数缩小为一半</span></span><br><span class="line">         base = base * base % <span class="number">1000</span>;<span class="comment">//底数变大成原来的平方</span></span><br><span class="line">     &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         <span class="comment">//如果指数为奇数</span></span><br><span class="line">         power = power - <span class="number">1</span>;<span class="comment">//把指数减去1，使其变成一个偶数</span></span><br><span class="line">         result = result * base % <span class="number">1000</span>;<span class="comment">//此时记得要把指数为奇数时分离出来的底数的一次方收集好</span></span><br><span class="line">         power = power / <span class="number">2</span>;<span class="comment">//此时指数为偶数，可以继续执行操作</span></span><br><span class="line">         base = base * base % <span class="number">1000</span>;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">fastPower</span><span class="params">(<span class="type">long</span> <span class="type">long</span> base, <span class="type">long</span> <span class="type">long</span> power)</span> </span>&#123;</span><br><span class="line"> <span class="type">long</span> <span class="type">long</span> result = <span class="number">1</span>;</span><br><span class="line"> <span class="keyword">while</span> (power &gt; <span class="number">0</span>) &#123;</span><br><span class="line">     <span class="keyword">if</span> (power % <span class="number">2</span> == <span class="number">1</span>) &#123;</span><br><span class="line">         result = result * base % <span class="number">1000</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     power = power / <span class="number">2</span>;</span><br><span class="line">     base = (base * base) % <span class="number">1000</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+<p>d为正整数(最小为1)</p>
+<h2 id="推论"><a href="#推论" class="headerlink" title="推论"></a>推论</h2><p>a,b<strong>互质</strong>的<strong>充分必要条件</strong>是存在整数x,y 使 <strong>ax+by&#x3D;1</strong></p>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p>洛谷p4549</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4549">https://www.luogu.com.cn/problem/P4549</a></p>
+<p>力扣1250</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/check-if-it-is-a-good-array/description/">https://leetcode.cn/problems/check-if-it-is-a-good-array/description/</a></p>
  
       <!-- reward -->
       
@@ -186,7 +177,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/%E6%95%B0%E8%AE%BA/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/gcd%E5%92%8Clcm%E5%92%8C%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -199,19 +190,19 @@
    
   <nav class="article-nav">
     
-      <a href="/%E9%97%AE%E9%A2%98%E9%9B%86/%E9%97%AE%E9%A2%98%E9%9B%86/" class="article-nav-link">
+      <a href="/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/%E5%BF%AB%E9%80%9F%E5%B9%82/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            问题集
+            快速幂
           
         </div>
       </a>
     
     
-      <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/" class="article-nav-link">
+      <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/ST%E8%A1%A8/ST%E8%A1%A8/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">树状数组</div>
+        <div class="article-nav-title">ST表</div>
       </a>
     
   </nav>
@@ -228,7 +219,7 @@
     <ul>
       <li>
         Copyrights &copy;
-        2023
+        2023-2024
         <i class="ri-heart-fill heart_icon"></i> Kano
       </li>
     </ul>
