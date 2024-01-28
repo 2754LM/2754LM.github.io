@@ -709,4 +709,35 @@
         <tag>问题集</tag>
       </tags>
   </entry>
+  <entry>
+    <title>2024/1/28</title>
+    <url>/uncategorized/2024-1-28/</url>
+    <content><![CDATA[<p>昨天第一次打了下cf的div2,感觉挺不简单(作息太阴间,今天力扣周赛都没起床)<br>在这里简单写一下div2的q2吧</p>
+<p>题干</p>
+<blockquote>
+<p>Jay managed to create a problem of difficulty x and decided to make it the second problem for Codeforces Round #921.</p>
+</blockquote>
+<p>But Yash fears that this problem will make the contest highly unbalanced, and the coordinator will reject it. So, he decided to break it up into a problemset of n sub-problems such that the difficulties of all the sub-problems are a positive integer and their sum is equal to x.</p>
+<blockquote>
+</blockquote>
+<p>The coordinator, Aleksey, defines the balance of a problemset as the GCD of the difficulties of all sub-problems in the problemset.</p>
+<blockquote>
+</blockquote>
+<p>Find the maximum balance that Yash can achieve if he chooses the difficulties of the sub-problems optimally.</p>
+<blockquote>
+</blockquote>
+<p>Input<br>The first line of input contains a single integer t (1≤t≤1e3) denoting the number of test cases.<br>Each test case contains a single line of input containing two integers x (1≤x≤1e8) and n (1≤n≤x).</p>
+<blockquote>
+</blockquote>
+<p>Output<br>For each test case, print a single line containing a single integer denoting the maximum balance of the problemset Yash can achieve.</p>
+<p>大意就是把x分成n份,求怎么分能让这n个数的GCD最大,然后输出这个GCD</p>
+<p>比如10,3,最优解是分成2,2,4,GCD就是2</p>
+<p>假如现在的公约数是d,很容易可以想到,每一项都是d的倍数的时候,d才能是公约数.<br>最优情况我们可以把x分成d,d,d……x−(n−1)d.</p>
+<p>所以只要(x%d &#x3D;&#x3D; 0)d就是满足条件的公约数,我们可以枚举得到答案,但是注意范围,O(n)复杂度,t的1e3乘以x的1e8,就是1e11显然超时.</p>
+<p>这里就需要用到一个我们在学求质数时就知道的知识.假如求num是否为质数,朴素的想法是for(int i &#x3D; 2; i x i &lt;&#x3D; num; i++)只要num%i&#x3D;&#x3D;0就不是质数,注意这里是i范围是i x i小于num的</p>
+<p>回到上面求公约数的时候我们也可以只遍历到i x i &lt;&#x3D; num,这样时间复杂度就是1e3乘以1e4为1e7,可以过.</p>
+<p>另外需要注意的是遍历过程中每次会得到两个因数来检验,一个就是i,另一个是num&#x2F;i</p>
+<p>贴出代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> x,n;</span><br><span class="line">cin &gt;&gt; x &gt;&gt; n;</span><br><span class="line"><span class="type">int</span> ans = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i * i &lt;= x; i++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(x%i==<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">    	a = i, b = num / i; <span class="comment">//因数为a和b</span></span><br><span class="line">        <span class="keyword">if</span>(n &lt;= x/a) <span class="comment">//如果因数为a,每份都是a,至少要分出n份</span></span><br><span class="line">            ans=<span class="built_in">max</span>(ans, a);</span><br><span class="line">        <span class="keyword">if</span>(n &lt;= x/b) <span class="comment">//如果因数为b,每份都是b,至少要分出n份</span></span><br><span class="line">            ans=<span class="built_in">max</span>(ans, b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">cout &lt;&lt; ans &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br></pre></td></tr></table></figure>]]></content>
+  </entry>
 </search>
