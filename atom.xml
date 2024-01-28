@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-01-28T04:46:40.153Z</updated>
+  <updated>2024-01-28T10:11:06.475Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>进制哈希</title>
+    <link href="http://example.com/%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/%E8%BF%9B%E5%88%B6%E5%93%88%E5%B8%8C/"/>
+    <id>http://example.com/%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/%E8%BF%9B%E5%88%B6%E5%93%88%E5%B8%8C/</id>
+    <published>2024-01-28T10:10:27.957Z</published>
+    <updated>2024-01-28T10:11:06.475Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;例题&quot;&gt;&lt;a href=&quot;#例题&quot; class=&quot;headerlink&quot; title=&quot;例题&quot;&gt;&lt;/a&gt;例题&lt;/h1&gt;&lt;p&gt;洛谷3370&lt;br&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="算法" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="字符串" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+    
+    <category term="算法" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
     <title>2024/1/28</title>
-    <link href="http://example.com/uncategorized/2024-1-28/"/>
-    <id>http://example.com/uncategorized/2024-1-28/</id>
-    <published>2024-01-28T04:21:38.000Z</published>
-    <updated>2024-01-28T04:46:40.153Z</updated>
+    <link href="http://example.com/%E6%97%A5%E8%AE%B0/2024-1-28/"/>
+    <id>http://example.com/%E6%97%A5%E8%AE%B0/2024-1-28/</id>
+    <published>2024-01-28T04:46:40.133Z</published>
+    <updated>2024-01-28T10:11:35.834Z</updated>
     
     
       
@@ -37,6 +64,10 @@
     
     
     
+    <category term="日记" scheme="http://example.com/categories/%E6%97%A5%E8%AE%B0/"/>
+    
+    
+    <category term="日记" scheme="http://example.com/tags/%E6%97%A5%E8%AE%B0/"/>
     
   </entry>
   
@@ -110,7 +141,7 @@
     <link href="http://example.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/ST%E8%A1%A8/ST%E8%A1%A8/"/>
     <id>http://example.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/ST%E8%A1%A8/ST%E8%A1%A8/</id>
     <published>2023-12-28T14:14:44.000Z</published>
-    <updated>2023-12-28T14:15:18.874Z</updated>
+    <updated>2024-01-28T10:06:20.968Z</updated>
     
     
       
@@ -129,6 +160,39 @@
     
     
     <category term="数据结构" scheme="http://example.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>manacher</title>
+    <link href="http://example.com/%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/manacher/"/>
+    <id>http://example.com/%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/manacher/</id>
+    <published>2023-12-28T14:14:44.000Z</published>
+    <updated>2024-01-28T10:08:10.252Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h1&gt;&lt;p&gt;马拉车,是一种动态规划算法,用来求解字符串S中最长回文子串的长度,时间复杂度O(n)&lt;/p&gt;
+&lt;h1 id=&quot;思路&quot;&gt;&lt;a href=&quot;#思路&quot; class=&quot;headerlink&quot; title=&quot;思路&quot;&gt;&lt;/a&gt;思路&lt;/h1&gt;&lt;p&gt;回文数有两种,奇数和偶数,如aba和abba,奇数好求(中心扩展法)&lt;/p&gt;
+&lt;p&gt;假设S为abba&lt;/p&gt;
+&lt;p&gt;我们在相隔字符间加入#,最终为&lt;/p&gt;
+&lt;p&gt;#a#b#b#a#长度必为奇数&lt;/p&gt;
+&lt;p&gt;为了编程方便,首位加入哨兵?#a#b#b#a#@&lt;/p&gt;
+&lt;p&gt;定义数组p[],p[i]代表以s[i]为中心字符的最长回文串半径(自身为1)&lt;/p&gt;
+&lt;p&gt;如&lt;/p&gt;
+&lt;p&gt;?#a#b#b#a#@&lt;/p&gt;
+&lt;p&gt;11212521211&lt;/p&gt;
+&lt;p&gt;最大的p[i] - 1就是答案,此处为p[5]-1 &amp;#x3D; 5- 1 &amp;#x3D; 4&lt;/p&gt;
+&lt;p&gt;马拉车主要解决求p的过程,核心思想是&lt;strong&gt;回文的镜像也是回文&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;懒得写了,直接看代码吧&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="算法" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="字符串" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+    
+    <category term="算法" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -511,35 +575,6 @@
     <category term="算法" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/"/>
     
     <category term="排序" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/"/>
-    
-    
-    <category term="算法" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>高精度</title>
-    <link href="http://example.com/%E7%AE%97%E6%B3%95/%E5%A4%A7%E6%95%B0%E5%A4%84%E7%90%86/%E9%AB%98%E7%B2%BE%E5%BA%A6/"/>
-    <id>http://example.com/%E7%AE%97%E6%B3%95/%E5%A4%A7%E6%95%B0%E5%A4%84%E7%90%86/%E9%AB%98%E7%B2%BE%E5%BA%A6/</id>
-    <published>2023-12-01T00:47:08.065Z</published>
-    <updated>2023-12-17T11:24:44.359Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;加减乘要逆序&lt;/p&gt;
-&lt;p&gt;除法正序&lt;/p&gt;
-&lt;h1 id=&quot;高精度加法&quot;&gt;&lt;a href=&quot;#高精度加法&quot; class=&quot;headerlink&quot; title=&quot;高精度加法&quot;&gt;&lt;/a&gt;高精度加法&lt;/h1&gt;&lt;p&gt;使用字符数组存储两个较大的数&lt;/p&gt;
-&lt;p&gt;把两个数逆序转化为整数数组&lt;/p&gt;
-&lt;p&gt;诸位相加运算，在运算的时候处理进位。&lt;/p&gt;
-&lt;p&gt;相加之后的结果最多比原来较长的数多一位，最后逆序输出即可&lt;/p&gt;
-&lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; N = &lt;span class=&quot;number&quot;&gt;1e5&lt;/span&gt; + &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; a[N],b[N],c[N];&lt;span class=&quot;comment&quot;&gt;//数组C存储结果&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;char&lt;/span&gt; s1[N],s2[N];&lt;span class=&quot;comment&quot;&gt;//存储读入的字符串&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    cin &amp;gt;&amp;gt; s1 &amp;gt;&amp;gt; s2;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; la = &lt;span class=&quot;built_in&quot;&gt;strlen&lt;/span&gt;(s1);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; lb = &lt;span class=&quot;built_in&quot;&gt;strlen&lt;/span&gt;(s2);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;i &amp;lt; la;i++) a[la - i] = s1[i] - &lt;span class=&quot;string&quot;&gt;&amp;#x27;0&amp;#x27;&lt;/span&gt;;&lt;span class=&quot;comment&quot;&gt;//倒序存储&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;i &amp;lt; lb;i++) b[lb - i] = s2[i] - &lt;span class=&quot;string&quot;&gt;&amp;#x27;0&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; lc = &lt;span class=&quot;built_in&quot;&gt;max&lt;/span&gt;(la,lb) + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;i &amp;lt;= lc;i++)&lt;span class=&quot;comment&quot;&gt;//注意此处的下标从1开始(可以使用12345 + 23456模拟)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        c[i] += (a[i] + b[i]);&lt;span class=&quot;comment&quot;&gt;//两式相加&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        c[i + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;] = c[i] / &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;;&lt;span class=&quot;comment&quot;&gt;//如果有进位的话,向高位进位&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        c[i] = c[i] % &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;;&lt;span class=&quot;comment&quot;&gt;//如果是两位数,则进位之后需要取模&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;//删除前导0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (c[lc] == &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;) lc --;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; i = lc;i &amp;gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;i --) &lt;span class=&quot;built_in&quot;&gt;printf&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&amp;quot;%d&amp;quot;&lt;/span&gt;,c[i]);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;i&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;);i&amp;lt;cz;i++)&lt;span class=&quot;comment&quot;&gt;//cz的长度为max(sz1,sz2)+1;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		c[i]=n1[i]+n2[i]+x;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		x=c[i]/&lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;;                   &lt;span class=&quot;comment&quot;&gt;//其实这里也可以加一个条件 当..x&amp;gt;=10时才执行&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		c[i]%=&lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;;                    &lt;span class=&quot;comment&quot;&gt;//%10保存&amp;lt;10的数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		c[i]=x;&lt;span class=&quot;comment&quot;&gt;//保存最后的进位;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
-    
-    
-    
-    <category term="算法" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="大数处理" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/%E5%A4%A7%E6%95%B0%E5%A4%84%E7%90%86/"/>
     
     
     <category term="算法" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95/"/>
