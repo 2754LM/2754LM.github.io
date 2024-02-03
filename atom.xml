@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-01-28T10:11:06.475Z</updated>
+  <updated>2024-02-03T12:57:52.146Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>子序列子数组问题</title>
+    <link href="http://example.com/%E7%AE%97%E6%B3%95/dp/%E5%AD%90%E5%BA%8F%E5%88%97%E5%AD%90%E6%95%B0%E7%BB%84%E9%97%AE%E9%A2%98/"/>
+    <id>http://example.com/%E7%AE%97%E6%B3%95/dp/%E5%AD%90%E5%BA%8F%E5%88%97%E5%AD%90%E6%95%B0%E7%BB%84%E9%97%AE%E9%A2%98/</id>
+    <published>2024-02-03T12:55:02.126Z</published>
+    <updated>2024-02-03T12:57:52.146Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;分类&quot;&gt;&lt;a href=&quot;#分类&quot; class=&quot;headerlink&quot; title=&quot;分类&quot;&gt;&lt;/a&gt;分类&lt;/h1&gt;&lt;p&gt;LCS(最长公共子序列)&lt;/p&gt;
+&lt;p&gt;LIS（最长上升子序列）&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.luogu.com.cn/problem/P1020#submit&quot;&gt;https://www.luogu.com.cn/problem/P1020#submit&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;如果直接写O(n平方)复杂度是很简单的,LIS递推方程如下&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//dp[i]定义为以v[i]结尾的最长LIS&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; i &amp;lt; n; i++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; j = i + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;; j &amp;lt; n; j++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(v[i] &amp;gt; v[j])&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            dp[i] = &lt;span class=&quot;built_in&quot;&gt;max&lt;/span&gt;(dp[i], dp[j] + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;LCS和LIS解决比较类似,但LCS不能用二分来优化,类似LCS问题的还有编辑距离&lt;/p&gt;
+&lt;p&gt;下面的是二分法的优化&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="算法" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="dp" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/dp/"/>
+    
+    
+    <category term="算法" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>进制哈希</title>
@@ -541,40 +569,6 @@
     <category term="算法" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/"/>
     
     <category term="dp" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/dp/"/>
-    
-    
-    <category term="算法" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>排序</title>
-    <link href="http://example.com/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E6%8E%92%E5%BA%8F/"/>
-    <id>http://example.com/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E6%8E%92%E5%BA%8F/</id>
-    <published>2023-12-01T00:47:34.431Z</published>
-    <updated>2023-12-25T13:32:05.817Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;冒泡1&quot;&gt;&lt;a href=&quot;#冒泡1&quot; class=&quot;headerlink&quot; title=&quot;冒泡1&quot;&gt;&lt;/a&gt;冒泡1&lt;/h2&gt;&lt;p&gt;两个值依次比较&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;优化方法:每次循环判断是否交换过元素,没有交换过就证明数组已经有序&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;选排1&quot;&gt;&lt;a href=&quot;#选排1&quot; class=&quot;headerlink&quot; title=&quot;选排1&quot;&gt;&lt;/a&gt;选排1&lt;/h2&gt;&lt;p&gt;大小n的数组,遍历n次,第一次把最小的移动到索引0,第二次从1开始把第二小的移动到索引1处,以此类推&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;优化方法:每次遍历同时寻找最小最大值&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;插入排序&quot;&gt;&lt;a href=&quot;#插入排序&quot; class=&quot;headerlink&quot; title=&quot;插入排序&quot;&gt;&lt;/a&gt;插入排序&lt;/h2&gt;&lt;p&gt;从1开始构造有序数组,后面的数依次比较插入数组中对应位置&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;优化方法:已排序的插入用二分,&lt;/p&gt;
-&lt;p&gt;从后往前排序&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;归并排序&quot;&gt;&lt;a href=&quot;#归并排序&quot; class=&quot;headerlink&quot; title=&quot;归并排序&quot;&gt;&lt;/a&gt;归并排序&lt;/h2&gt;&lt;p&gt;把数组不断拆分然后合并,如8个数,先分成左4,右4,每个4再细分成2,2排序后回4合并再排序,再回8合并&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="算法" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="排序" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/"/>
     
     
     <category term="算法" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95/"/>

@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>2023/12/24</title>
+    <url>/%E6%97%A5%E8%AE%B0/2023-12-24/</url>
+    <content><![CDATA[<p>最近打了几场周赛,感觉力扣周赛Q3大部分都是图论.蓝桥小白赛的话构造题比较多.</p>
+<p>双周赛掉大分Q1和Q3一样,但Q1范围不大,可以直接暴力.枚举子数组直接滑动窗口,当时没想到,直接在想Q3的O(n)解法.</p>
+<p>单周赛的Q3是最短路问题, 记得前段时间哪次周赛Q3和这个很像. 一开始直接用dij写,但超时,后面加了个记忆化就过了</p>
+<p>蓝桥小白赛Q4取余,首数组没有处理好.</p>
+<p>计划这两天把这三题整理一下</p>
+]]></content>
+      <categories>
+        <category>日记</category>
+      </categories>
+      <tags>
+        <tag>日记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2023/12/13</title>
     <url>/%E6%97%A5%E8%AE%B0/2023-12-13/</url>
     <content><![CDATA[<p>略记一下最近发生的事</p>
@@ -11,22 +27,6 @@
 <p>接下来干什么呢</p>
 <p>算法继续写着，基础算法要复习复习，dp的话理论还差个区间dp写完，多练练。高级数据结构线段树什么的要学一手，还有图论，看一次忘一次，下次系统的写的最短路什么的。</p>
 <p>哦，还有cet4,425就行（</p>
-]]></content>
-      <categories>
-        <category>日记</category>
-      </categories>
-      <tags>
-        <tag>日记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2023/12/24</title>
-    <url>/%E6%97%A5%E8%AE%B0/2023-12-24/</url>
-    <content><![CDATA[<p>最近打了几场周赛,感觉力扣周赛Q3大部分都是图论.蓝桥小白赛的话构造题比较多.</p>
-<p>双周赛掉大分Q1和Q3一样,但Q1范围不大,可以直接暴力.枚举子数组直接滑动窗口,当时没想到,直接在想Q3的O(n)解法.</p>
-<p>单周赛的Q3是最短路问题, 记得前段时间哪次周赛Q3和这个很像. 一开始直接用dij写,但超时,后面加了个记忆化就过了</p>
-<p>蓝桥小白赛Q4取余,首数组没有处理好.</p>
-<p>计划这两天把这三题整理一下</p>
 ]]></content>
       <categories>
         <category>日记</category>
@@ -57,27 +57,6 @@
       </categories>
       <tags>
         <tag>日记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ST表</title>
-    <url>/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/ST%E8%A1%A8/ST%E8%A1%A8/</url>
-    <content><![CDATA[<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>利用倍增思想,求解静态RMQ(区间最值查询)的算法</p>
-<p>利用O(nlog2n)复杂度预处理,进行O(1)的查询</p>
-<blockquote>
-<p>倍增思想: 2的i次增长</p>
-</blockquote>
-<h1 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h1><p>先谈一下为什么开log2啊? 如果不开,你长度都是2,4,6这样访问,不浪费空间吗?N*N稍微大点直接爆内存了</p>
-<p>而且你初始化个数组查某个数的最大2的次数, 这样和log2比不方便,何况懒得写log2还有自带的函数.</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span>+<span class="number">5</span>;</span><br><span class="line"><span class="type">int</span> st[N][<span class="number">21</span>]; <span class="comment">//st[i][j],i记录的是现在遍历的下标,j记录的是log2(长度)</span></span><br><span class="line"><span class="type">int</span> lg[N]; <span class="comment">//因为二进制就是2的i次,所以用来记录很方便,位移就可以了.</span></span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	lg[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">		lg[i] = lg[i&gt;&gt;<span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">		cin&gt;&gt;st[i][<span class="number">0</span>];</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= lg[n]; j++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n - (<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>)) +<span class="number">1</span>; i++)&#123;</span><br><span class="line">			st[i][j] = <span class="built_in">min</span>(st[i][j<span class="number">-1</span>], st[i + (<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>))][j<span class="number">-1</span>]); <span class="comment">//j-1就是上一个log2(上一层长度),我们&lt;&lt;位移就为了展开来定下i的位置</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">query</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> k = lg[r-l+<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">min</span>(st[l][k], st[r-(<span class="number">1</span>&lt;&lt;k)+<span class="number">1</span>][k]); <span class="comment">//和初始化是同理的,log2上一层就是k</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line">	cin.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="built_in">init</span>();</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i&lt; m; i++)&#123;</span><br><span class="line">		<span class="type">int</span> l,r;</span><br><span class="line">		cin&gt;&gt;l&gt;&gt;r;</span><br><span class="line">		cout&lt;&lt;<span class="built_in">query</span>(l,r)&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>数据结构</category>
-        <category>ST表</category>
-      </categories>
-      <tags>
-        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -130,6 +109,27 @@
       </tags>
   </entry>
   <entry>
+    <title>ST表</title>
+    <url>/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/ST%E8%A1%A8/ST%E8%A1%A8/</url>
+    <content><![CDATA[<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>利用倍增思想,求解静态RMQ(区间最值查询)的算法</p>
+<p>利用O(nlog2n)复杂度预处理,进行O(1)的查询</p>
+<blockquote>
+<p>倍增思想: 2的i次增长</p>
+</blockquote>
+<h1 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h1><p>先谈一下为什么开log2啊? 如果不开,你长度都是2,4,6这样访问,不浪费空间吗?N*N稍微大点直接爆内存了</p>
+<p>而且你初始化个数组查某个数的最大2的次数, 这样和log2比不方便,何况懒得写log2还有自带的函数.</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span>+<span class="number">5</span>;</span><br><span class="line"><span class="type">int</span> st[N][<span class="number">21</span>]; <span class="comment">//st[i][j],i记录的是现在遍历的下标,j记录的是log2(长度)</span></span><br><span class="line"><span class="type">int</span> lg[N]; <span class="comment">//因为二进制就是2的i次,所以用来记录很方便,位移就可以了.</span></span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	lg[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">		lg[i] = lg[i&gt;&gt;<span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">		cin&gt;&gt;st[i][<span class="number">0</span>];</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= lg[n]; j++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n - (<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>)) +<span class="number">1</span>; i++)&#123;</span><br><span class="line">			st[i][j] = <span class="built_in">min</span>(st[i][j<span class="number">-1</span>], st[i + (<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>))][j<span class="number">-1</span>]); <span class="comment">//j-1就是上一个log2(上一层长度),我们&lt;&lt;位移就为了展开来定下i的位置</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">query</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> k = lg[r-l+<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">min</span>(st[l][k], st[r-(<span class="number">1</span>&lt;&lt;k)+<span class="number">1</span>][k]); <span class="comment">//和初始化是同理的,log2上一层就是k</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line">	cin.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="built_in">init</span>();</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i&lt; m; i++)&#123;</span><br><span class="line">		<span class="type">int</span> l,r;</span><br><span class="line">		cin&gt;&gt;l&gt;&gt;r;</span><br><span class="line">		cout&lt;&lt;<span class="built_in">query</span>(l,r)&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>数据结构</category>
+        <category>ST表</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>二叉堆</title>
     <url>/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E5%A0%86/%E4%BA%8C%E5%8F%89%E5%A0%86/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>平常都用priority_queue,今天来手搓一下</p>
@@ -148,6 +148,42 @@
       </categories>
       <tags>
         <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>俳句</title>
+    <url>/%E8%AF%97%E8%AF%8D/%E4%BF%B3%E5%8F%A5/</url>
+    <content><![CDATA[<p>我对俳句,和歌之类不是很感兴趣(1是格式本身按音节排,不适合中文.2是感觉格局较小,像是庭院景观),但也有所接触.</p>
+<p>比较有名的和歌如万叶集中的(言叶之庭也有出现)</p>
+<blockquote>
+<p>隐约雷鸣，阴霾天空。但盼风雨来，能留你在此。</p>
+</blockquote>
+<p>俳句我印象深刻的倒是索尼之前办的对马岛俳句大赛,里面有</p>
+<blockquote>
+<p>悲怆如战马，分不清旭日金甲，红了海与沙</p>
+</blockquote>
+<blockquote>
+<p>辉落双影长，浪客转步飞剑芒，碧血黄沙凉</p>
+</blockquote>
+<blockquote>
+<p>白日修罗场，岸边水线如刃长，红花落日光</p>
+</blockquote>
+<h3 id="无题"><a href="#无题" class="headerlink" title="无题"></a>无题</h3><p><strong>轻阴色，江风凉夜泼疏墨，天边染灯火</strong></p>
+<p>背景:第一次写俳句,也是唯一写过的俳句.写作时间大抵是在21年春,月考之时,窗外流云微雨,天气微寒,莫名想到夏日傍晚.<br>&lt;&lt;言语如苏打般涌现&gt;&gt;里有一句如下(因为是直译,格式并不正确)</p>
+<blockquote>
+<p>夕阳时分，抢先偷跑的夏夜灯火</p>
+</blockquote>
+<p>还有王维的</p>
+<blockquote>
+<p>轻阴阁小雨，深院昼慵开</p>
+</blockquote>
+<p>我觉得轻阴这词很有意境诶,还有江风,一下子感觉风的绵延飘逸.</p>
+]]></content>
+      <categories>
+        <category>诗词</category>
+      </categories>
+      <tags>
+        <tag>诗词</tag>
       </tags>
   </entry>
   <entry>
@@ -206,42 +242,6 @@
       </tags>
   </entry>
   <entry>
-    <title>俳句</title>
-    <url>/%E8%AF%97%E8%AF%8D/%E4%BF%B3%E5%8F%A5/</url>
-    <content><![CDATA[<p>我对俳句,和歌之类不是很感兴趣(1是格式本身按音节排,不适合中文.2是感觉格局较小,像是庭院景观),但也有所接触.</p>
-<p>比较有名的和歌如万叶集中的(言叶之庭也有出现)</p>
-<blockquote>
-<p>隐约雷鸣，阴霾天空。但盼风雨来，能留你在此。</p>
-</blockquote>
-<p>俳句我印象深刻的倒是索尼之前办的对马岛俳句大赛,里面有</p>
-<blockquote>
-<p>悲怆如战马，分不清旭日金甲，红了海与沙</p>
-</blockquote>
-<blockquote>
-<p>辉落双影长，浪客转步飞剑芒，碧血黄沙凉</p>
-</blockquote>
-<blockquote>
-<p>白日修罗场，岸边水线如刃长，红花落日光</p>
-</blockquote>
-<h3 id="无题"><a href="#无题" class="headerlink" title="无题"></a>无题</h3><p><strong>轻阴色，江风凉夜泼疏墨，天边染灯火</strong></p>
-<p>背景:第一次写俳句,也是唯一写过的俳句.写作时间大抵是在21年春,月考之时,窗外流云微雨,天气微寒,莫名想到夏日傍晚.<br>&lt;&lt;言语如苏打般涌现&gt;&gt;里有一句如下(因为是直译,格式并不正确)</p>
-<blockquote>
-<p>夕阳时分，抢先偷跑的夏夜灯火</p>
-</blockquote>
-<p>还有王维的</p>
-<blockquote>
-<p>轻阴阁小雨，深院昼慵开</p>
-</blockquote>
-<p>我觉得轻阴这词很有意境诶,还有江风,一下子感觉风的绵延飘逸.</p>
-]]></content>
-      <categories>
-        <category>诗词</category>
-      </categories>
-      <tags>
-        <tag>诗词</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>单调栈</title>
     <url>/%E7%AE%97%E6%B3%95/%E5%8D%95%E8%B0%83%E6%A0%88/%E5%8D%95%E8%B0%83%E6%A0%88/</url>
     <content><![CDATA[<h1 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>通常是一维数组,记录任一个元素右(左)边第一个比自身大(小)的元素的下标.</p>
@@ -293,6 +293,30 @@
       <categories>
         <category>算法</category>
         <category>单调栈</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>子序列子数组问题</title>
+    <url>/%E7%AE%97%E6%B3%95/dp/%E5%AD%90%E5%BA%8F%E5%88%97%E5%AD%90%E6%95%B0%E7%BB%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h1 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h1><p>LCS(最长公共子序列)</p>
+<p>LIS（最长上升子序列）</p>
+<p><a href="https://www.luogu.com.cn/problem/P1020#submit">https://www.luogu.com.cn/problem/P1020#submit</a></p>
+<p>如果直接写O(n平方)复杂度是很简单的,LIS递推方程如下</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//dp[i]定义为以v[i]结尾的最长LIS</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j = i + <span class="number">1</span>; j &lt; n; j++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(v[i] &gt; v[j])&#123;</span><br><span class="line">            dp[i] = <span class="built_in">max</span>(dp[i], dp[j] + <span class="number">1</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>LCS和LIS解决比较类似,但LCS不能用二分来优化,类似LCS问题的还有编辑距离</p>
+<p>下面的是二分法的优化</p>
+<span id="more"></span>
+
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">2e5</span> + <span class="number">5</span>;</span><br><span class="line"><span class="type">int</span> a[N];</span><br><span class="line"><span class="type">int</span> g[N];<span class="comment">//定义为长度为i的序列的最小/大末尾 </span></span><br><span class="line"><span class="type">int</span> n,cnt;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line">	cin.<span class="built_in">tie</span>(<span class="number">0</span>),cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	g[<span class="number">0</span>] = INT_MAX;<span class="comment">//非递增 </span></span><br><span class="line">    <span class="keyword">while</span> (cin&gt;&gt;a[++n]); </span><br><span class="line">    n -= <span class="number">1</span>; <span class="comment">//超级重要,哥们因为这个点debug了好几次!!!!!!!! </span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span>(a[i] &lt;= g[cnt])&#123;</span><br><span class="line">			g[++cnt] = a[i];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="type">int</span> l = <span class="number">1</span>, r = cnt<span class="number">-1</span>;</span><br><span class="line">			<span class="keyword">while</span>(l &lt;= r)&#123;</span><br><span class="line">				<span class="type">int</span> mid = (l + r)/<span class="number">2</span>;</span><br><span class="line">				<span class="keyword">if</span>(g[mid] &gt;= a[i])&#123;</span><br><span class="line">					l = mid + <span class="number">1</span>;</span><br><span class="line">				&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">					r = mid - <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			g[l] = a[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    cout &lt;&lt; cnt &lt;&lt; endl;</span><br><span class="line">    </span><br><span class="line">    cnt = <span class="number">0</span>; </span><br><span class="line">    <span class="built_in">memset</span>(g, <span class="number">0</span>, <span class="built_in">sizeof</span>(g));</span><br><span class="line">    g[<span class="number">0</span>] = INT_MIN;<span class="comment">//递增 </span></span><br><span class="line">     <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123; </span><br><span class="line">		<span class="keyword">if</span>(a[i] &gt; g[cnt])&#123;</span><br><span class="line">			g[++cnt] = a[i];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="type">int</span> l = <span class="number">1</span>, r = cnt<span class="number">-1</span>;</span><br><span class="line">			<span class="keyword">while</span>(l &lt;= r)&#123;</span><br><span class="line">				<span class="type">int</span> mid = (l + r)/<span class="number">2</span>;</span><br><span class="line">				<span class="keyword">if</span>(g[mid] &lt; a[i])&#123;</span><br><span class="line">					l = mid + <span class="number">1</span>;</span><br><span class="line">				&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">					r = mid - <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			g[l] = a[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    cout &lt;&lt; cnt &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>dp</category>
       </categories>
       <tags>
         <tag>算法</tag>
@@ -373,50 +397,6 @@
       <categories>
         <category>算法</category>
         <category>图论</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>排序</title>
-    <url>/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E6%8E%92%E5%BA%8F/</url>
-    <content><![CDATA[<h2 id="冒泡1"><a href="#冒泡1" class="headerlink" title="冒泡1"></a>冒泡1</h2><p>两个值依次比较</p>
-<blockquote>
-<p>优化方法:每次循环判断是否交换过元素,没有交换过就证明数组已经有序</p>
-</blockquote>
-<h2 id="选排1"><a href="#选排1" class="headerlink" title="选排1"></a>选排1</h2><p>大小n的数组,遍历n次,第一次把最小的移动到索引0,第二次从1开始把第二小的移动到索引1处,以此类推</p>
-<blockquote>
-<p>优化方法:每次遍历同时寻找最小最大值</p>
-</blockquote>
-<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>从1开始构造有序数组,后面的数依次比较插入数组中对应位置</p>
-<blockquote>
-<p>优化方法:已排序的插入用二分,</p>
-<p>从后往前排序</p>
-</blockquote>
-<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>把数组不断拆分然后合并,如8个数,先分成左4,右4,每个4再细分成2,2排序后回4合并再排序,再回8合并</p>
-<span id="more"></span>
-
-<h2 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h2><blockquote>
-<p>分散到n个桶中,在每个桶中实现有序,桶之间呈递增关系(即2桶的元素都大于1桶)</p>
-</blockquote>
-<h2 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h2><blockquote>
-<p><strong>可以看成是桶排序的一种特殊情况，只是桶的大小粒度不一样</strong>。当要排序的 n 个数据，所处的范围并不大的时候，比如最大值是 k，我们就可以把数据划分成 k 个桶。每个桶内的数据值都是相同的，省掉了桶内排序的时间。</p>
-<p>生成一个有序计数器数组,遍历数组,遍历到1就给计数器数组的1加1,3就3加1,以此类推,然后输出计数器数组</p>
-</blockquote>
-<h2 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h2><blockquote>
-<p>基数排序是非比较型整数排序算法，其原理是将整数按位分割进行排序。基数排序适用于大范围数据排序，打破了计数排序的限制。由于整数也可以表达字符串（比如名字或日期）和特定格式的浮点数，所以基数排序也不是只能使用于整数。</p>
-</blockquote>
-<h2 id="快排"><a href="#快排" class="headerlink" title="快排"></a>快排</h2><blockquote>
-<p>选择一个数(随机就是随机快排,从头到尾就是普通快排),放到0处,比它小的放左边,大的右边,遍历完一次,把0处和最大的小数交换,直到所有数都已选择过</p>
-</blockquote>
-<h2 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2><blockquote>
-<p>将待排序表分割成若干个“特殊”子表，分别进行直接插入排序，当整个表中元素已呈现“基本有序”时，再对全体记录进行一次直接插入排序</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>算法</category>
-        <category>排序</category>
       </categories>
       <tags>
         <tag>算法</tag>
@@ -528,6 +508,50 @@
       </tags>
   </entry>
   <entry>
+    <title>排序</title>
+    <url>/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E6%8E%92%E5%BA%8F/</url>
+    <content><![CDATA[<h2 id="冒泡1"><a href="#冒泡1" class="headerlink" title="冒泡1"></a>冒泡1</h2><p>两个值依次比较</p>
+<blockquote>
+<p>优化方法:每次循环判断是否交换过元素,没有交换过就证明数组已经有序</p>
+</blockquote>
+<h2 id="选排1"><a href="#选排1" class="headerlink" title="选排1"></a>选排1</h2><p>大小n的数组,遍历n次,第一次把最小的移动到索引0,第二次从1开始把第二小的移动到索引1处,以此类推</p>
+<blockquote>
+<p>优化方法:每次遍历同时寻找最小最大值</p>
+</blockquote>
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>从1开始构造有序数组,后面的数依次比较插入数组中对应位置</p>
+<blockquote>
+<p>优化方法:已排序的插入用二分,</p>
+<p>从后往前排序</p>
+</blockquote>
+<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>把数组不断拆分然后合并,如8个数,先分成左4,右4,每个4再细分成2,2排序后回4合并再排序,再回8合并</p>
+<span id="more"></span>
+
+<h2 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h2><blockquote>
+<p>分散到n个桶中,在每个桶中实现有序,桶之间呈递增关系(即2桶的元素都大于1桶)</p>
+</blockquote>
+<h2 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h2><blockquote>
+<p><strong>可以看成是桶排序的一种特殊情况，只是桶的大小粒度不一样</strong>。当要排序的 n 个数据，所处的范围并不大的时候，比如最大值是 k，我们就可以把数据划分成 k 个桶。每个桶内的数据值都是相同的，省掉了桶内排序的时间。</p>
+<p>生成一个有序计数器数组,遍历数组,遍历到1就给计数器数组的1加1,3就3加1,以此类推,然后输出计数器数组</p>
+</blockquote>
+<h2 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h2><blockquote>
+<p>基数排序是非比较型整数排序算法，其原理是将整数按位分割进行排序。基数排序适用于大范围数据排序，打破了计数排序的限制。由于整数也可以表达字符串（比如名字或日期）和特定格式的浮点数，所以基数排序也不是只能使用于整数。</p>
+</blockquote>
+<h2 id="快排"><a href="#快排" class="headerlink" title="快排"></a>快排</h2><blockquote>
+<p>选择一个数(随机就是随机快排,从头到尾就是普通快排),放到0处,比它小的放左边,大的右边,遍历完一次,把0处和最大的小数交换,直到所有数都已选择过</p>
+</blockquote>
+<h2 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2><blockquote>
+<p>将待排序表分割成若干个“特殊”子表，分别进行直接插入排序，当整个表中元素已呈现“基本有序”时，再对全体记录进行一次直接插入排序</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>排序</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>树形dp</title>
     <url>/%E7%AE%97%E6%B3%95/dp/%E6%A0%91%E5%BD%A2dp/</url>
     <content><![CDATA[<h1 id="常见定义"><a href="#常见定义" class="headerlink" title="常见定义"></a>常见定义</h1><p>dp[i]第一维即根节点编号</p>
@@ -552,34 +576,6 @@
       </categories>
       <tags>
         <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树状数组</title>
-    <url>/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/</url>
-    <content><![CDATA[<p>主要解决两类:</p>
-<p>1:单点修改,区间求和</p>
-<p>​	bit维护节点</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> bit[<span class="number">2000006</span>];</span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lowbit</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x&amp;(-x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> index,<span class="type">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = index;i &lt;= n;i+=<span class="built_in">lowbit</span>(i))&#123;</span><br><span class="line">		bit[i]+=k;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">sum</span><span class="params">(<span class="type">int</span> start,<span class="type">int</span> end)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = end;i;i-=<span class="built_in">lowbit</span>(i))&#123;</span><br><span class="line">		ans+=bit[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> j = start<span class="number">-1</span>;j;j-=<span class="built_in">lowbit</span>(j))&#123;</span><br><span class="line">		ans-=bit[j];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="type">int</span> tmp;</span><br><span class="line">		cin&gt;&gt;tmp;</span><br><span class="line">		<span class="built_in">add</span>(i,tmp);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">		<span class="type">int</span> tmp;</span><br><span class="line">		cin&gt;&gt;tmp;</span><br><span class="line">		<span class="keyword">if</span>(tmp==<span class="number">1</span>)&#123;</span><br><span class="line">			<span class="type">int</span> index,num;</span><br><span class="line">			cin&gt;&gt;index&gt;&gt;num;</span><br><span class="line">			<span class="built_in">add</span>(index,num);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="type">int</span> start,end;</span><br><span class="line">			cin&gt;&gt;start&gt;&gt;end;</span><br><span class="line">			cout&lt;&lt;<span class="built_in">sum</span>(start,end)&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
-
-<p>2:区间修改,单点求和</p>
-<p>​	bit维护一个差分</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> bit[<span class="number">2000006</span>];</span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lowbit</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x&amp;(-x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> index,<span class="type">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i= index;i&lt;=n;i+=<span class="built_in">lowbit</span>(i)) bit[i]+=k;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">get</span><span class="params">(<span class="type">int</span> index)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = index;i&gt;=<span class="number">1</span>;i-=<span class="built_in">lowbit</span>(i)) ans+=bit[i];</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="type">int</span> last=<span class="number">0</span>,tmp;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		cin&gt;&gt;tmp;</span><br><span class="line">		<span class="built_in">add</span>(i,tmp-last);</span><br><span class="line">		last=tmp;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">		<span class="type">int</span> tmp;</span><br><span class="line">		cin&gt;&gt;tmp;</span><br><span class="line">		<span class="keyword">if</span>(tmp==<span class="number">1</span>)&#123;</span><br><span class="line">			<span class="type">int</span> start,end,k;</span><br><span class="line">			cin&gt;&gt;start&gt;&gt;end&gt;&gt;k;</span><br><span class="line">			<span class="built_in">add</span>(start,k);</span><br><span class="line">			<span class="built_in">add</span>(end+<span class="number">1</span>,-k);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="type">int</span> index;</span><br><span class="line">			cin&gt;&gt;index;</span><br><span class="line">			cout&lt;&lt;<span class="built_in">get</span>(index)&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
-
-
-
-<blockquote>
-<p>都是区间时线段树</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>数据结构</category>
-        <category>树状数组</category>
-      </categories>
-      <tags>
-        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -634,6 +630,34 @@
       <categories>
         <category>数据结构</category>
         <category>树</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树状数组</title>
+    <url>/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/</url>
+    <content><![CDATA[<p>主要解决两类:</p>
+<p>1:单点修改,区间求和</p>
+<p>​	bit维护节点</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> bit[<span class="number">2000006</span>];</span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lowbit</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x&amp;(-x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> index,<span class="type">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = index;i &lt;= n;i+=<span class="built_in">lowbit</span>(i))&#123;</span><br><span class="line">		bit[i]+=k;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">sum</span><span class="params">(<span class="type">int</span> start,<span class="type">int</span> end)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = end;i;i-=<span class="built_in">lowbit</span>(i))&#123;</span><br><span class="line">		ans+=bit[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> j = start<span class="number">-1</span>;j;j-=<span class="built_in">lowbit</span>(j))&#123;</span><br><span class="line">		ans-=bit[j];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="type">int</span> tmp;</span><br><span class="line">		cin&gt;&gt;tmp;</span><br><span class="line">		<span class="built_in">add</span>(i,tmp);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">		<span class="type">int</span> tmp;</span><br><span class="line">		cin&gt;&gt;tmp;</span><br><span class="line">		<span class="keyword">if</span>(tmp==<span class="number">1</span>)&#123;</span><br><span class="line">			<span class="type">int</span> index,num;</span><br><span class="line">			cin&gt;&gt;index&gt;&gt;num;</span><br><span class="line">			<span class="built_in">add</span>(index,num);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="type">int</span> start,end;</span><br><span class="line">			cin&gt;&gt;start&gt;&gt;end;</span><br><span class="line">			cout&lt;&lt;<span class="built_in">sum</span>(start,end)&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<p>2:区间修改,单点求和</p>
+<p>​	bit维护一个差分</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> bit[<span class="number">2000006</span>];</span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lowbit</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x&amp;(-x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> index,<span class="type">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i= index;i&lt;=n;i+=<span class="built_in">lowbit</span>(i)) bit[i]+=k;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">get</span><span class="params">(<span class="type">int</span> index)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = index;i&gt;=<span class="number">1</span>;i-=<span class="built_in">lowbit</span>(i)) ans+=bit[i];</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="type">int</span> last=<span class="number">0</span>,tmp;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		cin&gt;&gt;tmp;</span><br><span class="line">		<span class="built_in">add</span>(i,tmp-last);</span><br><span class="line">		last=tmp;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">		<span class="type">int</span> tmp;</span><br><span class="line">		cin&gt;&gt;tmp;</span><br><span class="line">		<span class="keyword">if</span>(tmp==<span class="number">1</span>)&#123;</span><br><span class="line">			<span class="type">int</span> start,end,k;</span><br><span class="line">			cin&gt;&gt;start&gt;&gt;end&gt;&gt;k;</span><br><span class="line">			<span class="built_in">add</span>(start,k);</span><br><span class="line">			<span class="built_in">add</span>(end+<span class="number">1</span>,-k);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="type">int</span> index;</span><br><span class="line">			cin&gt;&gt;index;</span><br><span class="line">			cout&lt;&lt;<span class="built_in">get</span>(index)&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>都是区间时线段树</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>数据结构</category>
+        <category>树状数组</category>
       </categories>
       <tags>
         <tag>数据结构</tag>
