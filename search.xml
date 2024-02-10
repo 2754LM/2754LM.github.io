@@ -60,6 +60,27 @@
       </tags>
   </entry>
   <entry>
+    <title>ST表</title>
+    <url>/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/ST%E8%A1%A8/ST%E8%A1%A8/</url>
+    <content><![CDATA[<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>利用倍增思想,求解静态RMQ(区间最值查询)的算法</p>
+<p>利用O(nlog2n)复杂度预处理,进行O(1)的查询</p>
+<blockquote>
+<p>倍增思想: 2的i次增长</p>
+</blockquote>
+<h1 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h1><p>先谈一下为什么开log2啊? 如果不开,你长度都是2,4,6这样访问,不浪费空间吗?N*N稍微大点直接爆内存了</p>
+<p>而且你初始化个数组查某个数的最大2的次数, 这样和log2比不方便,何况懒得写log2还有自带的函数.</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span>+<span class="number">5</span>;</span><br><span class="line"><span class="type">int</span> st[N][<span class="number">21</span>]; <span class="comment">//st[i][j],i记录的是现在遍历的下标,j记录的是log2(长度)</span></span><br><span class="line"><span class="type">int</span> lg[N]; <span class="comment">//因为二进制就是2的i次,所以用来记录很方便,位移就可以了.</span></span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	lg[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">		lg[i] = lg[i&gt;&gt;<span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">		cin&gt;&gt;st[i][<span class="number">0</span>];</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= lg[n]; j++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n - (<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>)) +<span class="number">1</span>; i++)&#123;</span><br><span class="line">			st[i][j] = <span class="built_in">min</span>(st[i][j<span class="number">-1</span>], st[i + (<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>))][j<span class="number">-1</span>]); <span class="comment">//j-1就是上一个log2(上一层长度),我们&lt;&lt;位移就为了展开来定下i的位置</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">query</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> k = lg[r-l+<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">min</span>(st[l][k], st[r-(<span class="number">1</span>&lt;&lt;k)+<span class="number">1</span>][k]); <span class="comment">//和初始化是同理的,log2上一层就是k</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line">	cin.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="built_in">init</span>();</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i&lt; m; i++)&#123;</span><br><span class="line">		<span class="type">int</span> l,r;</span><br><span class="line">		cin&gt;&gt;l&gt;&gt;r;</span><br><span class="line">		cout&lt;&lt;<span class="built_in">query</span>(l,r)&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>数据结构</category>
+        <category>ST表</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>背包</title>
     <url>/%E7%AE%97%E6%B3%95/dp/dp/</url>
     <content><![CDATA[<p><strong>如果求组合数就是外层for循环遍历物品，内层for遍历背包</strong>。</p>
@@ -109,27 +130,6 @@
       </tags>
   </entry>
   <entry>
-    <title>ST表</title>
-    <url>/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/ST%E8%A1%A8/ST%E8%A1%A8/</url>
-    <content><![CDATA[<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>利用倍增思想,求解静态RMQ(区间最值查询)的算法</p>
-<p>利用O(nlog2n)复杂度预处理,进行O(1)的查询</p>
-<blockquote>
-<p>倍增思想: 2的i次增长</p>
-</blockquote>
-<h1 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h1><p>先谈一下为什么开log2啊? 如果不开,你长度都是2,4,6这样访问,不浪费空间吗?N*N稍微大点直接爆内存了</p>
-<p>而且你初始化个数组查某个数的最大2的次数, 这样和log2比不方便,何况懒得写log2还有自带的函数.</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span>+<span class="number">5</span>;</span><br><span class="line"><span class="type">int</span> st[N][<span class="number">21</span>]; <span class="comment">//st[i][j],i记录的是现在遍历的下标,j记录的是log2(长度)</span></span><br><span class="line"><span class="type">int</span> lg[N]; <span class="comment">//因为二进制就是2的i次,所以用来记录很方便,位移就可以了.</span></span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	lg[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">		lg[i] = lg[i&gt;&gt;<span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">		cin&gt;&gt;st[i][<span class="number">0</span>];</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= lg[n]; j++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n - (<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>)) +<span class="number">1</span>; i++)&#123;</span><br><span class="line">			st[i][j] = <span class="built_in">min</span>(st[i][j<span class="number">-1</span>], st[i + (<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>))][j<span class="number">-1</span>]); <span class="comment">//j-1就是上一个log2(上一层长度),我们&lt;&lt;位移就为了展开来定下i的位置</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">query</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> k = lg[r-l+<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">min</span>(st[l][k], st[r-(<span class="number">1</span>&lt;&lt;k)+<span class="number">1</span>][k]); <span class="comment">//和初始化是同理的,log2上一层就是k</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line">	cin.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="built_in">init</span>();</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i&lt; m; i++)&#123;</span><br><span class="line">		<span class="type">int</span> l,r;</span><br><span class="line">		cin&gt;&gt;l&gt;&gt;r;</span><br><span class="line">		cout&lt;&lt;<span class="built_in">query</span>(l,r)&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>数据结构</category>
-        <category>ST表</category>
-      </categories>
-      <tags>
-        <tag>数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>二叉堆</title>
     <url>/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E5%A0%86/%E4%BA%8C%E5%8F%89%E5%A0%86/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>平常都用priority_queue,今天来手搓一下</p>
@@ -148,42 +148,6 @@
       </categories>
       <tags>
         <tag>数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>俳句</title>
-    <url>/%E8%AF%97%E8%AF%8D/%E4%BF%B3%E5%8F%A5/</url>
-    <content><![CDATA[<p>我对俳句,和歌之类不是很感兴趣(1是格式本身按音节排,不适合中文.2是感觉格局较小,像是庭院景观),但也有所接触.</p>
-<p>比较有名的和歌如万叶集中的(言叶之庭也有出现)</p>
-<blockquote>
-<p>隐约雷鸣，阴霾天空。但盼风雨来，能留你在此。</p>
-</blockquote>
-<p>俳句我印象深刻的倒是索尼之前办的对马岛俳句大赛,里面有</p>
-<blockquote>
-<p>悲怆如战马，分不清旭日金甲，红了海与沙</p>
-</blockquote>
-<blockquote>
-<p>辉落双影长，浪客转步飞剑芒，碧血黄沙凉</p>
-</blockquote>
-<blockquote>
-<p>白日修罗场，岸边水线如刃长，红花落日光</p>
-</blockquote>
-<h3 id="无题"><a href="#无题" class="headerlink" title="无题"></a>无题</h3><p><strong>轻阴色，江风凉夜泼疏墨，天边染灯火</strong></p>
-<p>背景:第一次写俳句,也是唯一写过的俳句.写作时间大抵是在21年春,月考之时,窗外流云微雨,天气微寒,莫名想到夏日傍晚.<br>&lt;&lt;言语如苏打般涌现&gt;&gt;里有一句如下(因为是直译,格式并不正确)</p>
-<blockquote>
-<p>夕阳时分，抢先偷跑的夏夜灯火</p>
-</blockquote>
-<p>还有王维的</p>
-<blockquote>
-<p>轻阴阁小雨，深院昼慵开</p>
-</blockquote>
-<p>我觉得轻阴这词很有意境诶,还有江风,一下子感觉风的绵延飘逸.</p>
-]]></content>
-      <categories>
-        <category>诗词</category>
-      </categories>
-      <tags>
-        <tag>诗词</tag>
       </tags>
   </entry>
   <entry>
@@ -239,6 +203,72 @@
       </categories>
       <tags>
         <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>俳句</title>
+    <url>/%E8%AF%97%E8%AF%8D/%E4%BF%B3%E5%8F%A5/</url>
+    <content><![CDATA[<p>我对俳句,和歌之类不是很感兴趣(1是格式本身按音节排,不适合中文.2是感觉格局较小,像是庭院景观),但也有所接触.</p>
+<p>比较有名的和歌如万叶集中的(言叶之庭也有出现)</p>
+<blockquote>
+<p>隐约雷鸣，阴霾天空。但盼风雨来，能留你在此。</p>
+</blockquote>
+<p>俳句我印象深刻的倒是索尼之前办的对马岛俳句大赛,里面有</p>
+<blockquote>
+<p>悲怆如战马，分不清旭日金甲，红了海与沙</p>
+</blockquote>
+<blockquote>
+<p>辉落双影长，浪客转步飞剑芒，碧血黄沙凉</p>
+</blockquote>
+<blockquote>
+<p>白日修罗场，岸边水线如刃长，红花落日光</p>
+</blockquote>
+<h3 id="无题"><a href="#无题" class="headerlink" title="无题"></a>无题</h3><p><strong>轻阴色，江风凉夜泼疏墨，天边染灯火</strong></p>
+<p>背景:第一次写俳句,也是唯一写过的俳句.写作时间大抵是在21年春,月考之时,窗外流云微雨,天气微寒,莫名想到夏日傍晚.<br>&lt;&lt;言语如苏打般涌现&gt;&gt;里有一句如下(因为是直译,格式并不正确)</p>
+<blockquote>
+<p>夕阳时分，抢先偷跑的夏夜灯火</p>
+</blockquote>
+<p>还有王维的</p>
+<blockquote>
+<p>轻阴阁小雨，深院昼慵开</p>
+</blockquote>
+<p>我觉得轻阴这词很有意境诶,还有江风,一下子感觉风的绵延飘逸.</p>
+]]></content>
+      <categories>
+        <category>诗词</category>
+      </categories>
+      <tags>
+        <tag>诗词</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>分块与莫队</title>
+    <url>/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%88%86%E5%9D%97%E4%B8%8E%E8%8E%AB%E9%98%9F/</url>
+    <content><![CDATA[<h1 id="分块"><a href="#分块" class="headerlink" title="分块"></a>分块</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>高效点的暴力,适合求解m &#x3D;&#x3D; n &#x3D;&#x3D; 1e5的问题, 或者m根号n ≈ 1e7的问题,空间约3n</p>
+<p>线段树是1e6,空间9n</p>
+<p>时间复杂度O(m根号n),主要处理区间问题</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> block = <span class="built_in">sqrt</span>(n); <span class="comment">//块的大小</span></span><br><span class="line"><span class="type">int</span> t = n/block;  <span class="comment">//块的数量</span></span><br><span class="line"><span class="keyword">if</span>(n % block != <span class="number">0</span>) t++;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= t; i++)&#123;</span><br><span class="line">    st[i] = (i - <span class="number">1</span>) * block + <span class="number">1</span>; <span class="comment">//各块起点</span></span><br><span class="line">    ed[i] = i*block;  <span class="comment">//各块终点</span></span><br><span class="line">&#125;</span><br><span class="line">ed[t] = n; <span class="comment">//最后一块终点调整一下</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">    pos[i] = (i<span class="number">-1</span>)/block + <span class="number">1</span>; <span class="comment">//各点位于的块</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="区间修改-区间求和"><a href="#区间修改-区间求和" class="headerlink" title="区间修改,区间求和"></a>区间修改,区间求和</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= t; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = st[i]; j &lt;= ed[i]; j++)&#123;</span><br><span class="line">            sum[i] += a[j]; <span class="comment">//sum第i块区间和</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> add[t+<span class="number">1</span>] <span class="comment">//add[i]第i块的增量标记</span></span><br><span class="line"><span class="comment">//处理碎片改sum,处理整块改add</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">change</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> d)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> p = pos[l], q = pos[r];</span><br><span class="line">    <span class="keyword">if</span>(p == q)&#123; <span class="comment">//同一块,即碎片情况</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = l; i &lt;= r; i++)&#123;</span><br><span class="line">            a[i] += d;</span><br><span class="line">        &#125;</span><br><span class="line">        sum[p] += d * (r - l + <span class="number">1</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123; <span class="comment">//多块,整块情况</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = p + <span class="number">1</span>; i &lt;= q - <span class="number">1</span>; i++)&#123; <span class="comment">//整块</span></span><br><span class="line">            add[i] += d;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = l; i &lt;= ed[p]; i++)&#123; <span class="comment">//第一碎片</span></span><br><span class="line">             a[i] += d;</span><br><span class="line">        &#125;</span><br><span class="line">        sum[p] += d * (ed[p] - l + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = st[q]; i &lt;= r; i++)&#123; <span class="comment">//最后碎片</span></span><br><span class="line">            a[i] += d;</span><br><span class="line">        &#125;</span><br><span class="line">        sum[q] += d * (r - st[q] + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">ask</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> p = pos[l], r = pos[r];</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(p == q)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = l; i &lt;= r; i++)&#123;</span><br><span class="line">            ans += a[i];</span><br><span class="line">        &#125;</span><br><span class="line">        ans += add[p] * (r - l + <span class="number">1</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = p + <span class="number">1</span>; i &lt;= q - <span class="number">1</span>; i++)&#123;</span><br><span class="line">            ans += sum[i] + add[i] * (ed[i] - st[i] + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = l; i &lt;= ed[p]; i++)&#123;</span><br><span class="line">            ans += a[i];</span><br><span class="line">        &#125;</span><br><span class="line">        ans += add[p] * (ed[p] - l + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = st[q]; i &lt;= r; i++)&#123;</span><br><span class="line">            ans += a[i];</span><br><span class="line">        &#125;</span><br><span class="line">        ans += add[q] * (r - st[q] + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="区间第k大"><a href="#区间第k大" class="headerlink" title="区间第k大"></a>区间第k大</h3><p>查询区间有多少个数大于等于c,即查询c是第几大</p>
+<p>核心思想是新建一个int b[N], b[i]维护第i块的内容, 并且每个b[i]单独有序</p>
+<p>当查询的时候,如果块,直接对b[i]二分,如果碎片,遍历得到</p>
+<p>修改的时候,如果块,维护add就行,b不用排序. 如果碎片,操作a[i],重新拷贝到b[i]上,重新对b[i]排序</p>
+<h1 id="基础莫队"><a href="#基础莫队" class="headerlink" title="基础莫队"></a>基础莫队</h1><p>莫队 &#x3D; 分块 + 暴力 +离线.时间复杂度O(m根号n)</p>
+<span id="more"></span>
+
+<p><a href="https://www.luogu.com.cn/problem/P1972(%E8%BF%99%E9%A2%98%E6%95%B0%E6%8D%AE%E9%87%8F%E8%8E%AB%E9%98%9F%E8%BF%87%E4%B8%8D%E4%BA%86,%E9%AA%97%E5%88%86%E8%80%8C%E5%B7%B2)">https://www.luogu.com.cn/problem/P1972(这题数据量莫队过不了,骗分而已)</a></p>
+<p>某段区间有多少个不同的数</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> endl <span class="string">&#x27;\n&#x27;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e6</span> + <span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> a[N], pos[N];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span>&#123;</span><br><span class="line">	<span class="type">int</span> l, r, k;</span><br><span class="line">&#125;q[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp</span><span class="params">(node x, node y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(pos[x.l] != pos[y.l])&#123; <span class="comment">//起点不同块 </span></span><br><span class="line">		<span class="keyword">return</span> pos[x.l] &lt; pos[y.l];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(pos[x.l] &amp; <span class="number">1</span>)&#123; <span class="comment">//奇偶性排序 </span></span><br><span class="line">		<span class="keyword">return</span> x.r &gt; y.r;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> x.r &lt; y.r;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt;mp;</span><br><span class="line"><span class="type">int</span> num = <span class="number">0</span>;</span><br><span class="line"><span class="type">int</span> ans[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	mp[a[x]]++;</span><br><span class="line">	<span class="keyword">if</span>(mp[a[x]] == <span class="number">1</span>) num++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">reduce</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	mp[a[x]]--;</span><br><span class="line">	<span class="keyword">if</span>(mp[a[x]] == <span class="number">0</span>) num--;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line">	cin.<span class="built_in">tie</span>(<span class="number">0</span>), cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	<span class="type">int</span> n;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	<span class="type">int</span> block = <span class="built_in">sqrt</span>(n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span> ; i&lt;= n; i++)&#123;</span><br><span class="line">		cin&gt;&gt;a[i];</span><br><span class="line">		pos[i] = (i<span class="number">-1</span>)/block + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> m;</span><br><span class="line">	cin&gt;&gt;m;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">		cin&gt;&gt;q[i].l&gt;&gt;q[i].r;</span><br><span class="line">		q[i].k = i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">sort</span>(q + <span class="number">1</span>, q + <span class="number">1</span> + m, cmp);</span><br><span class="line">	<span class="type">int</span> L = <span class="number">1</span>, R = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">		<span class="comment">//缩小区间的情况 </span></span><br><span class="line">		<span class="keyword">while</span>(L &lt; q[i].l)  <span class="built_in">reduce</span>(L++); </span><br><span class="line">		<span class="keyword">while</span>(R &gt; q[i].r) <span class="built_in">reduce</span>(R--); </span><br><span class="line">		<span class="comment">//增大时</span></span><br><span class="line">		<span class="keyword">while</span>(L &gt; q[i].l)  <span class="built_in">add</span>(--L); </span><br><span class="line">		<span class="keyword">while</span>(R &lt; q[i].r) <span class="built_in">add</span>(++R); </span><br><span class="line">		ans[q[i].k] = num; </span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">		cout&lt;&lt;ans[i]&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -299,13 +329,49 @@
       </tags>
   </entry>
   <entry>
+    <title>图构建</title>
+    <url>/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/%E5%9B%BE%E6%9E%84%E5%BB%BA/</url>
+    <content><![CDATA[<p>邻接矩阵不用说ez</p>
+<p>主要讲一下邻接表的数组实现和链式前向星:</p>
+<h1 id="链式前向星"><a href="#链式前向星" class="headerlink" title="链式前向星"></a>链式前向星</h1><p>是一个结构体数组</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn = <span class="number">1005</span>;<span class="comment">//点数最大值</span></span><br><span class="line"><span class="type">int</span> n, m, cnt;<span class="comment">//n个点，m条边</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span></span><br><span class="line">&#123;</span><br><span class="line"> <span class="type">int</span> to, w, next;<span class="comment">//终点，边权，同起点的上一条边的编号</span></span><br><span class="line">&#125;edge[maxn];<span class="comment">//边集</span></span><br><span class="line"><span class="type">int</span> head[maxn];<span class="comment">//head[i],表示以i为起点的第一条边在边集数组的位置（编号）</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span><span class="comment">//初始化</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= n; i++) head[i] = <span class="number">-1</span>;</span><br><span class="line"> cnt = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add_edge</span><span class="params">(<span class="type">int</span> u, <span class="type">int</span> v, <span class="type">int</span> w)</span><span class="comment">//加边，u起点，v终点，w边权</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> edge[cnt].to = v; <span class="comment">//终点</span></span><br><span class="line"> edge[cnt].w = w; <span class="comment">//权值</span></span><br><span class="line"> edge[cnt].next = head[u];<span class="comment">//以u为起点上一条边的编号，也就是与这个边起点相同的上一条边的编号</span></span><br><span class="line"> head[u] = cnt++;<span class="comment">//更新以u为起点上一条边的编号</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line"> <span class="type">int</span> u, v, w;</span><br><span class="line"> <span class="built_in">init</span>();<span class="comment">//初始化</span></span><br><span class="line"> <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++)<span class="comment">//输入m条边</span></span><br><span class="line"> &#123;</span><br><span class="line">     cin &gt;&gt; u &gt;&gt; v &gt;&gt; w;</span><br><span class="line">     <span class="built_in">add_edge</span>(u, v, w);<span class="comment">//加边</span></span><br><span class="line">     <span class="comment">/*</span></span><br><span class="line"><span class="comment">     加双向边</span></span><br><span class="line"><span class="comment">     add_edge(u, v, w);</span></span><br><span class="line"><span class="comment">     add_edge(v, u, w);</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)<span class="comment">//n个起点</span></span><br><span class="line"> &#123;</span><br><span class="line">     cout &lt;&lt; i &lt;&lt; endl;</span><br><span class="line">     <span class="keyword">for</span> (<span class="type">int</span> j = head[i]; j != <span class="number">-1</span>; j = edge[j].next)<span class="comment">//遍历以i为起点的边</span></span><br><span class="line">     &#123;</span><br><span class="line">         cout &lt;&lt; i &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; edge[j].to &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; edge[j].w &lt;&lt; endl;</span><br><span class="line">     &#125;</span><br><span class="line">     cout &lt;&lt; endl;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h1 id="邻接表数组实现"><a href="#邻接表数组实现" class="headerlink" title="邻接表数组实现"></a>邻接表数组实现</h1><p>是多个数组实现</p>
+<blockquote>
+<p>u,v,w是起点,终点,权,first是第一个起点,next是同起点上一个起点</p>
+<p>u其实可以省略,思路就链式前向星类似了,基本一模一样</p>
+</blockquote>
+<p><img src="/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/%E5%9B%BE%E6%9E%84%E5%BB%BA/%E9%82%BB%E6%8E%A5%E8%A1%A8%E6%95%B0%E7%BB%84%E5%AE%9E%E7%8E%B0.png"></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> MaxN = <span class="number">5e5</span>+<span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> first[MaxN],_next[MaxN],to[MaxN],w[MaxN];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//构造邻接表 </span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">creat</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> n,m;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="comment">//初始化</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		first[i]=<span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">		<span class="type">int</span> index;</span><br><span class="line">		cin&gt;&gt;index&gt;&gt;to[i]&gt;&gt;w[i];</span><br><span class="line">		_next[i] = first[index];</span><br><span class="line">		first[index] = i;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="邻接表链表实现"><a href="#邻接表链表实现" class="headerlink" title="邻接表链表实现"></a>邻接表链表实现</h1><p>感觉挺麻烦,我不想写第二次,贴个实现</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//创建有向图的邻接表</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MaxVnum=<span class="number">100</span>;<span class="comment">//顶点数最大值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">char</span> VexType;<span class="comment">//顶点的数据类型为字符型</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">AdjNode</span>&#123; <span class="comment">//定义邻接点类型</span></span><br><span class="line">	<span class="type">int</span> v; <span class="comment">//邻接点下标</span></span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">AdjNode</span> *next; <span class="comment">//指向下一个邻接点</span></span><br><span class="line">&#125;AdjNode;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VexNode</span>&#123; <span class="comment">//定义顶点类型</span></span><br><span class="line">	VexType data; <span class="comment">// VexType为顶点的数据类型，根据需要定义</span></span><br><span class="line">	AdjNode *first; <span class="comment">//指向第一个邻接点</span></span><br><span class="line">&#125;VexNode;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span>&#123;<span class="comment">//定义邻接表类型</span></span><br><span class="line"> VexNode  Vex[MaxVnum];</span><br><span class="line"> <span class="type">int</span> vexnum,edgenum; <span class="comment">//顶点数，边数</span></span><br><span class="line">&#125;ALGragh;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">locatevex</span><span class="params">(ALGragh G,VexType x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;G.vexnum;i++)<span class="comment">//查找顶点信息的下标</span></span><br><span class="line">    <span class="keyword">if</span>(x==G.Vex[i].data)</span><br><span class="line">     <span class="keyword">return</span> i;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">-1</span>;<span class="comment">//没找到</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">insertedge</span><span class="params">(ALGragh &amp;G,<span class="type">int</span> i,<span class="type">int</span> j)</span><span class="comment">//插入一条边</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> AdjNode *s;</span><br><span class="line"> s=<span class="keyword">new</span> AdjNode;</span><br><span class="line"> s-&gt;v=j;</span><br><span class="line"> s-&gt;next=G.Vex[i].first;</span><br><span class="line"> G.Vex[i].first=s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">printg</span><span class="params">(ALGragh G)</span><span class="comment">//输出邻接表</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">cout&lt;&lt;<span class="string">&quot;----------邻接表如下：----------&quot;</span>&lt;&lt;endl;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;G.vexnum;i++)</span><br><span class="line">&#123;</span><br><span class="line">    AdjNode *t=G.Vex[i].first;</span><br><span class="line">    cout&lt;&lt;cout&lt;&lt;G.Vex[i].data&lt;&lt;<span class="string">&quot;：  &quot;</span>;</span><br><span class="line">    <span class="keyword">while</span>(t!=<span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;[&quot;</span>&lt;&lt;t-&gt;v&lt;&lt;<span class="string">&quot;]  &quot;</span>;</span><br><span class="line">        t=t-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">CreateALGraph</span><span class="params">(ALGragh &amp;G)</span><span class="comment">//创建有向图邻接表</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="type">int</span> i,j;</span><br><span class="line"> VexType u,v;</span><br><span class="line"> cout&lt;&lt;<span class="string">&quot;请输入顶点数和边数:&quot;</span>&lt;&lt;endl;</span><br><span class="line"> cin&gt;&gt;G.vexnum&gt;&gt;G.edgenum;</span><br><span class="line"> cout &lt;&lt; <span class="string">&quot;请输入顶点信息:&quot;</span>&lt;&lt;endl;</span><br><span class="line"> <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;G.vexnum;i++)<span class="comment">//输入顶点信息，存入顶点信息数组</span></span><br><span class="line">     cin&gt;&gt;G.Vex[i].data;</span><br><span class="line"> <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;G.vexnum;i++)</span><br><span class="line">     G.Vex[i].first=<span class="literal">NULL</span>;</span><br><span class="line"> cout&lt;&lt;<span class="string">&quot;请依次输入每条边的两个顶点u,v&quot;</span>&lt;&lt;endl;</span><br><span class="line"> <span class="keyword">while</span>(G.edgenum--)</span><br><span class="line"> &#123;</span><br><span class="line">     cin&gt;&gt;u&gt;&gt;v;</span><br><span class="line">     i=<span class="built_in">locatevex</span>(G,u);<span class="comment">//查找顶点u的存储下标</span></span><br><span class="line">     j=<span class="built_in">locatevex</span>(G,v);<span class="comment">//查找顶点v的存储下标</span></span><br><span class="line">     <span class="keyword">if</span>(i!=<span class="number">-1</span>&amp;&amp;j!=<span class="number">-1</span>)</span><br><span class="line">         <span class="built_in">insertedge</span>(G,i,j);</span><br><span class="line">     <span class="keyword">else</span></span><br><span class="line">     &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;输入顶点信息错！请重新输入！&quot;</span>&lt;&lt;endl;</span><br><span class="line">        G.edgenum++;<span class="comment">//本次输入不算</span></span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> ALGragh G;</span><br><span class="line"> <span class="built_in">CreateALGraph</span>(G);<span class="comment">//创建有向图邻接表</span></span><br><span class="line"> <span class="built_in">printg</span>(G);<span class="comment">//输出邻接表</span></span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>三叶姐的最短路和图构建总结</p>
+<p><a href="https://leetcode.cn/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/solutions/2526052/gong-shui-san-xie-han-gai-suo-you-cun-tu-svq7/">https://leetcode.cn/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/solutions/2526052/gong-shui-san-xie-han-gai-suo-you-cun-tu-svq7/</a></p>
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>图论</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>子序列子数组问题</title>
     <url>/%E7%AE%97%E6%B3%95/dp/%E5%AD%90%E5%BA%8F%E5%88%97%E5%AD%90%E6%95%B0%E7%BB%84%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h1 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h1><p>LCS(最长公共子序列)</p>
 <p>LIS（最长上升子序列）</p>
 <p><a href="https://www.luogu.com.cn/problem/P1020#submit">https://www.luogu.com.cn/problem/P1020#submit</a></p>
 <p>如果直接写O(n平方)复杂度是很简单的,LIS递推方程如下</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//dp[i]定义为以v[i]结尾的最长LIS</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j = i + <span class="number">1</span>; j &lt; n; j++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(v[i] &gt; v[j])&#123;</span><br><span class="line">            dp[i] = <span class="built_in">max</span>(dp[i], dp[j] + <span class="number">1</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//dp[i]定义为以v[i]结尾的最长LIS</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; i; j++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(v[i] &gt; v[j])&#123;</span><br><span class="line">            dp[i] = <span class="built_in">max</span>(dp[i], dp[j] + <span class="number">1</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>LCS和LIS解决比较类似,但LCS不能用二分来优化,类似LCS问题的还有编辑距离</p>
 <p>下面的是二分法的优化</p>
@@ -367,36 +433,44 @@
       </tags>
   </entry>
   <entry>
-    <title>图构建</title>
-    <url>/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/%E5%9B%BE%E6%9E%84%E5%BB%BA/</url>
-    <content><![CDATA[<p>邻接矩阵不用说ez</p>
-<p>主要讲一下邻接表的数组实现和链式前向星:</p>
-<h1 id="链式前向星"><a href="#链式前向星" class="headerlink" title="链式前向星"></a>链式前向星</h1><p>是一个结构体数组</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn = <span class="number">1005</span>;<span class="comment">//点数最大值</span></span><br><span class="line"><span class="type">int</span> n, m, cnt;<span class="comment">//n个点，m条边</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span></span><br><span class="line">&#123;</span><br><span class="line"> <span class="type">int</span> to, w, next;<span class="comment">//终点，边权，同起点的上一条边的编号</span></span><br><span class="line">&#125;edge[maxn];<span class="comment">//边集</span></span><br><span class="line"><span class="type">int</span> head[maxn];<span class="comment">//head[i],表示以i为起点的第一条边在边集数组的位置（编号）</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span><span class="comment">//初始化</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= n; i++) head[i] = <span class="number">-1</span>;</span><br><span class="line"> cnt = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add_edge</span><span class="params">(<span class="type">int</span> u, <span class="type">int</span> v, <span class="type">int</span> w)</span><span class="comment">//加边，u起点，v终点，w边权</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> edge[cnt].to = v; <span class="comment">//终点</span></span><br><span class="line"> edge[cnt].w = w; <span class="comment">//权值</span></span><br><span class="line"> edge[cnt].next = head[u];<span class="comment">//以u为起点上一条边的编号，也就是与这个边起点相同的上一条边的编号</span></span><br><span class="line"> head[u] = cnt++;<span class="comment">//更新以u为起点上一条边的编号</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line"> <span class="type">int</span> u, v, w;</span><br><span class="line"> <span class="built_in">init</span>();<span class="comment">//初始化</span></span><br><span class="line"> <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++)<span class="comment">//输入m条边</span></span><br><span class="line"> &#123;</span><br><span class="line">     cin &gt;&gt; u &gt;&gt; v &gt;&gt; w;</span><br><span class="line">     <span class="built_in">add_edge</span>(u, v, w);<span class="comment">//加边</span></span><br><span class="line">     <span class="comment">/*</span></span><br><span class="line"><span class="comment">     加双向边</span></span><br><span class="line"><span class="comment">     add_edge(u, v, w);</span></span><br><span class="line"><span class="comment">     add_edge(v, u, w);</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)<span class="comment">//n个起点</span></span><br><span class="line"> &#123;</span><br><span class="line">     cout &lt;&lt; i &lt;&lt; endl;</span><br><span class="line">     <span class="keyword">for</span> (<span class="type">int</span> j = head[i]; j != <span class="number">-1</span>; j = edge[j].next)<span class="comment">//遍历以i为起点的边</span></span><br><span class="line">     &#123;</span><br><span class="line">         cout &lt;&lt; i &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; edge[j].to &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; edge[j].w &lt;&lt; endl;</span><br><span class="line">     &#125;</span><br><span class="line">     cout &lt;&lt; endl;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
+    <title>排序</title>
+    <url>/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E6%8E%92%E5%BA%8F/</url>
+    <content><![CDATA[<h2 id="冒泡1"><a href="#冒泡1" class="headerlink" title="冒泡1"></a>冒泡1</h2><p>两个值依次比较</p>
+<blockquote>
+<p>优化方法:每次循环判断是否交换过元素,没有交换过就证明数组已经有序</p>
+</blockquote>
+<h2 id="选排1"><a href="#选排1" class="headerlink" title="选排1"></a>选排1</h2><p>大小n的数组,遍历n次,第一次把最小的移动到索引0,第二次从1开始把第二小的移动到索引1处,以此类推</p>
+<blockquote>
+<p>优化方法:每次遍历同时寻找最小最大值</p>
+</blockquote>
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>从1开始构造有序数组,后面的数依次比较插入数组中对应位置</p>
+<blockquote>
+<p>优化方法:已排序的插入用二分,</p>
+<p>从后往前排序</p>
+</blockquote>
+<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>把数组不断拆分然后合并,如8个数,先分成左4,右4,每个4再细分成2,2排序后回4合并再排序,再回8合并</p>
 <span id="more"></span>
 
-<h1 id="邻接表数组实现"><a href="#邻接表数组实现" class="headerlink" title="邻接表数组实现"></a>邻接表数组实现</h1><p>是多个数组实现</p>
-<blockquote>
-<p>u,v,w是起点,终点,权,first是第一个起点,next是同起点上一个起点</p>
-<p>u其实可以省略,思路就链式前向星类似了,基本一模一样</p>
+<h2 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h2><blockquote>
+<p>分散到n个桶中,在每个桶中实现有序,桶之间呈递增关系(即2桶的元素都大于1桶)</p>
 </blockquote>
-<p><img src="/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/%E5%9B%BE%E6%9E%84%E5%BB%BA/%E9%82%BB%E6%8E%A5%E8%A1%A8%E6%95%B0%E7%BB%84%E5%AE%9E%E7%8E%B0.png"></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> MaxN = <span class="number">5e5</span>+<span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> first[MaxN],_next[MaxN],to[MaxN],w[MaxN];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//构造邻接表 </span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">creat</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> n,m;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="comment">//初始化</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		first[i]=<span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">		<span class="type">int</span> index;</span><br><span class="line">		cin&gt;&gt;index&gt;&gt;to[i]&gt;&gt;w[i];</span><br><span class="line">		_next[i] = first[index];</span><br><span class="line">		first[index] = i;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="邻接表链表实现"><a href="#邻接表链表实现" class="headerlink" title="邻接表链表实现"></a>邻接表链表实现</h1><p>感觉挺麻烦,我不想写第二次,贴个实现</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//创建有向图的邻接表</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MaxVnum=<span class="number">100</span>;<span class="comment">//顶点数最大值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">char</span> VexType;<span class="comment">//顶点的数据类型为字符型</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">AdjNode</span>&#123; <span class="comment">//定义邻接点类型</span></span><br><span class="line">	<span class="type">int</span> v; <span class="comment">//邻接点下标</span></span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">AdjNode</span> *next; <span class="comment">//指向下一个邻接点</span></span><br><span class="line">&#125;AdjNode;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">VexNode</span>&#123; <span class="comment">//定义顶点类型</span></span><br><span class="line">	VexType data; <span class="comment">// VexType为顶点的数据类型，根据需要定义</span></span><br><span class="line">	AdjNode *first; <span class="comment">//指向第一个邻接点</span></span><br><span class="line">&#125;VexNode;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span>&#123;<span class="comment">//定义邻接表类型</span></span><br><span class="line"> VexNode  Vex[MaxVnum];</span><br><span class="line"> <span class="type">int</span> vexnum,edgenum; <span class="comment">//顶点数，边数</span></span><br><span class="line">&#125;ALGragh;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">locatevex</span><span class="params">(ALGragh G,VexType x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;G.vexnum;i++)<span class="comment">//查找顶点信息的下标</span></span><br><span class="line">    <span class="keyword">if</span>(x==G.Vex[i].data)</span><br><span class="line">     <span class="keyword">return</span> i;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">-1</span>;<span class="comment">//没找到</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">insertedge</span><span class="params">(ALGragh &amp;G,<span class="type">int</span> i,<span class="type">int</span> j)</span><span class="comment">//插入一条边</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> AdjNode *s;</span><br><span class="line"> s=<span class="keyword">new</span> AdjNode;</span><br><span class="line"> s-&gt;v=j;</span><br><span class="line"> s-&gt;next=G.Vex[i].first;</span><br><span class="line"> G.Vex[i].first=s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">printg</span><span class="params">(ALGragh G)</span><span class="comment">//输出邻接表</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">cout&lt;&lt;<span class="string">&quot;----------邻接表如下：----------&quot;</span>&lt;&lt;endl;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;G.vexnum;i++)</span><br><span class="line">&#123;</span><br><span class="line">    AdjNode *t=G.Vex[i].first;</span><br><span class="line">    cout&lt;&lt;cout&lt;&lt;G.Vex[i].data&lt;&lt;<span class="string">&quot;：  &quot;</span>;</span><br><span class="line">    <span class="keyword">while</span>(t!=<span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;[&quot;</span>&lt;&lt;t-&gt;v&lt;&lt;<span class="string">&quot;]  &quot;</span>;</span><br><span class="line">        t=t-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">CreateALGraph</span><span class="params">(ALGragh &amp;G)</span><span class="comment">//创建有向图邻接表</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="type">int</span> i,j;</span><br><span class="line"> VexType u,v;</span><br><span class="line"> cout&lt;&lt;<span class="string">&quot;请输入顶点数和边数:&quot;</span>&lt;&lt;endl;</span><br><span class="line"> cin&gt;&gt;G.vexnum&gt;&gt;G.edgenum;</span><br><span class="line"> cout &lt;&lt; <span class="string">&quot;请输入顶点信息:&quot;</span>&lt;&lt;endl;</span><br><span class="line"> <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;G.vexnum;i++)<span class="comment">//输入顶点信息，存入顶点信息数组</span></span><br><span class="line">     cin&gt;&gt;G.Vex[i].data;</span><br><span class="line"> <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;G.vexnum;i++)</span><br><span class="line">     G.Vex[i].first=<span class="literal">NULL</span>;</span><br><span class="line"> cout&lt;&lt;<span class="string">&quot;请依次输入每条边的两个顶点u,v&quot;</span>&lt;&lt;endl;</span><br><span class="line"> <span class="keyword">while</span>(G.edgenum--)</span><br><span class="line"> &#123;</span><br><span class="line">     cin&gt;&gt;u&gt;&gt;v;</span><br><span class="line">     i=<span class="built_in">locatevex</span>(G,u);<span class="comment">//查找顶点u的存储下标</span></span><br><span class="line">     j=<span class="built_in">locatevex</span>(G,v);<span class="comment">//查找顶点v的存储下标</span></span><br><span class="line">     <span class="keyword">if</span>(i!=<span class="number">-1</span>&amp;&amp;j!=<span class="number">-1</span>)</span><br><span class="line">         <span class="built_in">insertedge</span>(G,i,j);</span><br><span class="line">     <span class="keyword">else</span></span><br><span class="line">     &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;输入顶点信息错！请重新输入！&quot;</span>&lt;&lt;endl;</span><br><span class="line">        G.edgenum++;<span class="comment">//本次输入不算</span></span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> ALGragh G;</span><br><span class="line"> <span class="built_in">CreateALGraph</span>(G);<span class="comment">//创建有向图邻接表</span></span><br><span class="line"> <span class="built_in">printg</span>(G);<span class="comment">//输出邻接表</span></span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>三叶姐的最短路和图构建总结</p>
-<p><a href="https://leetcode.cn/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/solutions/2526052/gong-shui-san-xie-han-gai-suo-you-cun-tu-svq7/">https://leetcode.cn/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/solutions/2526052/gong-shui-san-xie-han-gai-suo-you-cun-tu-svq7/</a></p>
+<h2 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h2><blockquote>
+<p><strong>可以看成是桶排序的一种特殊情况，只是桶的大小粒度不一样</strong>。当要排序的 n 个数据，所处的范围并不大的时候，比如最大值是 k，我们就可以把数据划分成 k 个桶。每个桶内的数据值都是相同的，省掉了桶内排序的时间。</p>
+<p>生成一个有序计数器数组,遍历数组,遍历到1就给计数器数组的1加1,3就3加1,以此类推,然后输出计数器数组</p>
+</blockquote>
+<h2 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h2><blockquote>
+<p>基数排序是非比较型整数排序算法，其原理是将整数按位分割进行排序。基数排序适用于大范围数据排序，打破了计数排序的限制。由于整数也可以表达字符串（比如名字或日期）和特定格式的浮点数，所以基数排序也不是只能使用于整数。</p>
+</blockquote>
+<h2 id="快排"><a href="#快排" class="headerlink" title="快排"></a>快排</h2><blockquote>
+<p>选择一个数(随机就是随机快排,从头到尾就是普通快排),放到0处,比它小的放左边,大的右边,遍历完一次,把0处和最大的小数交换,直到所有数都已选择过</p>
+</blockquote>
+<h2 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2><blockquote>
+<p>将待排序表分割成若干个“特殊”子表，分别进行直接插入排序，当整个表中元素已呈现“基本有序”时，再对全体记录进行一次直接插入排序</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>算法</category>
-        <category>图论</category>
+        <category>排序</category>
       </categories>
       <tags>
         <tag>算法</tag>
@@ -508,50 +582,6 @@
       </tags>
   </entry>
   <entry>
-    <title>排序</title>
-    <url>/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/%E6%8E%92%E5%BA%8F/</url>
-    <content><![CDATA[<h2 id="冒泡1"><a href="#冒泡1" class="headerlink" title="冒泡1"></a>冒泡1</h2><p>两个值依次比较</p>
-<blockquote>
-<p>优化方法:每次循环判断是否交换过元素,没有交换过就证明数组已经有序</p>
-</blockquote>
-<h2 id="选排1"><a href="#选排1" class="headerlink" title="选排1"></a>选排1</h2><p>大小n的数组,遍历n次,第一次把最小的移动到索引0,第二次从1开始把第二小的移动到索引1处,以此类推</p>
-<blockquote>
-<p>优化方法:每次遍历同时寻找最小最大值</p>
-</blockquote>
-<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>从1开始构造有序数组,后面的数依次比较插入数组中对应位置</p>
-<blockquote>
-<p>优化方法:已排序的插入用二分,</p>
-<p>从后往前排序</p>
-</blockquote>
-<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>把数组不断拆分然后合并,如8个数,先分成左4,右4,每个4再细分成2,2排序后回4合并再排序,再回8合并</p>
-<span id="more"></span>
-
-<h2 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h2><blockquote>
-<p>分散到n个桶中,在每个桶中实现有序,桶之间呈递增关系(即2桶的元素都大于1桶)</p>
-</blockquote>
-<h2 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h2><blockquote>
-<p><strong>可以看成是桶排序的一种特殊情况，只是桶的大小粒度不一样</strong>。当要排序的 n 个数据，所处的范围并不大的时候，比如最大值是 k，我们就可以把数据划分成 k 个桶。每个桶内的数据值都是相同的，省掉了桶内排序的时间。</p>
-<p>生成一个有序计数器数组,遍历数组,遍历到1就给计数器数组的1加1,3就3加1,以此类推,然后输出计数器数组</p>
-</blockquote>
-<h2 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h2><blockquote>
-<p>基数排序是非比较型整数排序算法，其原理是将整数按位分割进行排序。基数排序适用于大范围数据排序，打破了计数排序的限制。由于整数也可以表达字符串（比如名字或日期）和特定格式的浮点数，所以基数排序也不是只能使用于整数。</p>
-</blockquote>
-<h2 id="快排"><a href="#快排" class="headerlink" title="快排"></a>快排</h2><blockquote>
-<p>选择一个数(随机就是随机快排,从头到尾就是普通快排),放到0处,比它小的放左边,大的右边,遍历完一次,把0处和最大的小数交换,直到所有数都已选择过</p>
-</blockquote>
-<h2 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2><blockquote>
-<p>将待排序表分割成若干个“特殊”子表，分别进行直接插入排序，当整个表中元素已呈现“基本有序”时，再对全体记录进行一次直接插入排序</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>算法</category>
-        <category>排序</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>树形dp</title>
     <url>/%E7%AE%97%E6%B3%95/dp/%E6%A0%91%E5%BD%A2dp/</url>
     <content><![CDATA[<h1 id="常见定义"><a href="#常见定义" class="headerlink" title="常见定义"></a>常见定义</h1><p>dp[i]第一维即根节点编号</p>
@@ -573,6 +603,36 @@
       <categories>
         <category>算法</category>
         <category>dp</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>最小生成树</title>
+    <url>/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/</url>
+    <content><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P3366">P3366 【模板】最小生成树</a></p>
+<h1 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识:"></a>前置知识:</h1><p>链式前向星,dijkstra</p>
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>生成树:连通且不含环的子图,</p>
+<p>其节点数与主图相同,边数为点数减一</p>
+<p>在其中任意添加一条边,生成树就会形成环</p>
+<p>最小生成树:所有生成树中边权和最小的</p>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><p>解决最小生成树常见有两种方法,Kruskal和Prim,定义边数为m,点数为n</p>
+<p>Krusal时间复杂度O(mlog2m), sortO(mlog2n),并查集O(m)<br>Prim时间复杂度O(mlog2n),加优先队列优化的情况下</p>
+<p>krusal全局贪心,Prim局部贪心(跟dij基本一样,dijkstra在一篇文章里同时提出了dij和krusal)</p>
+<h2 id="Kruskal"><a href="#Kruskal" class="headerlink" title="Kruskal"></a>Kruskal</h2><h3 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h3><p>全局中找边权最小的边,然后添加进去,如果形成环就不加.边数达到n-1时停止,或者点数m</p>
+<p>我们通过排序和并查集来实现</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> endl <span class="string">&#x27;\n&#x27;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">5e3</span> + <span class="number">5</span>, M = <span class="number">2e5</span> + <span class="number">5</span>;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span>&#123; <span class="comment">//存下边就得了,省的麻烦</span></span><br><span class="line">	<span class="type">int</span> u, v, w;</span><br><span class="line">&#125;edge[M];</span><br><span class="line"><span class="type">int</span> fa[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">find_set</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x == fa[x] ? x : (fa[x] = <span class="built_in">find_set</span>(fa[x]));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">kruskal</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">sort</span>(edge + <span class="number">1</span>, edge + <span class="number">1</span> + m, [](Edge a, Edge b)&#123;<span class="keyword">return</span> a.w &lt; b.w;&#125;);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) fa[i] = i;</span><br><span class="line">	<span class="type">int</span> ans = <span class="number">0</span>, cnt = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(cnt == n - <span class="number">1</span>) <span class="keyword">break</span>; </span><br><span class="line">		<span class="type">int</span> a = <span class="built_in">find_set</span>(edge[i].u);</span><br><span class="line">		<span class="type">int</span> b = <span class="built_in">find_set</span>(edge[i].v);</span><br><span class="line">		<span class="keyword">if</span>(a == b) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			ans += edge[i].w;</span><br><span class="line">			fa[a] = b;</span><br><span class="line">			cnt++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(cnt == n - <span class="number">1</span>) cout&lt;&lt;ans;</span><br><span class="line">	<span class="keyword">else</span> cout&lt;&lt;<span class="string">&quot;orz&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line">	cin.<span class="built_in">tie</span>(<span class="number">0</span>), cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">		cin&gt;&gt;edge[i].u&gt;&gt;edge[i].v&gt;&gt;edge[i].w;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">kruskal</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+<h2 id="Prim"><a href="#Prim" class="headerlink" title="Prim"></a>Prim</h2><h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路:"></a>思路:</h3><p>纯纯和dij基本一模一样,只不过prim不用更新集合(即已浏览的点到起点的距离)</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> endl <span class="string">&#x27;\n&#x27;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">5e3</span> + <span class="number">5</span>, M = <span class="number">2e5</span> + <span class="number">5</span>;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span>&#123;</span><br><span class="line">	<span class="type">int</span> to, val, ne;</span><br><span class="line">&#125;edge[M*<span class="number">2</span>];</span><br><span class="line"><span class="type">int</span> head[N];</span><br><span class="line"><span class="type">int</span> cnt = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add_edge</span><span class="params">(<span class="type">int</span> u, <span class="type">int</span> v, <span class="type">int</span> w)</span></span>&#123;</span><br><span class="line">	edge[cnt].to = v;</span><br><span class="line">	edge[cnt].val= w;</span><br><span class="line">	edge[cnt].ne = head[u];</span><br><span class="line">	head[u] = cnt++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"><span class="type">int</span> vis[N], dis[N];</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt; pii;</span><br><span class="line">priority_queue&lt;pii, vector&lt;pii&gt;, greater&lt;pii&gt;&gt;q;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">prim</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> num = <span class="number">0</span>; <span class="comment">//边数 </span></span><br><span class="line">	<span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">memset</span>(dis, <span class="number">0x3f</span>, <span class="built_in">sizeof</span>(dis));</span><br><span class="line">	dis[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">	q.<span class="built_in">push</span>(&#123;<span class="number">0</span>,<span class="number">1</span>&#125;);</span><br><span class="line">	<span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">		<span class="type">int</span> u = q.<span class="built_in">top</span>().second, d = q.<span class="built_in">top</span>().first;</span><br><span class="line">		q.<span class="built_in">pop</span>();</span><br><span class="line">		<span class="keyword">if</span>(vis[u]) <span class="keyword">continue</span>;</span><br><span class="line">		num++;</span><br><span class="line">		sum += d;</span><br><span class="line">		vis[u] = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i = head[u]; i != <span class="number">0</span>; i = edge[i].ne)&#123;</span><br><span class="line">			<span class="keyword">if</span>(edge[i].val &lt; dis[edge[i].to])&#123; <span class="comment">//u到v的距离小于之前某个点到v的距离(和dij的区别就在这里)</span></span><br><span class="line">			<span class="comment">/*回顾一下dij,</span></span><br><span class="line"><span class="comment">			  if( dis[u] + edge[i]. val &lt; dis[edge[i].to])</span></span><br><span class="line"><span class="comment">			  dis[edge[i].to] = dis[u] + edge[i]. val</span></span><br><span class="line"><span class="comment">			  很容易看出来,dij更新的是起点到目标点的距离,但是prim更新的是任意点到目标点的距离(因为prim只需要边最短就可以了) </span></span><br><span class="line"><span class="comment">			*/</span></span><br><span class="line">				dis[edge[i].to] = edge[i].val;</span><br><span class="line">				q.<span class="built_in">push</span>(&#123;dis[edge[i].to], edge[i].to&#125;); </span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">if</span>(num == n) cout&lt;&lt;sum;</span><br><span class="line">	<span class="keyword">else</span> cout&lt;&lt;<span class="string">&quot;orz&quot;</span>; </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line">	cin.<span class="built_in">tie</span>(<span class="number">0</span>), cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">		<span class="type">int</span> u,v,w;</span><br><span class="line">		cin&gt;&gt;u&gt;&gt;v&gt;&gt;w;</span><br><span class="line">		<span class="built_in">add_edge</span>(u,v,w);</span><br><span class="line">		<span class="built_in">add_edge</span>(v,u,w);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">prim</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>解决最大生成树也可以用一样的方法,不过把最小改成最大</p>
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>图论</category>
       </categories>
       <tags>
         <tag>算法</tag>
@@ -633,6 +693,41 @@
       </categories>
       <tags>
         <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>素数</title>
+    <url>/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/%E7%B4%A0%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h1><p>小学数学知识</p>
+<h1 id="素数判定"><a href="#素数判定" class="headerlink" title="素数判定"></a>素数判定</h1><p>小的直接试填法,大素数太麻烦了,遇到我再更,感兴趣的可以自行搜索Miller_Rabin素性测试</p>
+<h1 id="素数筛选"><a href="#素数筛选" class="headerlink" title="素数筛选"></a>素数筛选</h1><h2 id="埃及筛"><a href="#埃及筛" class="headerlink" title="埃及筛"></a>埃及筛</h2><p>时间复杂度(nlog2log2n),解决1e7量级问题,内存占用约10mb</p>
+<p>思路,从最小的素数开始一个个筛选(只要能被当前素数整除,就必定不是素数,直接删了),比如我们现在求1到13的素数,过程如下</p>
+<p>(1)筛2:1,<del><em><strong>2</strong></em></del>,3,<del>4</del>,5,<del>6</del>,7,<del>8</del>,9,<del>10</del>,11,<del>12</del>,13</p>
+<p>(2)筛3:1,<del><em><strong>2</strong></em></del>,<del><em><strong>3</strong></em></del>,<del>4</del>,5,<del>6</del>,7,<del>8</del>,<del>9</del>,<del>10</del>,11,<del>12</del>,13</p>
+<p>(3)筛5:1,<del><em><strong>2</strong></em></del>,<del><em><strong>3</strong></em></del>,<del>4</del>,<del><em><strong>5</strong></em></del>,<del>6</del>,7,<del>8</del>,<del>9</del>,<del>10</del>,11,<del>12</del>,13</p>
+<p>剩下的就是素数了,只要筛到sqrt(n)即可</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> vis[n+<span class="number">1</span>];<span class="comment">//true为被筛</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">2</span>; i &lt;= n; i++) vis[i] = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">2</span>; i &lt;= <span class="built_in">sqrt</span>(n); i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(!vis[i])&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = i*i; j &lt;= n; j += i) vis[j] = <span class="literal">true</span>;</span><br><span class="line">        <span class="comment">//j从i*i开始也是优化,这样2为筛也可以防止2被筛,5为筛时,从25开始,10,15,20都已经在前面被筛过了</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="欧拉筛"><a href="#欧拉筛" class="headerlink" title="欧拉筛"></a>欧拉筛</h2><p>时间复杂度(n),解决1e8量级问题,内存占用约100mb</p>
+<p>原理:一个合数只有一个最小的质因数,让每个合数只被它最小的质因数筛选一次,没有埃及筛的重复筛选</p>
+<span id="more"></span>
+
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> prime[N];<span class="comment">//记录素数</span></span><br><span class="line"><span class="type">int</span> vis[N];</span><br><span class="line"><span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">memset</span>(prime, <span class="number">0</span>, <span class="built_in">sizeof</span>(prime));</span><br><span class="line"><span class="built_in">memset</span>(vis, <span class="number">0</span>, <span class="built_in">sizeof</span>(vis));</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">2</span>; i &lt;= n; i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(!vis[i])&#123;</span><br><span class="line">        prime[cnt++] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; cnt; j++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i * prime[j] &gt; n) <span class="keyword">break</span>;</span><br><span class="line">        vis[i * prime[j]] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(i % prime[j] == <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="质因数分解"><a href="#质因数分解" class="headerlink" title="质因数分解"></a>质因数分解</h1><h2 id="试除法"><a href="#试除法" class="headerlink" title="试除法"></a>试除法</h2><p>这里用来求解有多少个质因数</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">ll ans = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(ll i = <span class="number">2</span>; i &lt;= <span class="built_in">sqrtl</span>(x); i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(x % i == <span class="number">0</span>)&#123;</span><br><span class="line">        ans++;</span><br><span class="line">        <span class="keyword">while</span>(x % i == <span class="number">0</span>) x /= i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> <span class="keyword">if</span>(x &gt; <span class="number">1</span>) ans++;</span><br><span class="line">cout&lt;&lt;ans;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="欧拉筛-1"><a href="#欧拉筛-1" class="headerlink" title="欧拉筛"></a>欧拉筛</h2><p>只要改一下vis定义就可以了,用来求1到n每个数的最小质因数</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> prime[N];<span class="comment">//记录素数</span></span><br><span class="line"><span class="type">int</span> vis[N]; <span class="comment">//记录每个数的最小质因数</span></span><br><span class="line"><span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">memset</span>(prime, <span class="number">0</span>, <span class="built_in">sizeof</span>(prime));</span><br><span class="line"><span class="built_in">memset</span>(vis, <span class="number">0</span>, <span class="built_in">sizeof</span>(vis));</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">2</span>; i &lt;= n; i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(!vis[i])&#123;</span><br><span class="line">        prime[cnt++] = i;</span><br><span class="line">        vis[i] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; cnt; j++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i * prime[j] &gt; n) <span class="keyword">break</span>;</span><br><span class="line">        vis[i * prime[j]] = prime[j];</span><br><span class="line">        <span class="keyword">if</span>(i % prime[j] == <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>数论</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>

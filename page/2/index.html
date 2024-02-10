@@ -160,6 +160,192 @@
     
     
     <article
+  id="post-树形dp"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/%E7%AE%97%E6%B3%95/dp/%E6%A0%91%E5%BD%A2dp/"
+    >树形dp</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/%E7%AE%97%E6%B3%95/dp/%E6%A0%91%E5%BD%A2dp/" class="article-date">
+  <time datetime="2023-12-25T13:06:27.549Z" itemprop="datePublished">2023-12-25</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a> / <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/dp/">dp</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="常见定义"><a href="#常见定义" class="headerlink" title="常见定义"></a>常见定义</h1><p>dp[i]第一维即根节点编号</p>
+<p>一般自底向上类似dfs,即先遍历到底</p>
+<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><h2 id="洛谷p1352上司的舞会-经典"><a href="#洛谷p1352上司的舞会-经典" class="headerlink" title="洛谷p1352上司的舞会(经典)"></a>洛谷p1352上司的舞会(经典)</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1352">https://www.luogu.com.cn/problem/P1352</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">6005</span>;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; G[N];</span><br><span class="line"><span class="type">int</span> dp[N][<span class="number">2</span>],val[N],father[N];</span><br><span class="line"></span><br><span class="line"><span class="comment">//dp定义,dp[i][j]选或不选i节点的值(j为1选,0不选) </span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u)</span></span>&#123;</span><br><span class="line">	dp[u][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">	dp[u][<span class="number">1</span>] = val[u];</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i : G[u])&#123;</span><br><span class="line">		<span class="built_in">dfs</span>(i);<span class="comment">//遍历子节点</span></span><br><span class="line">		dp[u][<span class="number">1</span>] += dp[i][<span class="number">0</span>];<span class="comment">//父选子不选 </span></span><br><span class="line">		dp[u][<span class="number">0</span>] += <span class="built_in">max</span>(dp[i][<span class="number">0</span>], dp[i][<span class="number">1</span>]);<span class="comment">//父不选,子选或不选 </span></span><br><span class="line">	&#125;	</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> n;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">		cin&gt;&gt;val[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">		<span class="type">int</span> to,from;</span><br><span class="line">		cin&gt;&gt;to&gt;&gt;from;</span><br><span class="line">		G[from].<span class="built_in">push_back</span>(to);</span><br><span class="line">		father[to] = from;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> t = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(father[t]) t = father[t];<span class="comment">//找根节点</span></span><br><span class="line">	<span class="built_in">dfs</span>(t);</span><br><span class="line">	cout&lt;&lt;<span class="built_in">max</span>(dp[t][<span class="number">0</span>], dp[t][<span class="number">1</span>]);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure> 
+      <a class="article-more-link" href="/%E7%AE%97%E6%B3%95/dp/%E6%A0%91%E5%BD%A2dp/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+   
+  
+</article>
+
+    
+    <article
+  id="post-2023-12-24"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/%E6%97%A5%E8%AE%B0/2023-12-24/"
+    >2023/12/24</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/%E6%97%A5%E8%AE%B0/2023-12-24/" class="article-date">
+  <time datetime="2023-12-24T03:37:08.865Z" itemprop="datePublished">2023-12-24</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%97%A5%E8%AE%B0/">日记</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>最近打了几场周赛,感觉力扣周赛Q3大部分都是图论.蓝桥小白赛的话构造题比较多.</p>
+<p>双周赛掉大分Q1和Q3一样,但Q1范围不大,可以直接暴力.枚举子数组直接滑动窗口,当时没想到,直接在想Q3的O(n)解法.</p>
+<p>单周赛的Q3是最短路问题, 记得前段时间哪次周赛Q3和这个很像. 一开始直接用dij写,但超时,后面加了个记忆化就过了</p>
+<p>蓝桥小白赛Q4取余,首数组没有处理好.</p>
+<p>计划这两天把这三题整理一下</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+   
+  
+</article>
+
+    
+    <article
+  id="post-二叉树的对称dfs"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/%E7%AE%97%E6%B3%95/%E6%9D%82%E8%B0%88/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%AF%B9%E7%A7%B0dfs/"
+    >二叉树的对称dfs</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/%E7%AE%97%E6%B3%95/%E6%9D%82%E8%B0%88/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%AF%B9%E7%A7%B0dfs/" class="article-date">
+  <time datetime="2023-12-17T11:19:42.231Z" itemprop="datePublished">2023-12-17</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a> / <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/%E6%9D%82%E8%B0%88/">杂谈</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>经典例题,对称二叉树</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/symmetric-tree/description/">https://leetcode.cn/problems/symmetric-tree/description/</a></p>
+<p>代码如图</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">compare</span><span class="params">(TreeNode* left, TreeNode* right)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (left == <span class="literal">NULL</span> &amp;&amp; right == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(left == <span class="literal">NULL</span> || right==<span class="literal">NULL</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (left-&gt;val != right-&gt;val) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">compare</span>(left-&gt;left, right-&gt;right) &amp;&amp; <span class="built_in">compare</span>(left-&gt;right, right-&gt;left);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isSymmetric</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">compare</span>(root-&gt;left, root-&gt;right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这题也可以,反转二叉树的奇数层</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-odd-levels-of-binary-tree/description/">https://leetcode.cn/problems/reverse-odd-levels-of-binary-tree/description/</a></p>
+<p>代码如下</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">reverseOddLevels</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">dfs</span>(root-&gt;left, root-&gt;right, <span class="literal">true</span>);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(TreeNode *l, TreeNode *r, <span class="type">bool</span> jud)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (l == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (jud) &#123;</span><br><span class="line">            <span class="built_in">swap</span>(l-&gt;val, r-&gt;val);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">dfs</span>(l-&gt;left, r-&gt;right, !jud);</span><br><span class="line">        <span class="built_in">dfs</span>(l-&gt;right, r-&gt;left, !jud);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>画个图</p>
+<p><img src="/%E7%AE%97%E6%B3%95/%E6%9D%82%E8%B0%88/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%AF%B9%E7%A7%B0dfs/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%AF%B9%E7%A7%B0.png"></p> 
+      <a class="article-more-link" href="/%E7%AE%97%E6%B3%95/%E6%9D%82%E8%B0%88/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%AF%B9%E7%A7%B0dfs/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+   
+  
+</article>
+
+    
+    <article
   id="post-2023-12-13"
   class="article article-type-post"
   itemscope
@@ -605,185 +791,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%97%AE%E9%A2%98%E9%9B%86/" rel="tag">问题集</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-   
-  
-</article>
-
-    
-    <article
-  id="post-树状数组"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/"
-    >树状数组</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/" class="article-date">
-  <time datetime="2023-12-01T01:12:57.099Z" itemprop="datePublished">2023-12-01</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/">树状数组</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>主要解决两类:</p>
-<p>1:单点修改,区间求和</p>
-<p>​	bit维护节点</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> bit[<span class="number">2000006</span>];</span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lowbit</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x&amp;(-x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> index,<span class="type">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = index;i &lt;= n;i+=<span class="built_in">lowbit</span>(i))&#123;</span><br><span class="line">		bit[i]+=k;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">sum</span><span class="params">(<span class="type">int</span> start,<span class="type">int</span> end)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = end;i;i-=<span class="built_in">lowbit</span>(i))&#123;</span><br><span class="line">		ans+=bit[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> j = start<span class="number">-1</span>;j;j-=<span class="built_in">lowbit</span>(j))&#123;</span><br><span class="line">		ans-=bit[j];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="type">int</span> tmp;</span><br><span class="line">		cin&gt;&gt;tmp;</span><br><span class="line">		<span class="built_in">add</span>(i,tmp);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">		<span class="type">int</span> tmp;</span><br><span class="line">		cin&gt;&gt;tmp;</span><br><span class="line">		<span class="keyword">if</span>(tmp==<span class="number">1</span>)&#123;</span><br><span class="line">			<span class="type">int</span> index,num;</span><br><span class="line">			cin&gt;&gt;index&gt;&gt;num;</span><br><span class="line">			<span class="built_in">add</span>(index,num);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="type">int</span> start,end;</span><br><span class="line">			cin&gt;&gt;start&gt;&gt;end;</span><br><span class="line">			cout&lt;&lt;<span class="built_in">sum</span>(start,end)&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure> 
-      <a class="article-more-link" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-   
-  
-</article>
-
-    
-    <article
-  id="post-树结构"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91/%E6%A0%91%E7%BB%93%E6%9E%84/"
-    >排序</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91/%E6%A0%91%E7%BB%93%E6%9E%84/" class="article-date">
-  <time datetime="2023-12-01T01:09:44.486Z" itemprop="datePublished">2023-12-01</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91/">树</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">TreeNode</span> &#123;</span><br><span class="line"> <span class="type">int</span> val;</span><br><span class="line"> TreeNode *left;</span><br><span class="line"> TreeNode *right;</span><br><span class="line"> <span class="built_in">TreeNode</span>(<span class="type">int</span> x) : <span class="built_in">val</span>(x), <span class="built_in">left</span>(<span class="literal">NULL</span>), <span class="built_in">right</span>(<span class="literal">NULL</span>) &#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure> 
-      <a class="article-more-link" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91/%E6%A0%91%E7%BB%93%E6%9E%84/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-   
-  
-</article>
-
-    
-    <article
-  id="post-dp"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/%E7%AE%97%E6%B3%95/dp/dp/"
-    >背包</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/%E7%AE%97%E6%B3%95/dp/dp/" class="article-date">
-  <time datetime="2023-12-01T01:04:47.368Z" itemprop="datePublished">2023-12-01</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a> / <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/dp/">dp</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p><strong>如果求组合数就是外层for循环遍历物品，内层for遍历背包</strong>。</p>
-<p><strong>如果求排列数就是外层for遍历背包，内层for循环遍历物品</strong>。</p>
-<ol>
-<li>确定dp数组（dp table）以及下标的含义</li>
-<li>确定递推公式</li>
-<li>dp数组如何初始化</li>
-<li>确定遍历顺序</li>
-<li>举例推导dp数组</li>
-</ol>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
 
     </footer>
   </div>
