@@ -141,10 +141,10 @@
   
   <entry>
     <title>扫描线实现</title>
-    <link href="http://example.com/%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%89%AB%E6%8F%8F%E7%BA%BF/"/>
-    <id>http://example.com/%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%89%AB%E6%8F%8F%E7%BA%BF/</id>
+    <link href="http://example.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%89%AB%E6%8F%8F%E7%BA%BF/"/>
+    <id>http://example.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%89%AB%E6%8F%8F%E7%BA%BF/</id>
     <published>2024-03-07T02:23:15.000Z</published>
-    <updated>2024-03-07T02:29:46.054Z</updated>
+    <updated>2024-03-07T02:57:47.211Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;离散化&quot;&gt;&lt;a href=&quot;#离散化&quot; class=&quot;headerlink&quot; title=&quot;离散化&quot;&gt;&lt;/a&gt;离散化&lt;/h1&gt;&lt;p&gt;先讲一下线段树的离散化问题,如果直接按出现位次来离散的话会有问题&lt;/p&gt;
@@ -163,12 +163,10 @@
     
     
     
-    <category term="算法" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="数据结构" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    <category term="数据结构" scheme="http://example.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
     
-    <category term="算法" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95/"/>
+    <category term="数据结构" scheme="http://example.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
   </entry>
   
