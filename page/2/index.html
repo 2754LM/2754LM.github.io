@@ -160,76 +160,6 @@
     
     
     <article
-  id="post-分块与莫队"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%88%86%E5%9D%97%E4%B8%8E%E8%8E%AB%E9%98%9F/%E5%88%86%E5%9D%97%E4%B8%8E%E8%8E%AB%E9%98%9F/"
-    >分块与莫队</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%88%86%E5%9D%97%E4%B8%8E%E8%8E%AB%E9%98%9F/%E5%88%86%E5%9D%97%E4%B8%8E%E8%8E%AB%E9%98%9F/" class="article-date">
-  <time datetime="2024-02-10T09:06:41.000Z" itemprop="datePublished">2024-02-10</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%88%86%E5%9D%97%E4%B8%8E%E8%8E%AB%E9%98%9F/">分块与莫队</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="分块"><a href="#分块" class="headerlink" title="分块"></a>分块</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>高效点的暴力,适合求解m &#x3D;&#x3D; n &#x3D;&#x3D; 1e5的问题, 或者m根号n ≈ 1e7的问题,空间约3n</p>
-<p>线段树是1e6,空间9n</p>
-<p>时间复杂度O(m根号n),主要处理区间问题</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> block = <span class="built_in">sqrt</span>(n); <span class="comment">//块的大小</span></span><br><span class="line"><span class="type">int</span> t = n/block;  <span class="comment">//块的数量</span></span><br><span class="line"><span class="keyword">if</span>(n % block != <span class="number">0</span>) t++;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= t; i++)&#123;</span><br><span class="line">    st[i] = (i - <span class="number">1</span>) * block + <span class="number">1</span>; <span class="comment">//各块起点</span></span><br><span class="line">    ed[i] = i*block;  <span class="comment">//各块终点</span></span><br><span class="line">&#125;</span><br><span class="line">ed[t] = n; <span class="comment">//最后一块终点调整一下</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">    pos[i] = (i<span class="number">-1</span>)/block + <span class="number">1</span>; <span class="comment">//各点位于的块</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="区间修改-区间求和"><a href="#区间修改-区间求和" class="headerlink" title="区间修改,区间求和"></a>区间修改,区间求和</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= t; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = st[i]; j &lt;= ed[i]; j++)&#123;</span><br><span class="line">            sum[i] += a[j]; <span class="comment">//sum第i块区间和</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> add[t+<span class="number">1</span>] <span class="comment">//add[i]第i块的增量标记</span></span><br><span class="line"><span class="comment">//处理碎片改sum,处理整块改add</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">change</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> d)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> p = pos[l], q = pos[r];</span><br><span class="line">    <span class="keyword">if</span>(p == q)&#123; <span class="comment">//同一块,即碎片情况</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = l; i &lt;= r; i++)&#123;</span><br><span class="line">            a[i] += d;</span><br><span class="line">        &#125;</span><br><span class="line">        sum[p] += d * (r - l + <span class="number">1</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123; <span class="comment">//多块,整块情况</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = p + <span class="number">1</span>; i &lt;= q - <span class="number">1</span>; i++)&#123; <span class="comment">//整块</span></span><br><span class="line">            add[i] += d;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = l; i &lt;= ed[p]; i++)&#123; <span class="comment">//第一碎片</span></span><br><span class="line">             a[i] += d;</span><br><span class="line">        &#125;</span><br><span class="line">        sum[p] += d * (ed[p] - l + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = st[q]; i &lt;= r; i++)&#123; <span class="comment">//最后碎片</span></span><br><span class="line">            a[i] += d;</span><br><span class="line">        &#125;</span><br><span class="line">        sum[q] += d * (r - st[q] + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">ask</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> p = pos[l], r = pos[r];</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(p == q)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = l; i &lt;= r; i++)&#123;</span><br><span class="line">            ans += a[i];</span><br><span class="line">        &#125;</span><br><span class="line">        ans += add[p] * (r - l + <span class="number">1</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = p + <span class="number">1</span>; i &lt;= q - <span class="number">1</span>; i++)&#123;</span><br><span class="line">            ans += sum[i] + add[i] * (ed[i] - st[i] + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = l; i &lt;= ed[p]; i++)&#123;</span><br><span class="line">            ans += a[i];</span><br><span class="line">        &#125;</span><br><span class="line">        ans += add[p] * (ed[p] - l + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = st[q]; i &lt;= r; i++)&#123;</span><br><span class="line">            ans += a[i];</span><br><span class="line">        &#125;</span><br><span class="line">        ans += add[q] * (r - st[q] + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="区间第k大"><a href="#区间第k大" class="headerlink" title="区间第k大"></a>区间第k大</h3><p>查询区间有多少个数大于等于c,即查询c是第几大</p>
-<p>核心思想是新建一个int b[N], b[i]维护第i块的内容, 并且每个b[i]单独有序</p>
-<p>当查询的时候,如果块,直接对b[i]二分,如果碎片,遍历得到</p>
-<p>修改的时候,如果块,维护add就行,b不用排序. 如果碎片,操作a[i],重新拷贝到b[i]上,重新对b[i]排序</p>
-<h1 id="基础莫队"><a href="#基础莫队" class="headerlink" title="基础莫队"></a>基础莫队</h1><p>莫队 &#x3D; 分块 + 暴力 +离线.时间复杂度O(m根号n)</p> 
-      <a class="article-more-link" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%88%86%E5%9D%97%E4%B8%8E%E8%8E%AB%E9%98%9F/%E5%88%86%E5%9D%97%E4%B8%8E%E8%8E%AB%E9%98%9F/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-   
-  
-</article>
-
-    
-    <article
   id="post-最小生成树"
   class="article article-type-post"
   itemscope
@@ -801,6 +731,64 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+   
+  
+</article>
+
+    
+    <article
+  id="post-2023-12-24"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/%E6%97%A5%E8%AE%B0/2023-12-24/"
+    >2023/12/24</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/%E6%97%A5%E8%AE%B0/2023-12-24/" class="article-date">
+  <time datetime="2023-12-24T03:37:08.865Z" itemprop="datePublished">2023-12-24</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%97%A5%E8%AE%B0/">日记</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>最近打了几场周赛,感觉力扣周赛Q3大部分都是图论.蓝桥小白赛的话构造题比较多.</p>
+<p>双周赛掉大分Q1和Q3一样,但Q1范围不大,可以直接暴力.枚举子数组直接滑动窗口,当时没想到,直接在想Q3的O(n)解法.</p>
+<p>单周赛的Q3是最短路问题, 记得前段时间哪次周赛Q3和这个很像. 一开始直接用dij写,但超时,后面加了个记忆化就过了</p>
+<p>蓝桥小白赛Q4取余,首数组没有处理好.</p>
+<p>计划这两天把这三题整理一下</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E8%AE%B0/" rel="tag">日记</a></li></ul>
 
     </footer>
   </div>
