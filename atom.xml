@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-03-17T09:46:08.290Z</updated>
+  <updated>2024-03-19T08:14:16.851Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://example.com/%E6%97%A5%E8%AE%B0/2024-3-19/"/>
+    <id>http://example.com/%E6%97%A5%E8%AE%B0/2024-3-19/</id>
+    <published>2024-03-19T08:13:02.131Z</published>
+    <updated>2024-03-19T08:14:16.851Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;世界上最痛苦的事就是改线段树&lt;/p&gt;
+&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="日记" scheme="http://example.com/categories/%E6%97%A5%E8%AE%B0/"/>
+    
+    
+    <category term="日记" scheme="http://example.com/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>edu163div2D</title>
@@ -580,33 +606,6 @@
     
     
     <category term="算法" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2023/12/24</title>
-    <link href="http://example.com/%E6%97%A5%E8%AE%B0/2023-12-24/"/>
-    <id>http://example.com/%E6%97%A5%E8%AE%B0/2023-12-24/</id>
-    <published>2023-12-24T03:37:08.865Z</published>
-    <updated>2023-12-24T13:00:28.486Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;最近打了几场周赛,感觉力扣周赛Q3大部分都是图论.蓝桥小白赛的话构造题比较多.&lt;/p&gt;
-&lt;p&gt;双周赛掉大分Q1和Q3一样,但Q1范围不大,可以直接暴力.枚举子数组直接滑动窗口,当时没想到,直接在想Q3的O(n)解法.&lt;/p&gt;
-&lt;p&gt;单周赛的Q3是最短路问题,</summary>
-        
-      
-    
-    
-    
-    <category term="日记" scheme="http://example.com/categories/%E6%97%A5%E8%AE%B0/"/>
-    
-    
-    <category term="日记" scheme="http://example.com/tags/%E6%97%A5%E8%AE%B0/"/>
     
   </entry>
   
