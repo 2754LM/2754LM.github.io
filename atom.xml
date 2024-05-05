@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-05-05T14:24:38.006Z</updated>
+  <updated>2024-04-25T02:44:43.142Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,60 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>数论</title>
-    <link href="http://example.com/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/%E6%95%B0%E8%AE%BA/"/>
-    <id>http://example.com/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/%E6%95%B0%E8%AE%BA/</id>
-    <published>2024-05-05T14:28:09.830Z</published>
-    <updated>2024-05-05T14:24:38.006Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;辗转相除法&quot;&gt;&lt;a href=&quot;#辗转相除法&quot; class=&quot;headerlink&quot; title=&quot;辗转相除法&quot;&gt;&lt;/a&gt;辗转相除法&lt;/h1&gt;&lt;p&gt;我们将两数中较大的那一个看作是被除数A，将较小的那一个看作是除数B，二者相除的商记作C，余数记作D。这样我们就可以得到一个等式：A &amp;#x3D; B×C + D。而辗转相除法的所要用到的原理则是：(A , B) &amp;#x3D; (B , D)。&lt;/p&gt;
-&lt;p&gt;（m，n)表示m%n,直到（ ， ）&amp;#x3D;0，则最后的余数为两个数的最大公因数。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="算法" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="数论" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/"/>
-    
-    
-    <category term="算法" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>背包</title>
-    <link href="http://example.com/%E7%AE%97%E6%B3%95/dp/%E8%83%8C%E5%8C%85/dp/"/>
-    <id>http://example.com/%E7%AE%97%E6%B3%95/dp/%E8%83%8C%E5%8C%85/dp/</id>
-    <published>2024-05-05T14:28:09.793Z</published>
-    <updated>2024-05-05T14:24:38.003Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;strong&gt;如果求组合数就是外层for循环遍历物品，内层for遍历背包&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;如果求排列数就是外层for遍历背包，内层for循环遍历物品&lt;/strong&gt;。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;确定dp数组（dp</summary>
-        
-      
-    
-    
-    
-    <category term="算法" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="dp" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/dp/"/>
-    
-    <category term="背包" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/dp/%E8%83%8C%E5%8C%85/"/>
-    
-    
-    <category term="算法" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
   
   <entry>
     <title>前缀和异或</title>
@@ -231,7 +177,7 @@
     <link href="http://example.com/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/lca/"/>
     <id>http://example.com/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/lca/</id>
     <published>2024-03-07T02:35:34.000Z</published>
-    <updated>2024-04-25T02:40:07.244Z</updated>
+    <updated>2024-05-05T14:38:29.314Z</updated>
     
     
       
@@ -584,6 +530,71 @@
     
     
     <category term="日记" scheme="http://example.com/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>快速幂</title>
+    <link href="http://example.com/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/%E5%BF%AB%E9%80%9F%E5%B9%82/"/>
+    <id>http://example.com/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/%E5%BF%AB%E9%80%9F%E5%B9%82/</id>
+    <published>2024-01-18T09:32:22.018Z</published>
+    <updated>2024-01-18T12:24:53.974Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;有两种思想,但代码一样,指数折半或者利用二进制,即从十进制和二进制两种方向理解&lt;/p&gt;
+&lt;p&gt;两种方法求解过程,以2的11次为例&lt;/p&gt;
+&lt;p&gt;指数折半2.11 &lt;/p&gt;
+&lt;p&gt;&amp;#x3D; 2 * 4^5&lt;br&gt;&amp;#x3D;2 * 4 * 8 ^ 2&lt;br&gt;&amp;#x3D;2 * 4 * 16&lt;/p&gt;
+&lt;p&gt;二进制2^11,1011嘛&lt;/p&gt;
+&lt;p&gt;&amp;#x3D;2 * 4 * 16&lt;/p&gt;
+&lt;h1 id=&quot;指数折半&quot;&gt;&lt;a href=&quot;#指数折半&quot; class=&quot;headerlink&quot; title=&quot;指数折半&quot;&gt;&lt;/a&gt;指数折半&lt;/h1&gt;&lt;p&gt;核心思想就是每一步都把指数分成两半，而相应的底数做平方运算&lt;/p&gt;
+&lt;p&gt;3^10&amp;#x3D;(3 * 3) ^ 5&lt;/p&gt;
+&lt;p&gt;3^10&amp;#x3D;9 ^ 5&lt;/p&gt;
+&lt;p&gt;现在我们的问题是如何把指数5变成原来的一半，5是一个奇数，5的一半是2.5，但是我们知道，指数不能为小数，因此我们不能这么简单粗暴的直接执行5&amp;#x2F;2，然而，这里还有另一种方法能表示9^5&lt;/p&gt;
+&lt;p&gt;9^5&amp;#x3D;（ 9^4 ）*（ 9^1 ）&lt;/p&gt;
+&lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;type&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;type&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;quick_power&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; base, &lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; power)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;type&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;type&quot;&gt;long&lt;/span&gt; ans = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt; (power &amp;gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;)           &lt;span class=&quot;comment&quot;&gt;//指数大于0进行指数折半，底数变其平方的操作&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (power &amp;amp; &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;)     &lt;span class=&quot;comment&quot;&gt;//指数为奇数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			power -= &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;         &lt;span class=&quot;comment&quot;&gt;//指数减一,不写也可以int自动取整&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			ans *= base % mod;     &lt;span class=&quot;comment&quot;&gt;//分离出当前项并累乘&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		power &amp;gt;&amp;gt;= &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;         &lt;span class=&quot;comment&quot;&gt;//指数折半&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		base *= base % mod;       &lt;span class=&quot;comment&quot;&gt;//底数变其平方&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; ans % mod;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h1 id=&quot;二进制&quot;&gt;&lt;a href=&quot;#二进制&quot; class=&quot;headerlink&quot; title=&quot;二进制&quot;&gt;&lt;/a&gt;二进制&lt;/h1&gt;&lt;p&gt;比如n的11次,把11用二进制拆分,8+0+2+1,即1011.&lt;/p&gt;
+&lt;p&gt;从低位开始递推,1次&lt;em&gt;1次等于2次,2次&lt;/em&gt;2次等于4次……&lt;/p&gt;
+&lt;p&gt;不过代码本质也是在做底数翻倍,比如2 ^ 1到2 ^ 2就是2 ^ 1到4 ^ 1,和指数折半是一样的&lt;/p&gt;
+&lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;type&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;type&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;quick_power&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; base, &lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; power)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;type&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;type&quot;&gt;long&lt;/span&gt; ans = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;   &lt;span class=&quot;comment&quot;&gt;//用于存储项累乘与返回最终结果，由于要存储累乘所以要初始化为1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt; (power &amp;gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;)           &lt;span class=&quot;comment&quot;&gt;//指数大于0说明指数的二进制位并没有被左移舍弃完毕&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (power &amp;amp; &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;)&amp;#123;          &lt;span class=&quot;comment&quot;&gt;//当前位为1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            ans *= base % mod;     &lt;span class=&quot;comment&quot;&gt;//累乘当前项并存储&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        power &amp;gt;&amp;gt;= &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;            &lt;span class=&quot;comment&quot;&gt;//指数位右移(区别主要就在这一步的理解上)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        base *= base % mod;           &lt;span class=&quot;comment&quot;&gt;//递推,如n的2次变为n的4次&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; ans % mod;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    <category term="算法" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="数论" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/"/>
+    
+    
+    <category term="算法" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>gcd和lcm和裴蜀定理</title>
+    <link href="http://example.com/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/gcd%E5%92%8Clcm%E5%92%8C%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86/"/>
+    <id>http://example.com/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/gcd%E5%92%8Clcm%E5%92%8C%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86/</id>
+    <published>2024-01-18T09:32:22.015Z</published>
+    <updated>2024-01-18T12:26:07.936Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;gcd-辗转相除法&quot;&gt;&lt;a href=&quot;#gcd-辗转相除法&quot; class=&quot;headerlink&quot; title=&quot;gcd(辗转相除法)&quot;&gt;&lt;/a&gt;gcd(辗转相除法)&lt;/h1&gt;&lt;p&gt;我们将两数中较大的那一个看作是被除数A，将较小的那一个看作是除数B，二者相除的商记作C，余数记作D。这样我们就可以得到一个等式：A &amp;#x3D; B×C + D。而辗转相除法的所要用到的原理则是：(A , B) &amp;#x3D; (B , D)。&lt;/p&gt;
+&lt;p&gt;（m，n)表示m%n,直到（ ， ）&amp;#x3D;0，则最后的余数为两个数的最大公因数。&lt;/p&gt;
+&lt;p&gt;cpp里有库函数可以直接调,也可以手搓一个&lt;/p&gt;
+&lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;gcd&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; a, &lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; b)&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; b ? &lt;span class=&quot;built_in&quot;&gt;gcd&lt;/span&gt;(b, a % b) : a;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h1 id=&quot;lcm-最小公倍数&quot;&gt;&lt;a href=&quot;#lcm-最小公倍数&quot; class=&quot;headerlink&quot; title=&quot;lcm( 最小公倍数)&quot;&gt;&lt;/a&gt;lcm( 最小公倍数)&lt;/h1&gt;&lt;p&gt;a 乘 b 除以 gcd(a,b) &amp;#x3D; lcm&lt;/p&gt;
+&lt;h1 id=&quot;裴蜀定理&quot;&gt;&lt;a href=&quot;#裴蜀定理&quot; class=&quot;headerlink&quot; title=&quot;裴蜀定理&quot;&gt;&lt;/a&gt;裴蜀定理&lt;/h1&gt;&lt;p&gt;属于gcd的拓展&lt;/p&gt;
+&lt;h2 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h2&gt;&lt;p&gt;a,b为整数,则有整数x和y,使得ax + by &amp;#x3D; d*gcd(a,b)&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="算法" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="数论" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/"/>
+    
+    
+    <category term="算法" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
