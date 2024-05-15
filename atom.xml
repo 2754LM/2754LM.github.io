@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-04-25T02:44:43.142Z</updated>
+  <updated>2024-05-15T11:04:12.566Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>前缀和异或</title>
-    <link href="http://example.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%89%8D%E7%BC%80%E5%92%8C%E5%BC%82%E6%88%96/%E5%89%8D%E7%BC%80%E5%92%8C%E5%BC%82%E6%88%96/"/>
-    <id>http://example.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%89%8D%E7%BC%80%E5%92%8C%E5%BC%82%E6%88%96/%E5%89%8D%E7%BC%80%E5%92%8C%E5%BC%82%E6%88%96/</id>
+    <link href="http://example.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%89%8D%E7%BC%80%E5%92%8C%E5%BC%82%E6%88%96/"/>
+    <id>http://example.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%89%8D%E7%BC%80%E5%92%8C%E5%BC%82%E6%88%96/</id>
     <published>2024-04-22T11:14:46.286Z</published>
-    <updated>2024-04-25T02:44:43.142Z</updated>
+    <updated>2024-05-15T11:04:12.566Z</updated>
     
     
       
@@ -36,8 +36,6 @@
     
     
     <category term="数据结构" scheme="http://example.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-    <category term="前缀和异或" scheme="http://example.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%89%8D%E7%BC%80%E5%92%8C%E5%BC%82%E6%88%96/"/>
     
     
     <category term="数据结构" scheme="http://example.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
