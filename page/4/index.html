@@ -160,6 +160,73 @@
     
     
     <article
+  id="post-单调栈"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/%E7%AE%97%E6%B3%95/%E5%8D%95%E8%B0%83%E6%A0%88/%E5%8D%95%E8%B0%83%E6%A0%88/"
+    >单调栈</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/%E7%AE%97%E6%B3%95/%E5%8D%95%E8%B0%83%E6%A0%88/%E5%8D%95%E8%B0%83%E6%A0%88/" class="article-date">
+  <time datetime="2023-12-07T07:04:44.959Z" itemprop="datePublished">2023-12-07</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a> / <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/%E5%8D%95%E8%B0%83%E6%A0%88/">单调栈</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>通常是一维数组,记录任一个元素右(左)边第一个比自身大(小)的元素的下标.</p>
+<h2 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h2><p>分为正序构造和逆序构造两种方式.</p>
+<p>下面我以寻找右边第一个比较自己大的单调栈为例</p>
+<blockquote>
+<p>请注意,本文中所提及的栈的单调情况都是基于栈底到栈顶的顺序.如下图为一个单调减小的栈</p>
+</blockquote>
+<p><img src="/%E7%AE%97%E6%B3%95/%E5%8D%95%E8%B0%83%E6%A0%88/%E5%8D%95%E8%B0%83%E6%A0%88/%E5%8D%95%E8%B0%83%E5%87%8F%E5%B0%8F%E6%A0%88%E4%BE%8B%E5%9B%BE.png"></p>
+<p>正序和逆序只是角度不同,简单来说</p>
+<p>正序是把待比较的元素放到栈里,保持栈的单调递减</p>
+<p>逆序是把已经比较过的元素放到栈里,保持栈的单调递减</p>
+<p>无论正序逆天,都要保证栈的有序,并且需要及时去除无用数据</p> 
+      <a class="article-more-link" href="/%E7%AE%97%E6%B3%95/%E5%8D%95%E8%B0%83%E6%A0%88/%E5%8D%95%E8%B0%83%E6%A0%88/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+   
+  
+</article>
+
+    
+    <article
   id="post-图构建"
   class="article article-type-post"
   itemscope
@@ -580,15 +647,8 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-  <p>加减乘要逆序</p>
-<p>除法正序</p>
-<h1 id="高精度加法"><a href="#高精度加法" class="headerlink" title="高精度加法"></a>高精度加法</h1><p>使用字符数组存储两个较大的数</p>
-<p>把两个数逆序转化为整数数组</p>
-<p>诸位相加运算，在运算的时候处理进位。</p>
-<p>相加之后的结果最多比原来较长的数多一位，最后逆序输出即可</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> a[N],b[N],c[N];<span class="comment">//数组C存储结果</span></span><br><span class="line"><span class="type">char</span> s1[N],s2[N];<span class="comment">//存储读入的字符串</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cin &gt;&gt; s1 &gt;&gt; s2;</span><br><span class="line">    <span class="type">int</span> la = <span class="built_in">strlen</span>(s1);</span><br><span class="line">    <span class="type">int</span> lb = <span class="built_in">strlen</span>(s2);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>;i &lt; la;i++) a[la - i] = s1[i] - <span class="string">&#x27;0&#x27;</span>;<span class="comment">//倒序存储</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>;i &lt; lb;i++) b[lb - i] = s2[i] - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    <span class="type">int</span> lc = <span class="built_in">max</span>(la,lb) + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>;i &lt;= lc;i++)<span class="comment">//注意此处的下标从1开始(可以使用12345 + 23456模拟)</span></span><br><span class="line">    &#123;</span><br><span class="line">        c[i] += (a[i] + b[i]);<span class="comment">//两式相加</span></span><br><span class="line">        c[i + <span class="number">1</span>] = c[i] / <span class="number">10</span>;<span class="comment">//如果有进位的话,向高位进位</span></span><br><span class="line">        c[i] = c[i] % <span class="number">10</span>;<span class="comment">//如果是两位数,则进位之后需要取模</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//删除前导0</span></span><br><span class="line">    <span class="keyword">if</span> (c[lc] == <span class="number">0</span>) lc --;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = lc;i &gt; <span class="number">0</span>;i --) <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,c[i]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> <span class="built_in">i</span>(<span class="number">1</span>);i&lt;cz;i++)<span class="comment">//cz的长度为max(sz1,sz2)+1;</span></span><br><span class="line">&#123;</span><br><span class="line">		c[i]=n1[i]+n2[i]+x;    </span><br><span class="line">		x=c[i]/<span class="number">10</span>;                   <span class="comment">//其实这里也可以加一个条件 当..x&gt;=10时才执行</span></span><br><span class="line">		c[i]%=<span class="number">10</span>;                    <span class="comment">//%10保存&lt;10的数</span></span><br><span class="line">&#125;</span><br><span class="line">		c[i]=x;<span class="comment">//保存最后的进位;</span></span><br></pre></td></tr></table></figure> 
+  <h1 id="2024-4-7更新："><a href="#2024-4-7更新：" class="headerlink" title="2024.4.7更新："></a>2024.4.7更新：</h1><p>重新写了下，老的在下面</p>
+<h2 id="加"><a href="#加" class="headerlink" title="加"></a>加</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	string a,b;</span><br><span class="line">	cin&gt;&gt;a&gt;&gt;b;</span><br><span class="line">	<span class="type">int</span> lena = a.<span class="built_in">size</span>(), lenb = b.<span class="built_in">size</span>();</span><br><span class="line">	<span class="keyword">if</span>(lena &lt; lenb)&#123;</span><br><span class="line">		<span class="built_in">swap</span>(a,b);</span><br><span class="line">		<span class="built_in">swap</span>(lena, lenb);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">reverse</span>(a.<span class="built_in">begin</span>(), a.<span class="built_in">end</span>());</span><br><span class="line">	<span class="built_in">reverse</span>(b.<span class="built_in">begin</span>(), b.<span class="built_in">end</span>());</span><br><span class="line">	</span><br><span class="line">	vector&lt;<span class="type">int</span>&gt;<span class="built_in">ans</span>(lena + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">	<span class="type">int</span> n = ans.<span class="built_in">size</span>();</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(i &lt; lenb) ans[i] += a[i] + b[i] - <span class="string">&#x27;0&#x27;</span>*<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(i &lt; lena) ans[i] += a[i] - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">		<span class="keyword">if</span>(ans[i] &gt;= <span class="number">10</span>)&#123;</span><br><span class="line">			ans[i] %= <span class="number">10</span>; </span><br><span class="line">			ans[i+<span class="number">1</span>]++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">bool</span> flag = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = n<span class="number">-1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">		<span class="keyword">if</span>(ans[i] == <span class="number">0</span> &amp;&amp; flag) <span class="keyword">continue</span>;</span><br><span class="line">		flag = <span class="number">0</span>;</span><br><span class="line">		cout&lt;&lt;ans[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(flag &amp;&amp; ans[<span class="number">0</span>] == <span class="number">0</span>) cout&lt;&lt;<span class="number">0</span>; </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
       <a class="article-more-link" href="/%E7%AE%97%E6%B3%95/%E5%A4%A7%E6%95%B0%E5%A4%84%E7%90%86/%E9%AB%98%E7%B2%BE%E5%BA%A6/"
         >阅读更多...</a
       >
@@ -641,6 +701,13 @@
     </ul>
     <ul>
       <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
         
       </li>
     </ul>
@@ -871,7 +938,9 @@
 <!-- Katex -->
 
 <!-- busuanzi  -->
-
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
 <!-- ClickLove -->
 
 <!-- ClickBoom1 -->

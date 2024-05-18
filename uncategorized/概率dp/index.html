@@ -112,7 +112,7 @@
 <p>记dp[i]是当前整数是i时，花费了的钱数</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//公式如下，两种情况</span></span><br><span class="line"><span class="comment">//操作1: dp[i] = dp[i/a] + x;</span></span><br><span class="line"><span class="comment">/*操作2：dp[i] = (dp[i] + dp[i/2] + dp[i/3] + dp[i/4] + dp[i/5] + dp[i/6]) / 6 + y;</span></span><br><span class="line"><span class="comment">化简把dp[i]转到一侧（防止死循环）</span></span><br><span class="line"><span class="comment">dp[i]*5/6 = (dp[i] + dp[i/2] + dp[i/3] + dp[i/4] + dp[i/5]) / 6 + y;</span></span><br><span class="line"><span class="comment">dp[i] = y * 6/5 + (dp[i] + dp[i/2] + dp[i/3] + dp[i/4] + dp[i/5])/5;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 
-
+<span id="more"></span>
 
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> endl <span class="string">&#x27;\n&#x27;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line">map&lt;ll, <span class="type">double</span>&gt;mp;</span><br><span class="line">ll n,a,x,y;</span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">dfs</span><span class="params">(ll t)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(t == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(mp[t]) <span class="keyword">return</span> mp[t];</span><br><span class="line">    <span class="type">double</span> ans1 = <span class="built_in">dfs</span>(t/a) + x;</span><br><span class="line">    <span class="type">double</span> ans2 = y*<span class="number">6</span>/<span class="number">5.0</span>; <span class="comment">//投到1的话，花费</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">2</span>; i &lt;= <span class="number">6</span>; i++)&#123;</span><br><span class="line">        ans2 += <span class="built_in">dfs</span>(t/i) / <span class="number">5.0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    mp[t] = <span class="built_in">min</span>(ans1, ans2);</span><br><span class="line">    <span class="keyword">return</span> mp[t];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line">	cin.<span class="built_in">tie</span>(<span class="number">0</span>), cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;a&gt;&gt;x&gt;&gt;y;</span><br><span class="line">    cout&lt;&lt;fixed&lt;&lt;<span class="built_in">setprecision</span>(<span class="number">8</span>)&lt;&lt;<span class="built_in">dfs</span>(n);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
  
@@ -180,7 +180,7 @@
    
   <nav class="article-nav">
     
-      <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%89%8D%E7%BC%80%E5%92%8C%E5%BC%82%E6%88%96/" class="article-nav-link">
+      <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%89%8D%E7%BC%80%E5%92%8C%E5%BC%82%E6%88%96/%E5%89%8D%E7%BC%80%E5%92%8C%E5%BC%82%E6%88%96/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
@@ -220,6 +220,13 @@
     </ul>
     <ul>
       <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
         
       </li>
     </ul>
@@ -466,7 +473,9 @@
 <!-- Katex -->
 
 <!-- busuanzi  -->
-
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
 <!-- ClickLove -->
 
 <!-- ClickBoom1 -->

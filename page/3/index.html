@@ -160,6 +160,79 @@
     
     
     <article
+  id="post-快速幂"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/%E5%BF%AB%E9%80%9F%E5%B9%82/"
+    >快速幂</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/%E5%BF%AB%E9%80%9F%E5%B9%82/" class="article-date">
+  <time datetime="2024-01-18T09:32:22.018Z" itemprop="datePublished">2024-01-18</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a> / <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/">数论</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有两种思想,但代码一样,指数折半或者利用二进制,即从十进制和二进制两种方向理解</p>
+<p>两种方法求解过程,以2的11次为例</p>
+<p>指数折半2.11 </p>
+<p>&#x3D; 2 * 4^5<br>&#x3D;2 * 4 * 8 ^ 2<br>&#x3D;2 * 4 * 16</p>
+<p>二进制2^11,1011嘛</p>
+<p>&#x3D;2 * 4 * 16</p>
+<h1 id="指数折半"><a href="#指数折半" class="headerlink" title="指数折半"></a>指数折半</h1><p>核心思想就是每一步都把指数分成两半，而相应的底数做平方运算</p>
+<p>3^10&#x3D;(3 * 3) ^ 5</p>
+<p>3^10&#x3D;9 ^ 5</p>
+<p>现在我们的问题是如何把指数5变成原来的一半，5是一个奇数，5的一半是2.5，但是我们知道，指数不能为小数，因此我们不能这么简单粗暴的直接执行5&#x2F;2，然而，这里还有另一种方法能表示9^5</p>
+<p>9^5&#x3D;（ 9^4 ）*（ 9^1 ）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">quick_power</span><span class="params">(<span class="type">int</span> base, <span class="type">int</span> power)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">long</span> <span class="type">long</span> ans = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (power &gt; <span class="number">0</span>)           <span class="comment">//指数大于0进行指数折半，底数变其平方的操作</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (power &amp; <span class="number">1</span>)     <span class="comment">//指数为奇数</span></span><br><span class="line">		&#123;</span><br><span class="line">			power -= <span class="number">1</span>;         <span class="comment">//指数减一,不写也可以int自动取整</span></span><br><span class="line">			ans *= base % mod;     <span class="comment">//分离出当前项并累乘</span></span><br><span class="line">		&#125;</span><br><span class="line">		power &gt;&gt;= <span class="number">1</span>;         <span class="comment">//指数折半</span></span><br><span class="line">		base *= base % mod;       <span class="comment">//底数变其平方</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans % mod;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="二进制"><a href="#二进制" class="headerlink" title="二进制"></a>二进制</h1><p>比如n的11次,把11用二进制拆分,8+0+2+1,即1011.</p>
+<p>从低位开始递推,1次<em>1次等于2次,2次</em>2次等于4次……</p>
+<p>不过代码本质也是在做底数翻倍,比如2 ^ 1到2 ^ 2就是2 ^ 1到4 ^ 1,和指数折半是一样的</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">quick_power</span><span class="params">(<span class="type">int</span> base, <span class="type">int</span> power)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> ans = <span class="number">1</span>;   <span class="comment">//用于存储项累乘与返回最终结果，由于要存储累乘所以要初始化为1</span></span><br><span class="line">    <span class="keyword">while</span> (power &gt; <span class="number">0</span>)           <span class="comment">//指数大于0说明指数的二进制位并没有被左移舍弃完毕</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (power &amp; <span class="number">1</span>)&#123;          <span class="comment">//当前位为1</span></span><br><span class="line">            ans *= base % mod;     <span class="comment">//累乘当前项并存储</span></span><br><span class="line">        &#125;</span><br><span class="line">        power &gt;&gt;= <span class="number">1</span>;            <span class="comment">//指数位右移(区别主要就在这一步的理解上)</span></span><br><span class="line">        base *= base % mod;           <span class="comment">//递推,如n的2次变为n的4次</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans % mod;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
+      <a class="article-more-link" href="/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/%E5%BF%AB%E9%80%9F%E5%B9%82/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+   
+  
+</article>
+
+    
+    <article
   id="post-gcd和lcm和裴蜀定理"
   class="article article-type-post"
   itemscope
@@ -262,9 +335,11 @@
 </blockquote>
 <h1 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h1><p>先谈一下为什么开log2啊? 如果不开,你长度都是2,4,6这样访问,不浪费空间吗?N*N稍微大点直接爆内存了</p>
 <p>而且你初始化个数组查某个数的最大2的次数, 这样和log2比不方便,何况懒得写log2还有自带的函数.</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span>+<span class="number">5</span>;</span><br><span class="line"><span class="type">int</span> st[N][<span class="number">21</span>]; <span class="comment">//st[i][j],i记录的是现在遍历的下标,j记录的是log2(长度)</span></span><br><span class="line"><span class="type">int</span> lg[N]; <span class="comment">//因为二进制就是2的i次,所以用来记录很方便,位移就可以了.</span></span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	lg[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">		lg[i] = lg[i&gt;&gt;<span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">		cin&gt;&gt;st[i][<span class="number">0</span>];</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= lg[n]; j++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n - (<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>)) +<span class="number">1</span>; i++)&#123;</span><br><span class="line">			st[i][j] = <span class="built_in">min</span>(st[i][j<span class="number">-1</span>], st[i + (<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>))][j<span class="number">-1</span>]); <span class="comment">//j-1就是上一个log2(上一层长度),我们&lt;&lt;位移就为了展开来定下i的位置</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">query</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> k = lg[r-l+<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">min</span>(st[l][k], st[r-(<span class="number">1</span>&lt;&lt;k)+<span class="number">1</span>][k]); <span class="comment">//和初始化是同理的,log2上一层就是k</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line">	cin.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="built_in">init</span>();</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i&lt; m; i++)&#123;</span><br><span class="line">		<span class="type">int</span> l,r;</span><br><span class="line">		cin&gt;&gt;l&gt;&gt;r;</span><br><span class="line">		cout&lt;&lt;<span class="built_in">query</span>(l,r)&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
- 
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span>+<span class="number">5</span>;</span><br><span class="line"><span class="type">int</span> st[N][<span class="number">21</span>]; <span class="comment">//st[i][j],i记录的是现在遍历的下标,j记录的是log2(长度)</span></span><br><span class="line"><span class="type">int</span> lg[N]; <span class="comment">//因为二进制就是2的i次,所以用来记录很方便,位移就可以了.</span></span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	lg[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">		lg[i] = lg[i&gt;&gt;<span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">		cin&gt;&gt;st[i][<span class="number">0</span>];</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= lg[n]; j++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n - (<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>)) +<span class="number">1</span>; i++)&#123;</span><br><span class="line">			st[i][j] = <span class="built_in">min</span>(st[i][j<span class="number">-1</span>], st[i + (<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>))][j<span class="number">-1</span>]); <span class="comment">//j-1就是上一个log2(上一层长度),我们&lt;&lt;位移就为了展开来定下i的位置</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">query</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> k = lg[r-l+<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">min</span>(st[l][k], st[r-(<span class="number">1</span>&lt;&lt;k)+<span class="number">1</span>][k]); <span class="comment">//和初始化是同理的,log2上一层就是k</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line">	cin.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="built_in">init</span>();</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i&lt; m; i++)&#123;</span><br><span class="line">		<span class="type">int</span> l,r;</span><br><span class="line">		cin&gt;&gt;l&gt;&gt;r;</span><br><span class="line">		cout&lt;&lt;<span class="built_in">query</span>(l,r)&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
+      <a class="article-more-link" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/ST%E8%A1%A8/ST%E8%A1%A8/"
+        >阅读更多...</a
+      >
+       
       <!-- reward -->
       
     </div>
@@ -450,8 +525,11 @@
 <p>双周赛掉大分Q1和Q3一样,但Q1范围不大,可以直接暴力.枚举子数组直接滑动窗口,当时没想到,直接在想Q3的O(n)解法.</p>
 <p>单周赛的Q3是最短路问题, 记得前段时间哪次周赛Q3和这个很像. 一开始直接用dij写,但超时,后面加了个记忆化就过了</p>
 <p>蓝桥小白赛Q4取余,首数组没有处理好.</p>
-<p>计划这两天把这三题整理一下</p>
- 
+<p>计划这两天把这三题整理一下</p> 
+      <a class="article-more-link" href="/%E6%97%A5%E8%AE%B0/2023-12-24/"
+        >阅读更多...</a
+      >
+       
       <!-- reward -->
       
     </div>
@@ -579,8 +657,11 @@
 <p>有点颓废了，有时间按题目分集中刷刷题。</p>
 <p>接下来干什么呢</p>
 <p>算法继续写着，基础算法要复习复习，dp的话理论还差个区间dp写完，多练练。高级数据结构线段树什么的要学一手，还有图论，看一次忘一次，下次系统的写的最短路什么的。</p>
-<p>哦，还有cet4,425就行（</p>
- 
+<p>哦，还有cet4,425就行（</p> 
+      <a class="article-more-link" href="/%E6%97%A5%E8%AE%B0/2023-12-13/"
+        >阅读更多...</a
+      >
+       
       <!-- reward -->
       
     </div>
@@ -727,73 +808,6 @@
 </article>
 
     
-    <article
-  id="post-单调栈"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/%E7%AE%97%E6%B3%95/%E5%8D%95%E8%B0%83%E6%A0%88/%E5%8D%95%E8%B0%83%E6%A0%88/"
-    >单调栈</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/%E7%AE%97%E6%B3%95/%E5%8D%95%E8%B0%83%E6%A0%88/%E5%8D%95%E8%B0%83%E6%A0%88/" class="article-date">
-  <time datetime="2023-12-07T07:04:44.959Z" itemprop="datePublished">2023-12-07</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a> / <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/%E5%8D%95%E8%B0%83%E6%A0%88/">单调栈</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>通常是一维数组,记录任一个元素右(左)边第一个比自身大(小)的元素的下标.</p>
-<h2 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h2><p>分为正序构造和逆序构造两种方式.</p>
-<p>下面我以寻找右边第一个比较自己大的单调栈为例</p>
-<blockquote>
-<p>请注意,本文中所提及的栈的单调情况都是基于栈底到栈顶的顺序.如下图为一个单调减小的栈</p>
-</blockquote>
-<p><img src="/%E7%AE%97%E6%B3%95/%E5%8D%95%E8%B0%83%E6%A0%88/%E5%8D%95%E8%B0%83%E6%A0%88/%E5%8D%95%E8%B0%83%E5%87%8F%E5%B0%8F%E6%A0%88%E4%BE%8B%E5%9B%BE.png"></p>
-<p>正序和逆序只是角度不同,简单来说</p>
-<p>正序是把待比较的元素放到栈里,保持栈的单调递减</p>
-<p>逆序是把已经比较过的元素放到栈里,保持栈的单调递减</p>
-<p>无论正序逆天,都要保证栈的有序,并且需要及时去除无用数据</p> 
-      <a class="article-more-link" href="/%E7%AE%97%E6%B3%95/%E5%8D%95%E8%B0%83%E6%A0%88/%E5%8D%95%E8%B0%83%E6%A0%88/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-   
-  
-</article>
-
-    
   </article>
   
 
@@ -822,6 +836,13 @@
     </ul>
     <ul>
       <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
         
       </li>
     </ul>
@@ -1052,7 +1073,9 @@
 <!-- Katex -->
 
 <!-- busuanzi  -->
-
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
 <!-- ClickLove -->
 
 <!-- ClickBoom1 -->

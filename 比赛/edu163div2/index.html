@@ -122,6 +122,8 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> endl <span class="string">&#x27;\n&#x27;</span>	</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line">	cin.<span class="built_in">tie</span>(<span class="number">0</span>), cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	<span class="type">int</span> T;</span><br><span class="line">	cin&gt;&gt;T;</span><br><span class="line">	<span class="keyword">while</span>(T--)&#123;</span><br><span class="line">		string s;</span><br><span class="line">		cin&gt;&gt;s;</span><br><span class="line">		<span class="type">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">		<span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123; <span class="comment">//枚举起点</span></span><br><span class="line">			<span class="keyword">if</span>(ans &gt; n-i) <span class="keyword">break</span>; </span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j = i + <span class="number">1</span>; j &lt; n; j++)&#123;  <span class="comment">//枚举终点</span></span><br><span class="line">				<span class="keyword">if</span>(j - i &gt; n - j) <span class="keyword">break</span>;</span><br><span class="line">				<span class="type">int</span> l = i, r = j;</span><br><span class="line">				<span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">				<span class="type">bool</span> flag = <span class="number">0</span>;</span><br><span class="line">				<span class="keyword">while</span>(l &lt; j &amp;&amp; r &lt; n)&#123;  <span class="comment">//判断这个范围</span></span><br><span class="line">					<span class="keyword">if</span>(s[l] == s[r] || s[l] == <span class="string">&#x27;?&#x27;</span> || s[r] == <span class="string">&#x27;?&#x27;</span>)&#123;</span><br><span class="line">						 sum+=<span class="number">2</span>;</span><br><span class="line">						 l++;</span><br><span class="line">						 r++;</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="keyword">else</span>&#123;</span><br><span class="line">						flag = <span class="number">1</span>;</span><br><span class="line">						<span class="keyword">break</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span>(!flag) ans = <span class="built_in">max</span>(ans, sum);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; </span><br><span class="line">		cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>平方做法如下,主要利用了子串的连续性进行优化</p>
+<span id="more"></span>
+
 <blockquote>
 <p>其实就是直接跳到失匹位置</p>
 </blockquote>
@@ -234,6 +236,13 @@
     </ul>
     <ul>
       <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
         
       </li>
     </ul>
@@ -480,7 +489,9 @@
 <!-- Katex -->
 
 <!-- busuanzi  -->
-
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
 <!-- ClickLove -->
 
 <!-- ClickBoom1 -->

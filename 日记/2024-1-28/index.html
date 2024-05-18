@@ -120,7 +120,9 @@
 <p>回到上面求公约数的时候我们也可以只遍历到i x i &lt;&#x3D; num,这样时间复杂度就是1e3乘以1e4为1e7,可以过.</p>
 <p>另外需要注意的是遍历过程中每次会得到两个因数来检验,一个就是i,另一个是num&#x2F;i</p>
 <p>贴出代码</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x,n;</span><br><span class="line">cin &gt;&gt; x &gt;&gt; n;</span><br><span class="line"><span class="type">int</span> ans = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i * i &lt;= x; i++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(x%i==<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">    	a = i, b = num / i; <span class="comment">//因数为a和b</span></span><br><span class="line">        <span class="keyword">if</span>(n &lt;= x/a) <span class="comment">//如果因数为a,每份都是a,至少要分出n份</span></span><br><span class="line">            ans=<span class="built_in">max</span>(ans, a);</span><br><span class="line">        <span class="keyword">if</span>(n &lt;= x/b) <span class="comment">//如果因数为b,每份都是b,至少要分出n份</span></span><br><span class="line">            ans=<span class="built_in">max</span>(ans, b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">cout &lt;&lt; ans &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br></pre></td></tr></table></figure> 
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x,n;</span><br><span class="line">cin &gt;&gt; x &gt;&gt; n;</span><br><span class="line"><span class="type">int</span> ans = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i * i &lt;= x; i++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(x%i==<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">    	a = i, b = num / i; <span class="comment">//因数为a和b</span></span><br><span class="line">        <span class="keyword">if</span>(n &lt;= x/a) <span class="comment">//如果因数为a,每份都是a,至少要分出n份</span></span><br><span class="line">            ans=<span class="built_in">max</span>(ans, a);</span><br><span class="line">        <span class="keyword">if</span>(n &lt;= x/b) <span class="comment">//如果因数为b,每份都是b,至少要分出n份</span></span><br><span class="line">            ans=<span class="built_in">max</span>(ans, b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">cout &lt;&lt; ans &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span> 
       <!-- reward -->
       
     </div>
@@ -225,6 +227,13 @@
     </ul>
     <ul>
       <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
         
       </li>
     </ul>
@@ -471,7 +480,9 @@
 <!-- Katex -->
 
 <!-- busuanzi  -->
-
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
 <!-- ClickLove -->
 
 <!-- ClickBoom1 -->
