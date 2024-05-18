@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-05-18T15:29:06.216Z</updated>
+  <updated>2024-05-18T16:27:19.236Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/Catalan/"/>
     <id>http://example.com/Catalan/</id>
     <published>2024-05-18T13:16:34.000Z</published>
-    <updated>2024-05-18T15:29:06.216Z</updated>
+    <updated>2024-05-18T16:27:19.236Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;性质公式&quot;&gt;&lt;a href=&quot;#性质公式&quot; class=&quot;headerlink&quot; title=&quot;性质公式&quot;&gt;&lt;/a&gt;性质公式&lt;/h2&gt;&lt;p&gt;太神奇辣，卡特兰数&lt;/p&gt;
@@ -90,7 +90,7 @@
     <link href="http://example.com/prefix-XOR/"/>
     <id>http://example.com/prefix-XOR/</id>
     <published>2024-04-22T11:14:46.286Z</published>
-    <updated>2024-05-18T15:05:51.705Z</updated>
+    <updated>2024-05-18T16:27:38.229Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;前置知识&quot;&gt;&lt;a href=&quot;#前置知识&quot; class=&quot;headerlink&quot; title=&quot;前置知识&quot;&gt;&lt;/a&gt;前置知识&lt;/h2&gt;&lt;p&gt;前缀和，压位，位运算，异或&lt;/p&gt;
@@ -282,7 +282,7 @@
     <link href="http://example.com/ring/"/>
     <id>http://example.com/ring/</id>
     <published>2024-03-07T02:33:01.000Z</published>
-    <updated>2024-05-18T15:14:07.514Z</updated>
+    <updated>2024-05-18T16:27:45.433Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;无向有权最小环&quot;&gt;&lt;a href=&quot;#无向有权最小环&quot; class=&quot;headerlink&quot; title=&quot;无向有权最小环&quot;&gt;&lt;/a&gt;无向有权最小环&lt;/h1&gt;&lt;p&gt;最短路Floyd里面讲了,也可以用dij枚举边(因为无向图双向边,也要屏蔽反边)&lt;/p&gt;
@@ -338,7 +338,7 @@
     <link href="http://example.com/harmony-inverse/"/>
     <id>http://example.com/harmony-inverse/</id>
     <published>2024-03-07T02:28:45.000Z</published>
-    <updated>2024-05-18T13:19:05.475Z</updated>
+    <updated>2024-05-18T16:27:28.011Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;同余&quot;&gt;&lt;a href=&quot;#同余&quot; class=&quot;headerlink&quot; title=&quot;同余&quot;&gt;&lt;/a&gt;同余&lt;/h1&gt;&lt;h2 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h2&gt;&lt;p&gt;a % m &amp;#x3D; b % m,记为a &amp;#x3D; b(mod m),称a和b模m同余,m为a,b的模&lt;/p&gt;
@@ -373,7 +373,7 @@
     <link href="http://example.com/scan-line/"/>
     <id>http://example.com/scan-line/</id>
     <published>2024-03-07T02:23:15.000Z</published>
-    <updated>2024-05-18T13:05:01.551Z</updated>
+    <updated>2024-05-18T16:27:47.430Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;离散化&quot;&gt;&lt;a href=&quot;#离散化&quot; class=&quot;headerlink&quot; title=&quot;离散化&quot;&gt;&lt;/a&gt;离散化&lt;/h1&gt;&lt;p&gt;先讲一下线段树的离散化问题,如果直接按出现位次来离散的话会有问题&lt;/p&gt;
@@ -406,7 +406,7 @@
     <link href="http://example.com/tarjan/"/>
     <id>http://example.com/tarjan/</id>
     <published>2024-03-05T06:58:37.000Z</published>
-    <updated>2024-03-31T05:36:51.792Z</updated>
+    <updated>2024-05-18T16:27:56.756Z</updated>
     
     
     <summary type="html">&lt;p&gt;tarjan算法的应用很多,简单介绍一下割点(边), 点(边)双连通,缩点. tarjan还可以解决离线的lca问题&lt;/p&gt;
@@ -436,7 +436,7 @@
     <link href="http://example.com/prime-number/"/>
     <id>http://example.com/prime-number/</id>
     <published>2024-02-10T09:09:18.000Z</published>
-    <updated>2024-02-10T09:10:06.305Z</updated>
+    <updated>2024-05-18T16:27:39.840Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;前置知识&quot;&gt;&lt;a href=&quot;#前置知识&quot; class=&quot;headerlink&quot; title=&quot;前置知识&quot;&gt;&lt;/a&gt;前置知识&lt;/h1&gt;&lt;p&gt;小学数学知识&lt;/p&gt;
@@ -468,7 +468,7 @@
     <link href="http://example.com/Blocking/"/>
     <id>http://example.com/Blocking/</id>
     <published>2024-02-10T09:06:41.000Z</published>
-    <updated>2024-05-18T13:08:09.989Z</updated>
+    <updated>2024-05-18T16:27:15.922Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;分块&quot;&gt;&lt;a href=&quot;#分块&quot; class=&quot;headerlink&quot; title=&quot;分块&quot;&gt;&lt;/a&gt;分块&lt;/h1&gt;&lt;h2 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h2&gt;&lt;p&gt;高效点的暴力,适合求解m &amp;#x3D;&amp;#x3D; n &amp;#x3D;&amp;#x3D; 1e5的问题, 或者m根号n ≈ 1e7的问题,空间约3n&lt;/p&gt;
@@ -502,7 +502,7 @@
     <link href="http://example.com/minimum-spanning-tree/"/>
     <id>http://example.com/minimum-spanning-tree/</id>
     <published>2024-02-10T09:05:39.000Z</published>
-    <updated>2024-05-18T15:08:52.769Z</updated>
+    <updated>2024-05-18T16:27:31.877Z</updated>
     
     
     <summary type="html">&lt;p&gt;&lt;a href=&quot;https://www.luogu.com.cn/problem/P3366&quot;&gt;P3366 【模板】最小生成树&lt;/a&gt;&lt;/p&gt;
@@ -534,7 +534,7 @@
     <link href="http://example.com/subsequences-subarrays/"/>
     <id>http://example.com/subsequences-subarrays/</id>
     <published>2024-02-03T12:55:02.126Z</published>
-    <updated>2024-02-03T14:22:19.724Z</updated>
+    <updated>2024-05-18T16:28:36.337Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;分类&quot;&gt;&lt;a href=&quot;#分类&quot; class=&quot;headerlink&quot; title=&quot;分类&quot;&gt;&lt;/a&gt;分类&lt;/h1&gt;&lt;p&gt;LCS(最长公共子序列)&lt;/p&gt;

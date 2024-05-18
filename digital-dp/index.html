@@ -109,17 +109,17 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="写在开头"><a href="#写在开头" class="headerlink" title="写在开头"></a>写在开头</h1><p>本文dp数组基础讲的比较简略,看不懂请另查文章. 求解代码部分比较详细.</p>
+  <h1><span id="写在开头">写在开头</span></h1><p>本文dp数组基础讲的比较简略,看不懂请另查文章. 求解代码部分比较详细.</p>
 <p>这篇写的累死我了(雾</p>
-<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>洛谷p2602数字计数<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2602">https://www.luogu.com.cn/problem/P2602</a></p>
+<h1><span id="题目">题目</span></h1><p>洛谷p2602数字计数<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2602">https://www.luogu.com.cn/problem/P2602</a></p>
 <p>给定两个正整数 a 和 b，求在 [a,b] 中的所有整数中，每个数码(digit)各出现了多少次。</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>分别求[0,a]和[0,b]各个数码出现的次数,然后cnt[b] - cnt[a]就行了,这题a,b范围能到10^12^暴力显然超时,因为000-099和100-199和600-699这种后面两位中数码出现的次数是一样的,自然想到DP记录多少位对应多少次</p>
-<h1 id="dp预处理"><a href="#dp预处理" class="headerlink" title="dp预处理"></a>dp预处理</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>dp[i]定义为i位数的每种数字有多少个(例如dp[2]代表00到99中某个数出现的次数,此处加前导0是为了使0和其他数一样)</p>
+<h1><span id="思路">思路</span></h1><p>分别求[0,a]和[0,b]各个数码出现的次数,然后cnt[b] - cnt[a]就行了,这题a,b范围能到10^12^暴力显然超时,因为000-099和100-199和600-699这种后面两位中数码出现的次数是一样的,自然想到DP记录多少位对应多少次</p>
+<h1><span id="dp预处理">dp预处理</span></h1><h2><span id="定义">定义</span></h2><p>dp[i]定义为i位数的每种数字有多少个(例如dp[2]代表00到99中某个数出现的次数,此处加前导0是为了使0和其他数一样)</p>
 <p>一图流</p>
 <p><img src="/digital-dp/%E6%95%B0%E4%BD%8Ddp.jpg" alt="数位dp"></p>
 <span id="more"></span>
 
-<h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><p>dp[i] &#x3D; dp[i-1]*10 + 10^i-1^</p>
+<h2><span id="公式">公式</span></h2><p>dp[i] &#x3D; dp[i-1]*10 + 10^i-1^</p>
 <p>递推公式是如何推导来的呢?</p>
 <p>下面以数字2的出现举几个栗子(定义一下dp[0] &#x3D; 0)</p>
 <blockquote>
@@ -133,16 +133,16 @@
 <p>第二部分10^2^(即200到299一共100次)</p>
 <p><em><strong>强调一下22是2次,因为题目求的是2出现的次数,不是有2的数字出现的次数</strong></em></p>
 </blockquote>
-<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>dp[0] &#x3D; 0</p>
-<h2 id="递推顺序"><a href="#递推顺序" class="headerlink" title="递推顺序"></a>递推顺序</h2><p>正序</p>
-<h2 id="举例推导"><a href="#举例推导" class="headerlink" title="举例推导"></a>举例推导</h2><p>公式部分已有列出(强烈建议看下文的一图流)</p>
-<h1 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h1><h2 id="数位限制"><a href="#数位限制" class="headerlink" title="数位限制"></a>数位限制</h2><p>如23,</p>
+<h2><span id="初始化">初始化</span></h2><p>dp[0] &#x3D; 0</p>
+<h2><span id="递推顺序">递推顺序</span></h2><p>正序</p>
+<h2><span id="举例推导">举例推导</span></h2><p>公式部分已有列出(强烈建议看下文的一图流)</p>
+<h1><span id="细节">细节</span></h1><h2><span id="数位限制">数位限制</span></h2><p>如23,</p>
 <p>01,02,03…09中0出现十次其他0到9的数出现1次</p>
 <p>11,12…..19中1出现十次其他0到9的数都1次</p>
 <p>21…23</p>
 <p>2为数位限制,需特判</p>
-<h2 id="前导0"><a href="#前导0" class="headerlink" title="前导0"></a>前导0</h2><p>01到99时,01,02这种前面的0是多余的,对0要特判</p>
-<h1 id="求解代码"><a href="#求解代码" class="headerlink" title="求解代码"></a>求解代码</h1><h2 id="递推"><a href="#递推" class="headerlink" title="递推"></a>递推</h2><p>我们先设数字为ABCD</p>
+<h2><span id="前导0">前导0</span></h2><p>01到99时,01,02这种前面的0是多余的,对0要特判</p>
+<h1><span id="求解代码">求解代码</span></h1><h2><span id="递推">递推</span></h2><p>我们先设数字为ABCD</p>
 <p>看A000，如果我们要求出它所有数位之和，我们会怎么求？</p>
 <p>鉴于我们其实已经求出了0-9,0-99,0-999。。。上所有数字个数（f[i],且没有考虑前导0）我们何不把这个A000看成0000-1000-2000…A000对于不考虑首位每一个式子的数字的出现个数为 A*f[3]。加上首位出现也就是小于A每一个数都出现了10^3次，再加上，我们就把A000处理完了。</p>
 <p>这样你以为就把第一位处理完了？不不不，首位A还出现了BCD+1次呢，也就是从A000~ABCD，这个A还出现了BCD+1次，所以再加上这些才行呢。那么你发现，我们成功把首位代表的所有数字个数求出来了，剩下的求解与A完全没有任何关系，只是BCD的求解，于是我们发现我们已经把一个大问题，化成了一个个小问题，也即是，对于一个这样n位的数，把他一位位的分离开来。</p>
@@ -156,8 +156,8 @@
 <p>求解[0,a]的数位出现次数代码(拆数)</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">(<span class="type">long</span> <span class="type">long</span> a, vector&lt;<span class="type">long</span> <span class="type">long</span>&gt;cnt)</span></span>&#123;</span><br><span class="line">    <span class="comment">//数组按位存储a</span></span><br><span class="line">    <span class="type">int</span> num[n];<span class="comment">//num[i]定义a的第i位数组</span></span><br><span class="line">    <span class="type">int</span> len = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(a)&#123;</span><br><span class="line">        num[++len] = a%<span class="number">10</span>;</span><br><span class="line">        a/=<span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//按位处理a(这里正序逆序都是可以的,只不过逆序和我们上面推导的思路一样,更好理解)</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = len; i &gt;= <span class="number">1</span>; i--)&#123;</span><br><span class="line">        <span class="comment">//求(000-999)*A处理首位以外的数</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt;= <span class="number">9</span>; j++) cnt[j] += dp[i<span class="number">-1</span>] * nums[i];</span><br><span class="line">        <span class="comment">//求0000-A000即处理首位比A小的数,即ten[3]次,(如2,在2000到2999的首位出现1000次)</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; num[i]; j++) cnt[j] += ten[i<span class="number">-1</span>];</span><br><span class="line">        <span class="comment">//求A000到ABCD即求首位A的数,答案即BCD+1次</span></span><br><span class="line">		<span class="type">long</span> <span class="type">long</span> sum = <span class="number">0</span>;求<span class="function">BCD</span></span><br><span class="line"><span class="function">		<span class="title">for</span><span class="params">(<span class="type">int</span> j = i<span class="number">-1</span>; j &gt;= <span class="number">1</span>; j--)</span></span>&#123;</span><br><span class="line">			sum = sum*<span class="number">10</span> + num[j];</span><br><span class="line">		&#125; </span><br><span class="line">		cnt[num[i]] += sum+<span class="number">1</span>;<span class="comment">//A次数加BCD+1</span></span><br><span class="line">        <span class="comment">//特判前导0</span></span><br><span class="line">        cnt[<span class="number">0</span>] -= ten[i<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="记忆化搜索-dfs"><a href="#记忆化搜索-dfs" class="headerlink" title="记忆化搜索(dfs)"></a>记忆化搜索(dfs)</h2><p>每次查找完某一个数出现的次数</p>
-<h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>dp[pos] [sum] [lead] [limit]表示限制条件中某数码出现的次数</p>
+<h2><span id="记忆化搜索dfs">记忆化搜索(dfs)</span></h2><p>每次查找完某一个数出现的次数</p>
+<h3><span id="定义">定义</span></h3><p>dp[pos] [sum] [lead] [limit]表示限制条件中某数码出现的次数</p>
 <p>pos表示最低要求的数前有几位</p>
 <p>sum表示要求数开始有几位</p>
 <blockquote>
@@ -178,7 +178,7 @@
 
 
 
-<h1 id="相关题目"><a href="#相关题目" class="headerlink" title="相关题目"></a>相关题目</h1><p>洛谷P4999 烦人的数学作业</p>
+<h1><span id="相关题目">相关题目</span></h1><p>洛谷P4999 烦人的数学作业</p>
 <p>难度: 普及+&#x2F;提高</p>
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4999">https://www.luogu.com.cn/problem/P4999</a></p>
 <p>洛谷P2657windy 数</p>

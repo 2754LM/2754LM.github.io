@@ -85,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">606</span>
+            <span class="post-count">605</span>
         </span>
     </span>
 
@@ -109,36 +109,36 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h2 id="冒泡1"><a href="#冒泡1" class="headerlink" title="冒泡1"></a>冒泡1</h2><p>两个值依次比较</p>
+  <h2><span id="冒泡">冒泡</span></h2><p>两个值依次比较</p>
 <blockquote>
 <p>优化方法:每次循环判断是否交换过元素,没有交换过就证明数组已经有序</p>
 </blockquote>
-<h2 id="选排1"><a href="#选排1" class="headerlink" title="选排1"></a>选排1</h2><p>大小n的数组,遍历n次,第一次把最小的移动到索引0,第二次从1开始把第二小的移动到索引1处,以此类推</p>
+<h2><span id="选排">选排</span></h2><p>大小n的数组,遍历n次,第一次把最小的移动到索引0,第二次从1开始把第二小的移动到索引1处,以此类推</p>
 <blockquote>
 <p>优化方法:每次遍历同时寻找最小最大值</p>
 </blockquote>
-<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>从1开始构造有序数组,后面的数依次比较插入数组中对应位置</p>
+<h2><span id="插入排序">插入排序</span></h2><p>从1开始构造有序数组,后面的数依次比较插入数组中对应位置</p>
 <blockquote>
 <p>优化方法:已排序的插入用二分,</p>
 <p>从后往前排序</p>
 </blockquote>
-<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>把数组不断拆分然后合并,如8个数,先分成左4,右4,每个4再细分成2,2排序后回4合并再排序,再回8合并</p>
+<h2><span id="归并排序">归并排序</span></h2><p>把数组不断拆分然后合并,如8个数,先分成左4,右4,每个4再细分成2,2排序后回4合并再排序,再回8合并</p>
 <span id="more"></span>
 
-<h2 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h2><blockquote>
+<h2><span id="桶排序">桶排序</span></h2><blockquote>
 <p>分散到n个桶中,在每个桶中实现有序,桶之间呈递增关系(即2桶的元素都大于1桶)</p>
 </blockquote>
-<h2 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h2><blockquote>
+<h2><span id="计数排序">计数排序</span></h2><blockquote>
 <p><strong>可以看成是桶排序的一种特殊情况，只是桶的大小粒度不一样</strong>。当要排序的 n 个数据，所处的范围并不大的时候，比如最大值是 k，我们就可以把数据划分成 k 个桶。每个桶内的数据值都是相同的，省掉了桶内排序的时间。</p>
 <p>生成一个有序计数器数组,遍历数组,遍历到1就给计数器数组的1加1,3就3加1,以此类推,然后输出计数器数组</p>
 </blockquote>
-<h2 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h2><blockquote>
+<h2><span id="基数排序">基数排序</span></h2><blockquote>
 <p>基数排序是非比较型整数排序算法，其原理是将整数按位分割进行排序。基数排序适用于大范围数据排序，打破了计数排序的限制。由于整数也可以表达字符串（比如名字或日期）和特定格式的浮点数，所以基数排序也不是只能使用于整数。</p>
 </blockquote>
-<h2 id="快排"><a href="#快排" class="headerlink" title="快排"></a>快排</h2><blockquote>
+<h2><span id="快排">快排</span></h2><blockquote>
 <p>选择一个数(随机就是随机快排,从头到尾就是普通快排),放到0处,比它小的放左边,大的右边,遍历完一次,把0处和最大的小数交换,直到所有数都已选择过</p>
 </blockquote>
-<h2 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h2><blockquote>
+<h2><span id="希尔排序">希尔排序</span></h2><blockquote>
 <p>将待排序表分割成若干个“特殊”子表，分别进行直接插入排序，当整个表中元素已呈现“基本有序”时，再对全体记录进行一次直接插入排序</p>
 </blockquote>
  

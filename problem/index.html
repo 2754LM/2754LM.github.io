@@ -109,7 +109,7 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="构造连续子序列问题"><a href="#构造连续子序列问题" class="headerlink" title="构造连续子序列问题"></a>构造连续子序列问题</h1><p>问题形如:现有整数数组num,取其中任意个数,和为sum,即记为可以取到sum.</p>
+  <h1><span id="构造连续子序列问题">构造连续子序列问题</span></h1><p>问题形如:现有整数数组num,取其中任意个数,和为sum,即记为可以取到sum.</p>
 <p>现问最少添加几个数才能取到1到n的所有数</p>
 <p>一图流</p>
 <p><img src="/problem/%E5%8A%9B%E6%89%A31798%E5%9B%BE.png"></p>
@@ -132,7 +132,7 @@
 <p><img src="/problem/%E5%8A%9B%E6%89%A31798.png"></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">getMaximumConsecutive</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; coins)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">sort</span>(coins.<span class="built_in">begin</span>(),coins.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> m = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; coins.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(coins[i] &gt; m+<span class="number">1</span>) <span class="keyword">break</span>;</span><br><span class="line">            m += coins[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> m+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<h1 id="中位数贪心"><a href="#中位数贪心" class="headerlink" title="中位数贪心"></a>中位数贪心</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-moves-to-equal-array-elements-ii/description/">https://leetcode.cn/problems/minimum-moves-to-equal-array-elements-ii/description/</a></p>
+<h1><span id="中位数贪心">中位数贪心</span></h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-moves-to-equal-array-elements-ii/description/">https://leetcode.cn/problems/minimum-moves-to-equal-array-elements-ii/description/</a></p>
 <p>给你一个长度为 <code>n</code> 的整数数组 <code>nums</code> ，返回使所有数组元素相等需要的最小操作数。在一次操作中，你可以使数组中的一个元素加 <code>1</code> 或者减 <code>1</code> 。</p>
 <p>翻译一下就是让这数组里的所有元素都变为一个数,怎么最快.</p>
 <p>直接给个结论,变成中位数最快</p>
@@ -146,7 +146,7 @@
 <p>所以7-1&#x3D;6</p>
 <p>假如再往右一步呢,远离1,2,3,接近4,5.总体距离加一变回了7</p>
 <p>所以可以感觉出来中位数就是最小次数(没有严格证明,感受一下吧)</p>
-<h1 id="统计移除递增子数组的数目"><a href="#统计移除递增子数组的数目" class="headerlink" title="统计移除递增子数组的数目"></a>统计移除递增子数组的数目</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-the-number-of-incremovable-subarrays-ii/">https://leetcode.cn/problems/count-the-number-of-incremovable-subarrays-ii/</a></p>
+<h1><span id="统计移除递增子数组的数目">统计移除递增子数组的数目</span></h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-the-number-of-incremovable-subarrays-ii/">https://leetcode.cn/problems/count-the-number-of-incremovable-subarrays-ii/</a></p>
 <p>给你一个下标从 <strong>0</strong> 开始的 <strong>正</strong> 整数数组 <code>nums</code> 。</p>
 <p>如果 <code>nums</code> 的一个子数组满足：移除这个子数组后剩余元素 <strong>严格递增</strong> ，那么我们称这个子数组为 <strong>移除递增</strong> 子数组。比方说，<code>[5, 3, 4, 6, 7]</code> 中的 <code>[3, 4]</code> 是一个移除递增子数组，因为移除该子数组后，<code>[5, 3, 4, 6, 7]</code> 变为 <code>[5, 6, 7]</code> ，是严格递增的。</p>
 <p>请你返回 <code>nums</code> 中 <strong>移除递增</strong> 子数组的总数目。</p>
@@ -157,14 +157,14 @@
 
 
 
-<h1 id="蓝桥取模"><a href="#蓝桥取模" class="headerlink" title="蓝桥取模"></a>蓝桥取模</h1><p><a target="_blank" rel="noopener" href="https://www.lanqiao.cn/problems/9989/learning/?contest_id=154">https://www.lanqiao.cn/problems/9989/learning/?contest_id=154</a></p>
+<h1><span id="蓝桥取模">蓝桥取模</span></h1><p><a target="_blank" rel="noopener" href="https://www.lanqiao.cn/problems/9989/learning/?contest_id=154">https://www.lanqiao.cn/problems/9989/learning/?contest_id=154</a></p>
 <p>给A,B,low,high</p>
 <p>请问[1,A]任取一个数对[1,B]任取一个数取模结果在[low,high]范围里的可能有几种</p>
 <p>官解一图流</p>
 <p><img src="/problem/%E8%93%9D%E6%A1%A5%E5%8F%96%E6%A8%A1.png"></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">func</span><span class="params">(ll a, ll b, ll high)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (high &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">    ll ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (ll i = <span class="number">1</span>; i &lt;= b; i++) &#123;</span><br><span class="line">        ll n = a / i;</span><br><span class="line">        ans += n * (<span class="built_in">min</span>(high, i - <span class="number">1</span>) + <span class="number">1</span>);<span class="comment">//处理前面几段</span></span><br><span class="line">        ans += <span class="built_in">min</span>(high, a % i) + <span class="number">1</span>;<span class="comment">//处理最后一段</span></span><br><span class="line">        ans--;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ll a, b, low, high;</span><br><span class="line">    cin &gt;&gt; a &gt;&gt; b &gt;&gt; low &gt;&gt; high;</span><br><span class="line">    cout &lt;&lt; <span class="built_in">func</span>(a, b, high) - <span class="built_in">func</span>(a, b, low - <span class="number">1</span>) &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h1 id="转换字符串的最小成本-最短路问题"><a href="#转换字符串的最小成本-最短路问题" class="headerlink" title="转换字符串的最小成本(最短路问题)"></a>转换字符串的最小成本(最短路问题)</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-cost-to-convert-string-i/description/">https://leetcode.cn/problems/minimum-cost-to-convert-string-i/description/</a></p>
+<h1><span id="转换字符串的最小成本最短路问题">转换字符串的最小成本(最短路问题)</span></h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-cost-to-convert-string-i/description/">https://leetcode.cn/problems/minimum-cost-to-convert-string-i/description/</a></p>
 <p>主要想借这题复习一下最短路</p>
 <blockquote>
 <p> 还没写完~</p>

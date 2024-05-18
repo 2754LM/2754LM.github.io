@@ -109,12 +109,12 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="同余"><a href="#同余" class="headerlink" title="同余"></a>同余</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>a % m &#x3D; b % m,记为a &#x3D; b(mod m),称a和b模m同余,m为a,b的模</p>
-<h1 id="一元线性同余方程"><a href="#一元线性同余方程" class="headerlink" title="一元线性同余方程"></a>一元线性同余方程</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>已知a,b,m.求未知整数x</p>
+  <h1><span id="同余">同余</span></h1><h2><span id="定义">定义</span></h2><p>a % m &#x3D; b % m,记为a &#x3D; b(mod m),称a和b模m同余,m为a,b的模</p>
+<h1><span id="一元线性同余方程">一元线性同余方程</span></h1><h2><span id="定义">定义</span></h2><p>已知a,b,m.求未知整数x</p>
 <p>ax &#x3D; b(mod m)</p>
 <p>由同余定义得ax - b是m的y倍(y为未知整数)</p>
 <p>得ax + my &#x3D; b(也就是二元线性丢番图方程),可以直接用解二元线性丢番图方程的方法解,也可以用逆的方法(下文逆应用写了)</p>
-<h2 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h2><p>如果gcd(a,m) % b !&#x3D; 0方程无解</p>
+<h2><span id="定理">定理</span></h2><p>如果gcd(a,m) % b !&#x3D; 0方程无解</p>
 <p>反之有gcd(a,m)个模m不同余的解(就是在模m的意义下有这么多个解)</p>
 <p>比如a和m互素,就只有一个解</p>
 <blockquote>
@@ -122,20 +122,20 @@
 <p>我们就可以得到一个推论如果 p 是质数那么在模p意义下的所有1到p-1的数的乘法逆元都是唯一的。</p>
 <p>如果p不是质数,只是有可能没有解,但还是可以的</p>
 </blockquote>
-<h1 id="逆"><a href="#逆" class="headerlink" title="逆"></a>逆</h1><h2 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h2><p>给定整数a,满足gcd(a,m) &#x3D; 1,称ax &#x3D; 1(mod m)的一个解为a模m的逆,写做a^-1^(这里a * a^-1^等于1哦)</p>
+<h1><span id="逆">逆</span></h1><h2><span id="定义">定义</span></h2><p>给定整数a,满足gcd(a,m) &#x3D; 1,称ax &#x3D; 1(mod m)的一个解为a模m的逆,写做a^-1^(这里a * a^-1^等于1哦)</p>
 <p>比如8x &#x3D; 1(mod31)解可以是2,4等(这里是没有模31的意义下的前提)</p>
 <span id="more"></span>
 
-<h2 id="求解方法"><a href="#求解方法" class="headerlink" title="求解方法"></a>求解方法</h2><h3 id="拓展gcd"><a href="#拓展gcd" class="headerlink" title="拓展gcd"></a>拓展gcd</h3><p>ax &#x3D; 1(mod m)转换成ax + my &#x3D; 1</p>
+<h2><span id="求解方法">求解方法</span></h2><h3><span id="拓展gcd">拓展gcd</span></h3><p>ax &#x3D; 1(mod m)转换成ax + my &#x3D; 1</p>
 <p>这里a,m是互素的,ax + my &#x3D; gcd(a, m)即(1)</p>
 <p>拓展gcd得到特殊解x<del>0</del>,通解就是x<del>0</del>+ m*n</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ll <span class="title">exgcd</span><span class="params">(ll a, ll b, ll&amp; x, ll&amp; y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(b == <span class="number">0</span>)&#123;</span><br><span class="line">		x = <span class="number">1</span>;</span><br><span class="line">		y = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">return</span> a;</span><br><span class="line">	&#125;</span><br><span class="line">	ll d = <span class="built_in">exgcd</span>(b, a % b, y, x);</span><br><span class="line">	y -= a/b * x;</span><br><span class="line">	<span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>得到的x是一个特解,取到最小正整数就可以了,在模m的范围里</p>
-<h3 id="费马小定理"><a href="#费马小定理" class="headerlink" title="费马小定理"></a>费马小定理</h3><p><strong>n为素数,a为正整数并且和n互素</strong>,则有a^n-1^ &#x3D; 1(mod n)</p>
+<h3><span id="费马小定理">费马小定理</span></h3><p><strong>n为素数,a为正整数并且和n互素</strong>,则有a^n-1^ &#x3D; 1(mod n)</p>
 <p>得出a * a^n-2^ &#x3D; 1(mod n)</p>
 <p>a^n-2^modn就是a模n的逆</p>
-<h3 id="递推求多个逆"><a href="#递推求多个逆" class="headerlink" title="递推求多个逆"></a>递推求多个逆</h3><p>设p &#x3D; k*i + r(r是余数),转换成k * i + r &#x3D; 0(mod p)</p>
+<h3><span id="递推求多个逆">递推求多个逆</span></h3><p>设p &#x3D; k*i + r(r是余数),转换成k * i + r &#x3D; 0(mod p)</p>
 <blockquote>
 <p>p &#x3D; k*i + r用常见的同余方程字母就是m &#x3D; ax + m%a</p>
 </blockquote>
@@ -146,23 +146,23 @@
 <p>注意我们还需要保证i^-1^ &gt; 0,故在方程右边加上p来取正,即p - p&#x2F;i</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">inv[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">2</span>; i &lt; p; i++)&#123;</span><br><span class="line">	<span class="type">int</span>[i] = (p - p/i) * <span class="type">int</span>[p % i] % p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><h3 id="求解同余方程"><a href="#求解同余方程" class="headerlink" title="求解同余方程"></a>求解同余方程</h3><p>对于ax &#x3D; b(mod m),我们求出了a^-1^,两边同乘a^-1^</p>
+<h2><span id="应用">应用</span></h2><h3><span id="求解同余方程">求解同余方程</span></h3><p>对于ax &#x3D; b(mod m),我们求出了a^-1^,两边同乘a^-1^</p>
 <p>得到x &#x3D; a^-1^b(mod m)</p>
-<h3 id="除法取模"><a href="#除法取模" class="headerlink" title="除法取模"></a>除法取模</h3><p>对于a&#x2F;b(mod p),我们可以先求出b^-1^,然后*a,再mod p就是解了</p>
+<h3><span id="除法取模">除法取模</span></h3><p>对于a&#x2F;b(mod p),我们可以先求出b^-1^,然后*a,再mod p就是解了</p>
 <p>a * a^-1^是可以消成1的在模的意义下</p>
-<h1 id="同余方程组"><a href="#同余方程组" class="headerlink" title="同余方程组"></a>同余方程组</h1><h2 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h2><p>形如</p>
+<h1><span id="同余方程组">同余方程组</span></h1><h2><span id="定义">定义</span></h2><p>形如</p>
 <p>x &#x3D; a<del>1</del>(mod m<del>1</del>)</p>
 <p>x &#x3D; a<del>2</del>(mod m<del>2</del>)</p>
 <p>…….</p>
 <p>x &#x3D; a<del>r</del>(mod m<del>r</del>)</p>
-<h2 id="求解方法-1"><a href="#求解方法-1" class="headerlink" title="求解方法"></a>求解方法</h2><h3 id="中国剩余定理-CRT-孙子定理"><a href="#中国剩余定理-CRT-孙子定理" class="headerlink" title="中国剩余定理(CRT,孙子定理)"></a>中国剩余定理(CRT,孙子定理)</h3><p>使用前提:m<del>1</del>,m<del>2</del>,m<del>3</del>…..m<del>r</del>互素</p>
+<h2><span id="求解方法">求解方法</span></h2><h3><span id="中国剩余定理crt孙子定理">中国剩余定理(CRT,孙子定理)</span></h3><p>使用前提:m<del>1</del>,m<del>2</del>,m<del>3</del>…..m<del>r</del>互素</p>
 <p>公式:x &#x3D; (a<del>1</del>M<del>1</del>M<del>1</del>^-1^ + a<del>1</del>M<del>1</del>M<del>1</del>^-1^ + ….  + a<del>1</del>M<del>1</del>M<del>1</del>^-1^)(mod M)</p>
 <blockquote>
 <p>M &#x3D; m<del>1</del>m<del>2</del>m<del>3</del>…m<del>r</del></p>
 <p>M<del>i</del> &#x3D; M&#x2F;m<del>i</del></p>
 <p>M<del>i</del>^1^为M<del>i</del>模m<del>i</del>的逆元</p>
 </blockquote>
-<h3 id="拓展CRT"><a href="#拓展CRT" class="headerlink" title="拓展CRT"></a>拓展CRT</h3><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4777">https://www.luogu.com.cn/problem/P4777</a></p>
+<h3><span id="拓展crt">拓展CRT</span></h3><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4777">https://www.luogu.com.cn/problem/P4777</a></p>
 <p>核心思路是不断合并两个同余式,直到只剩一个</p>
 <p>x &#x3D; a(mod m)可以转换成x &#x3D; a + km的形式</p>
 <p>计算步骤</p>
