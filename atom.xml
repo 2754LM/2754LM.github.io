@@ -56,6 +56,36 @@
   </entry>
   
   <entry>
+    <title>可持久化线段树与标记永久化</title>
+    <link href="http://example.com/%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
+    <id>http://example.com/%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E7%BA%BF%E6%AE%B5%E6%A0%91/</id>
+    <published>2024-05-18T12:58:22.000Z</published>
+    <updated>2024-05-18T14:35:52.151Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;点查点修区间历史&quot;&gt;&lt;a href=&quot;#点查点修区间历史&quot; class=&quot;headerlink&quot; title=&quot;点查点修区间历史&quot;&gt;&lt;/a&gt;点查点修区间历史&lt;/h2&gt;&lt;p&gt;主席树维护时间轴和序列轴&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.luogu.com.cn/problem/P3919&quot;&gt;P3919 【模板】可持久化线段树 1（可持久化数组） - 洛谷 | 计算机科学教育新生态 (luogu.com.cn)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;今天写这道板子题，一开始我一直想不明白。为什么两个操作都是单点，要用线段树来维护，没有更方便的方法吗？&lt;/p&gt;
+&lt;p&gt;后来我想明白了，最暴力的写法是每次操作都复制一整个数组，这样内存肯定爆。如何优化呢，关键在于&lt;strong&gt;复用&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;下图演示是最暴力的方法，红色方框代表修改的节点。显然，我们无法直接复用第一次的蓝色头结点，因为里面的内容有过修改。我们将要把每一个节点依次复制，就很麻烦，时间上就过不了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E7%BA%BF%E6%AE%B5%E6%A0%91/%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E7%BA%BF%E6%AE%B5%E6%A0%91.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;一种很容易想到的优化就是，我们直接复用之前的，但把修改的内容记录下来，查询之前看看有没有修改过。但修改的内容多了之后，每次查询要花费很久。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E7%BA%BF%E6%AE%B5%E6%A0%91/%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E7%BA%BF%E6%AE%B5%E6%A0%912.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;再进一步优化，我们不用一个数组指向所有节点。而是用一种数据结构，每个节点只维护接下来一半的节点。这样我们就可以很容易的复用那些没有被修改过的节点。显然这就是线段树。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E7%BA%BF%E6%AE%B5%E6%A0%91/%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E7%BA%BF%E6%AE%B5%E6%A0%913.png&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="数据结构" scheme="http://example.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    <category term="线段树" scheme="http://example.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
+    
+    
+    <category term="数据结构" scheme="http://example.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
     <title>前缀和异或</title>
     <link href="http://example.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%89%8D%E7%BC%80%E5%92%8C%E5%BC%82%E6%88%96/%E5%89%8D%E7%BC%80%E5%92%8C%E5%BC%82%E6%88%96/"/>
     <id>http://example.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%89%8D%E7%BC%80%E5%92%8C%E5%BC%82%E6%88%96/%E5%89%8D%E7%BC%80%E5%92%8C%E5%BC%82%E6%88%96/</id>
@@ -581,43 +611,6 @@
     
     
     <category term="日记" scheme="http://example.com/tags/%E6%97%A5%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>快速幂</title>
-    <link href="http://example.com/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/%E5%BF%AB%E9%80%9F%E5%B9%82/"/>
-    <id>http://example.com/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/%E5%BF%AB%E9%80%9F%E5%B9%82/</id>
-    <published>2024-01-18T09:32:22.018Z</published>
-    <updated>2024-01-18T12:24:53.974Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;有两种思想,但代码一样,指数折半或者利用二进制,即从十进制和二进制两种方向理解&lt;/p&gt;
-&lt;p&gt;两种方法求解过程,以2的11次为例&lt;/p&gt;
-&lt;p&gt;指数折半2.11 &lt;/p&gt;
-&lt;p&gt;&amp;#x3D; 2 * 4^5&lt;br&gt;&amp;#x3D;2 * 4 * 8 ^ 2&lt;br&gt;&amp;#x3D;2 * 4 * 16&lt;/p&gt;
-&lt;p&gt;二进制2^11,1011嘛&lt;/p&gt;
-&lt;p&gt;&amp;#x3D;2 * 4 * 16&lt;/p&gt;
-&lt;h1 id=&quot;指数折半&quot;&gt;&lt;a href=&quot;#指数折半&quot; class=&quot;headerlink&quot; title=&quot;指数折半&quot;&gt;&lt;/a&gt;指数折半&lt;/h1&gt;&lt;p&gt;核心思想就是每一步都把指数分成两半，而相应的底数做平方运算&lt;/p&gt;
-&lt;p&gt;3^10&amp;#x3D;(3 * 3) ^ 5&lt;/p&gt;
-&lt;p&gt;3^10&amp;#x3D;9 ^ 5&lt;/p&gt;
-&lt;p&gt;现在我们的问题是如何把指数5变成原来的一半，5是一个奇数，5的一半是2.5，但是我们知道，指数不能为小数，因此我们不能这么简单粗暴的直接执行5&amp;#x2F;2，然而，这里还有另一种方法能表示9^5&lt;/p&gt;
-&lt;p&gt;9^5&amp;#x3D;（ 9^4 ）*（ 9^1 ）&lt;/p&gt;
-&lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;type&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;type&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;quick_power&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; base, &lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; power)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;type&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;type&quot;&gt;long&lt;/span&gt; ans = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt; (power &amp;gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;)           &lt;span class=&quot;comment&quot;&gt;//指数大于0进行指数折半，底数变其平方的操作&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (power &amp;amp; &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;)     &lt;span class=&quot;comment&quot;&gt;//指数为奇数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			power -= &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;         &lt;span class=&quot;comment&quot;&gt;//指数减一,不写也可以int自动取整&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			ans *= base % mod;     &lt;span class=&quot;comment&quot;&gt;//分离出当前项并累乘&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		power &amp;gt;&amp;gt;= &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;         &lt;span class=&quot;comment&quot;&gt;//指数折半&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		base *= base % mod;       &lt;span class=&quot;comment&quot;&gt;//底数变其平方&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; ans % mod;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;h1 id=&quot;二进制&quot;&gt;&lt;a href=&quot;#二进制&quot; class=&quot;headerlink&quot; title=&quot;二进制&quot;&gt;&lt;/a&gt;二进制&lt;/h1&gt;&lt;p&gt;比如n的11次,把11用二进制拆分,8+0+2+1,即1011.&lt;/p&gt;
-&lt;p&gt;从低位开始递推,1次&lt;em&gt;1次等于2次,2次&lt;/em&gt;2次等于4次……&lt;/p&gt;
-&lt;p&gt;不过代码本质也是在做底数翻倍,比如2 ^ 1到2 ^ 2就是2 ^ 1到4 ^ 1,和指数折半是一样的&lt;/p&gt;
-&lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;type&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;type&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;quick_power&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; base, &lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; power)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;type&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;type&quot;&gt;long&lt;/span&gt; ans = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;   &lt;span class=&quot;comment&quot;&gt;//用于存储项累乘与返回最终结果，由于要存储累乘所以要初始化为1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt; (power &amp;gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;)           &lt;span class=&quot;comment&quot;&gt;//指数大于0说明指数的二进制位并没有被左移舍弃完毕&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (power &amp;amp; &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;)&amp;#123;          &lt;span class=&quot;comment&quot;&gt;//当前位为1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            ans *= base % mod;     &lt;span class=&quot;comment&quot;&gt;//累乘当前项并存储&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        power &amp;gt;&amp;gt;= &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;            &lt;span class=&quot;comment&quot;&gt;//指数位右移(区别主要就在这一步的理解上)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        base *= base % mod;           &lt;span class=&quot;comment&quot;&gt;//递推,如n的2次变为n的4次&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; ans % mod;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
-    
-    
-    
-    <category term="算法" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="数论" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/"/>
-    
-    
-    <category term="算法" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
