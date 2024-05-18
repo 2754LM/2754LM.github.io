@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-05-15T11:06:09.583Z</updated>
+  <updated>2024-05-18T13:04:22.227Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>可持久化线段树与标记永久化</title>
+    <link href="http://example.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%AE%B5%E6%A0%91/%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E7%BA%BF%E6%AE%B5%E6%A0%91%E4%B8%8E%E6%A0%87%E8%AE%B0%E6%B0%B8%E4%B9%85%E5%8C%96/"/>
+    <id>http://example.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%AE%B5%E6%A0%91/%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E7%BA%BF%E6%AE%B5%E6%A0%91%E4%B8%8E%E6%A0%87%E8%AE%B0%E6%B0%B8%E4%B9%85%E5%8C%96/</id>
+    <published>2024-05-18T12:58:22.000Z</published>
+    <updated>2024-05-18T13:04:22.227Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;点查点修区间历史&quot;&gt;&lt;a href=&quot;#点查点修区间历史&quot; class=&quot;headerlink&quot; title=&quot;点查点修区间历史&quot;&gt;&lt;/a&gt;点查点修区间历史&lt;/h2&gt;&lt;p&gt;主席树维护时间轴和序列轴&lt;/p&gt;
+&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="数据结构" scheme="http://example.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    <category term="线段树" scheme="http://example.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
+    
+    
+    <category term="数据结构" scheme="http://example.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
   
   <entry>
     <title>前缀和异或</title>
@@ -255,7 +283,7 @@
     <link href="http://example.com/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/%E5%90%8C%E4%BD%99%E5%92%8C%E9%80%86/"/>
     <id>http://example.com/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/%E5%90%8C%E4%BD%99%E5%92%8C%E9%80%86/</id>
     <published>2024-03-07T02:28:45.000Z</published>
-    <updated>2024-03-07T02:29:34.424Z</updated>
+    <updated>2024-05-18T13:02:26.770Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;同余&quot;&gt;&lt;a href=&quot;#同余&quot; class=&quot;headerlink&quot; title=&quot;同余&quot;&gt;&lt;/a&gt;同余&lt;/h1&gt;&lt;h2 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h2&gt;&lt;p&gt;a % m &amp;#x3D; b % m,记为a &amp;#x3D; b(mod m),称a和b模m同余,m为a,b的模&lt;/p&gt;
@@ -286,11 +314,11 @@
   </entry>
   
   <entry>
-    <title>扫描线实现</title>
+    <title>扫描线</title>
     <link href="http://example.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%AE%B5%E6%A0%91/%E6%89%AB%E6%8F%8F%E7%BA%BF/%E6%89%AB%E6%8F%8F%E7%BA%BF/"/>
     <id>http://example.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%AE%B5%E6%A0%91/%E6%89%AB%E6%8F%8F%E7%BA%BF/%E6%89%AB%E6%8F%8F%E7%BA%BF/</id>
     <published>2024-03-07T02:23:15.000Z</published>
-    <updated>2024-03-07T03:03:30.521Z</updated>
+    <updated>2024-05-18T13:02:36.105Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;离散化&quot;&gt;&lt;a href=&quot;#离散化&quot; class=&quot;headerlink&quot; title=&quot;离散化&quot;&gt;&lt;/a&gt;离散化&lt;/h1&gt;&lt;p&gt;先讲一下线段树的离散化问题,如果直接按出现位次来离散的话会有问题&lt;/p&gt;
@@ -556,34 +584,6 @@
 &lt;p&gt;从低位开始递推,1次&lt;em&gt;1次等于2次,2次&lt;/em&gt;2次等于4次……&lt;/p&gt;
 &lt;p&gt;不过代码本质也是在做底数翻倍,比如2 ^ 1到2 ^ 2就是2 ^ 1到4 ^ 1,和指数折半是一样的&lt;/p&gt;
 &lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;type&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;type&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;quick_power&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; base, &lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; power)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;type&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;type&quot;&gt;long&lt;/span&gt; ans = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;   &lt;span class=&quot;comment&quot;&gt;//用于存储项累乘与返回最终结果，由于要存储累乘所以要初始化为1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt; (power &amp;gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;)           &lt;span class=&quot;comment&quot;&gt;//指数大于0说明指数的二进制位并没有被左移舍弃完毕&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (power &amp;amp; &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;)&amp;#123;          &lt;span class=&quot;comment&quot;&gt;//当前位为1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            ans *= base % mod;     &lt;span class=&quot;comment&quot;&gt;//累乘当前项并存储&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        power &amp;gt;&amp;gt;= &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;            &lt;span class=&quot;comment&quot;&gt;//指数位右移(区别主要就在这一步的理解上)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        base *= base % mod;           &lt;span class=&quot;comment&quot;&gt;//递推,如n的2次变为n的4次&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; ans % mod;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
-    
-    
-    
-    <category term="算法" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="数论" scheme="http://example.com/categories/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/"/>
-    
-    
-    <category term="算法" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>gcd和lcm和裴蜀定理</title>
-    <link href="http://example.com/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/gcd%E5%92%8Clcm%E5%92%8C%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86/"/>
-    <id>http://example.com/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/gcd%E5%92%8Clcm%E5%92%8C%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86/</id>
-    <published>2024-01-18T09:32:22.015Z</published>
-    <updated>2024-01-18T12:26:07.936Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;gcd-辗转相除法&quot;&gt;&lt;a href=&quot;#gcd-辗转相除法&quot; class=&quot;headerlink&quot; title=&quot;gcd(辗转相除法)&quot;&gt;&lt;/a&gt;gcd(辗转相除法)&lt;/h1&gt;&lt;p&gt;我们将两数中较大的那一个看作是被除数A，将较小的那一个看作是除数B，二者相除的商记作C，余数记作D。这样我们就可以得到一个等式：A &amp;#x3D; B×C + D。而辗转相除法的所要用到的原理则是：(A , B) &amp;#x3D; (B , D)。&lt;/p&gt;
-&lt;p&gt;（m，n)表示m%n,直到（ ， ）&amp;#x3D;0，则最后的余数为两个数的最大公因数。&lt;/p&gt;
-&lt;p&gt;cpp里有库函数可以直接调,也可以手搓一个&lt;/p&gt;
-&lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;gcd&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; a, &lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; b)&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; b ? &lt;span class=&quot;built_in&quot;&gt;gcd&lt;/span&gt;(b, a % b) : a;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;h1 id=&quot;lcm-最小公倍数&quot;&gt;&lt;a href=&quot;#lcm-最小公倍数&quot; class=&quot;headerlink&quot; title=&quot;lcm( 最小公倍数)&quot;&gt;&lt;/a&gt;lcm( 最小公倍数)&lt;/h1&gt;&lt;p&gt;a 乘 b 除以 gcd(a,b) &amp;#x3D; lcm&lt;/p&gt;
-&lt;h1 id=&quot;裴蜀定理&quot;&gt;&lt;a href=&quot;#裴蜀定理&quot; class=&quot;headerlink&quot; title=&quot;裴蜀定理&quot;&gt;&lt;/a&gt;裴蜀定理&lt;/h1&gt;&lt;p&gt;属于gcd的拓展&lt;/p&gt;
-&lt;h2 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h2&gt;&lt;p&gt;a,b为整数,则有整数x和y,使得ax + by &amp;#x3D; d*gcd(a,b)&lt;/p&gt;</summary>
     
     
     

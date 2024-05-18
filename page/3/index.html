@@ -160,7 +160,7 @@
     
     
     <article
-  id="post-manacher"
+  id="post-gcd和lcm和裴蜀定理"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -171,8 +171,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/manacher/"
-    >manacher</a> 
+  <a class="article-title" href="/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/gcd%E5%92%8Clcm%E5%92%8C%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86/"
+    >gcd和lcm和裴蜀定理</a> 
 </h2>
  
 
@@ -180,31 +180,26 @@
     </header>
      
     <div class="article-meta">
-      <a href="/%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/manacher/" class="article-date">
-  <time datetime="2023-12-28T14:14:44.000Z" itemprop="datePublished">2023-12-28</time>
+      <a href="/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/gcd%E5%92%8Clcm%E5%92%8C%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86/" class="article-date">
+  <time datetime="2024-01-18T09:32:22.015Z" itemprop="datePublished">2024-01-18</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a> / <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</a>
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a> / <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/">数论</a>
   </div>
    
     </div>
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>马拉车,是一种动态规划算法,用来求解字符串S中最长回文子串的长度,时间复杂度O(n)</p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>回文数有两种,奇数和偶数,如aba和abba,奇数好求(中心扩展法)</p>
-<p>假设S为abba</p>
-<p>我们在相隔字符间加入#,最终为</p>
-<p>#a#b#b#a#长度必为奇数</p>
-<p>为了编程方便,首位加入哨兵?#a#b#b#a#@</p>
-<p>定义数组p[],p[i]代表以s[i]为中心字符的最长回文串半径(自身为1)</p>
-<p>如</p>
-<p>?#a#b#b#a#@</p>
-<p>11212521211</p>
-<p>最大的p[i] - 1就是答案,此处为p[5]-1 &#x3D; 5- 1 &#x3D; 4</p>
-<p>马拉车主要解决求p的过程,核心思想是<strong>回文的镜像也是回文</strong></p>
-<p>懒得写了,直接看代码吧</p> 
-      <a class="article-more-link" href="/%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/manacher/"
+  <h1 id="gcd-辗转相除法"><a href="#gcd-辗转相除法" class="headerlink" title="gcd(辗转相除法)"></a>gcd(辗转相除法)</h1><p>我们将两数中较大的那一个看作是被除数A，将较小的那一个看作是除数B，二者相除的商记作C，余数记作D。这样我们就可以得到一个等式：A &#x3D; B×C + D。而辗转相除法的所要用到的原理则是：(A , B) &#x3D; (B , D)。</p>
+<p>（m，n)表示m%n,直到（ ， ）&#x3D;0，则最后的余数为两个数的最大公因数。</p>
+<p>cpp里有库函数可以直接调,也可以手搓一个</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">gcd</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> b ? <span class="built_in">gcd</span>(b, a % b) : a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="lcm-最小公倍数"><a href="#lcm-最小公倍数" class="headerlink" title="lcm( 最小公倍数)"></a>lcm( 最小公倍数)</h1><p>a 乘 b 除以 gcd(a,b) &#x3D; lcm</p>
+<h1 id="裴蜀定理"><a href="#裴蜀定理" class="headerlink" title="裴蜀定理"></a>裴蜀定理</h1><p>属于gcd的拓展</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>a,b为整数,则有整数x和y,使得ax + by &#x3D; d*gcd(a,b)</p> 
+      <a class="article-more-link" href="/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/gcd%E5%92%8Clcm%E5%92%8C%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86/"
         >阅读更多...</a
       >
        
@@ -280,6 +275,75 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+   
+  
+</article>
+
+    
+    <article
+  id="post-manacher"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/manacher/"
+    >manacher</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/manacher/" class="article-date">
+  <time datetime="2023-12-28T14:14:44.000Z" itemprop="datePublished">2023-12-28</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a> / <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>马拉车,是一种动态规划算法,用来求解字符串S中最长回文子串的长度,时间复杂度O(n)</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>回文数有两种,奇数和偶数,如aba和abba,奇数好求(中心扩展法)</p>
+<p>假设S为abba</p>
+<p>我们在相隔字符间加入#,最终为</p>
+<p>#a#b#b#a#长度必为奇数</p>
+<p>为了编程方便,首位加入哨兵?#a#b#b#a#@</p>
+<p>定义数组p[],p[i]代表以s[i]为中心字符的最长回文串半径(自身为1)</p>
+<p>如</p>
+<p>?#a#b#b#a#@</p>
+<p>11212521211</p>
+<p>最大的p[i] - 1就是答案,此处为p[5]-1 &#x3D; 5- 1 &#x3D; 4</p>
+<p>马拉车主要解决求p的过程,核心思想是<strong>回文的镜像也是回文</strong></p>
+<p>懒得写了,直接看代码吧</p> 
+      <a class="article-more-link" href="/%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/manacher/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
 
     </footer>
   </div>
@@ -707,66 +771,6 @@
 <p>逆序是把已经比较过的元素放到栈里,保持栈的单调递减</p>
 <p>无论正序逆天,都要保证栈的有序,并且需要及时去除无用数据</p> 
       <a class="article-more-link" href="/%E7%AE%97%E6%B3%95/%E5%8D%95%E8%B0%83%E6%A0%88/%E5%8D%95%E8%B0%83%E6%A0%88/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-   
-  
-</article>
-
-    
-    <article
-  id="post-图构建"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/%E5%9B%BE%E6%9E%84%E5%BB%BA/"
-    >图构建</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/%E5%9B%BE%E6%9E%84%E5%BB%BA/" class="article-date">
-  <time datetime="2023-12-05T07:57:26.806Z" itemprop="datePublished">2023-12-05</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a> / <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/">图论</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>邻接矩阵不用说ez</p>
-<p>主要讲一下邻接表的数组实现和链式前向星:</p>
-<h1 id="链式前向星"><a href="#链式前向星" class="headerlink" title="链式前向星"></a>链式前向星</h1><p>是一个结构体数组</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn = <span class="number">1005</span>;<span class="comment">//点数最大值</span></span><br><span class="line"><span class="type">int</span> n, m, cnt;<span class="comment">//n个点，m条边</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span></span><br><span class="line">&#123;</span><br><span class="line"> <span class="type">int</span> to, w, next;<span class="comment">//终点，边权，同起点的上一条边的编号</span></span><br><span class="line">&#125;edge[maxn];<span class="comment">//边集</span></span><br><span class="line"><span class="type">int</span> head[maxn];<span class="comment">//head[i],表示以i为起点的第一条边在边集数组的位置（编号）</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span><span class="comment">//初始化</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= n; i++) head[i] = <span class="number">-1</span>;</span><br><span class="line"> cnt = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add_edge</span><span class="params">(<span class="type">int</span> u, <span class="type">int</span> v, <span class="type">int</span> w)</span><span class="comment">//加边，u起点，v终点，w边权</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> edge[cnt].to = v; <span class="comment">//终点</span></span><br><span class="line"> edge[cnt].w = w; <span class="comment">//权值</span></span><br><span class="line"> edge[cnt].next = head[u];<span class="comment">//以u为起点上一条边的编号，也就是与这个边起点相同的上一条边的编号</span></span><br><span class="line"> head[u] = cnt++;<span class="comment">//更新以u为起点上一条边的编号</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line"> <span class="type">int</span> u, v, w;</span><br><span class="line"> <span class="built_in">init</span>();<span class="comment">//初始化</span></span><br><span class="line"> <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++)<span class="comment">//输入m条边</span></span><br><span class="line"> &#123;</span><br><span class="line">     cin &gt;&gt; u &gt;&gt; v &gt;&gt; w;</span><br><span class="line">     <span class="built_in">add_edge</span>(u, v, w);<span class="comment">//加边</span></span><br><span class="line">     <span class="comment">/*</span></span><br><span class="line"><span class="comment">     加双向边</span></span><br><span class="line"><span class="comment">     add_edge(u, v, w);</span></span><br><span class="line"><span class="comment">     add_edge(v, u, w);</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)<span class="comment">//n个起点</span></span><br><span class="line"> &#123;</span><br><span class="line">     cout &lt;&lt; i &lt;&lt; endl;</span><br><span class="line">     <span class="keyword">for</span> (<span class="type">int</span> j = head[i]; j != <span class="number">-1</span>; j = edge[j].next)<span class="comment">//遍历以i为起点的边</span></span><br><span class="line">     &#123;</span><br><span class="line">         cout &lt;&lt; i &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; edge[j].to &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; edge[j].w &lt;&lt; endl;</span><br><span class="line">     &#125;</span><br><span class="line">     cout &lt;&lt; endl;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure> 
-      <a class="article-more-link" href="/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/%E5%9B%BE%E6%9E%84%E5%BB%BA/"
         >阅读更多...</a
       >
        

@@ -160,6 +160,66 @@
     
     
     <article
+  id="post-图构建"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/%E5%9B%BE%E6%9E%84%E5%BB%BA/"
+    >图构建</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/%E5%9B%BE%E6%9E%84%E5%BB%BA/" class="article-date">
+  <time datetime="2023-12-05T07:57:26.806Z" itemprop="datePublished">2023-12-05</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a> / <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/">图论</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>邻接矩阵不用说ez</p>
+<p>主要讲一下邻接表的数组实现和链式前向星:</p>
+<h1 id="链式前向星"><a href="#链式前向星" class="headerlink" title="链式前向星"></a>链式前向星</h1><p>是一个结构体数组</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn = <span class="number">1005</span>;<span class="comment">//点数最大值</span></span><br><span class="line"><span class="type">int</span> n, m, cnt;<span class="comment">//n个点，m条边</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span></span><br><span class="line">&#123;</span><br><span class="line"> <span class="type">int</span> to, w, next;<span class="comment">//终点，边权，同起点的上一条边的编号</span></span><br><span class="line">&#125;edge[maxn];<span class="comment">//边集</span></span><br><span class="line"><span class="type">int</span> head[maxn];<span class="comment">//head[i],表示以i为起点的第一条边在边集数组的位置（编号）</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span><span class="comment">//初始化</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= n; i++) head[i] = <span class="number">-1</span>;</span><br><span class="line"> cnt = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add_edge</span><span class="params">(<span class="type">int</span> u, <span class="type">int</span> v, <span class="type">int</span> w)</span><span class="comment">//加边，u起点，v终点，w边权</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> edge[cnt].to = v; <span class="comment">//终点</span></span><br><span class="line"> edge[cnt].w = w; <span class="comment">//权值</span></span><br><span class="line"> edge[cnt].next = head[u];<span class="comment">//以u为起点上一条边的编号，也就是与这个边起点相同的上一条边的编号</span></span><br><span class="line"> head[u] = cnt++;<span class="comment">//更新以u为起点上一条边的编号</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line"> <span class="type">int</span> u, v, w;</span><br><span class="line"> <span class="built_in">init</span>();<span class="comment">//初始化</span></span><br><span class="line"> <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++)<span class="comment">//输入m条边</span></span><br><span class="line"> &#123;</span><br><span class="line">     cin &gt;&gt; u &gt;&gt; v &gt;&gt; w;</span><br><span class="line">     <span class="built_in">add_edge</span>(u, v, w);<span class="comment">//加边</span></span><br><span class="line">     <span class="comment">/*</span></span><br><span class="line"><span class="comment">     加双向边</span></span><br><span class="line"><span class="comment">     add_edge(u, v, w);</span></span><br><span class="line"><span class="comment">     add_edge(v, u, w);</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)<span class="comment">//n个起点</span></span><br><span class="line"> &#123;</span><br><span class="line">     cout &lt;&lt; i &lt;&lt; endl;</span><br><span class="line">     <span class="keyword">for</span> (<span class="type">int</span> j = head[i]; j != <span class="number">-1</span>; j = edge[j].next)<span class="comment">//遍历以i为起点的边</span></span><br><span class="line">     &#123;</span><br><span class="line">         cout &lt;&lt; i &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; edge[j].to &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; edge[j].w &lt;&lt; endl;</span><br><span class="line">     &#125;</span><br><span class="line">     cout &lt;&lt; endl;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure> 
+      <a class="article-more-link" href="/%E7%AE%97%E6%B3%95/%E5%9B%BE%E8%AE%BA/%E5%9B%BE%E6%9E%84%E5%BB%BA/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+   
+  
+</article>
+
+    
+    <article
   id="post-俳句"
   class="article article-type-post"
   itemscope
