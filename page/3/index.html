@@ -57,7 +57,7 @@
     
   <div class="cover-frame">
     <div class="bg-box">
-      <img src="/images/5.jpg" alt="image frame" />
+      <img src="/images/2.jpg" alt="image frame" />
     </div>
     <div class="cover-inner text-center text-white">
       <h1><a href="/">Kano</a></h1>
@@ -86,7 +86,7 @@
   <script>
     try {
       var typed = new Typed("#subtitle", {
-        strings: ['关注鹿乃谢谢喵', '风落吴江雪，纷纷入酒杯', '坐看青苔色，欲上人衣来'],
+        strings: ['关注鹿乃谢谢喵', '白云回望合，青霭入看无', '墨云拖雨过西楼'],
         startDelay: 50,
         typeSpeed: 220,
         loop: true,
@@ -158,80 +158,6 @@
     
     
     
-    
-    <article
-  id="post-快速幂"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/%E5%BF%AB%E9%80%9F%E5%B9%82/"
-    >快速幂</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/%E5%BF%AB%E9%80%9F%E5%B9%82/" class="article-date">
-  <time datetime="2024-01-18T09:32:22.018Z" itemprop="datePublished">2024-01-18</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a> / <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/">数论</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有两种思想,但代码一样,指数折半或者利用二进制,即从十进制和二进制两种方向理解</p>
-<p>两种方法求解过程,以2的11次为例</p>
-<p>指数折半2.11 </p>
-<p>&#x3D; 2 * 4^5<br>&#x3D;2 * 4 * 8 ^ 2<br>&#x3D;2 * 4 * 16</p>
-<p>二进制2^11,1011嘛</p>
-<p>&#x3D;2 * 4 * 16</p>
-<h1 id="指数折半"><a href="#指数折半" class="headerlink" title="指数折半"></a>指数折半</h1><p>核心思想就是每一步都把指数分成两半，而相应的底数做平方运算</p>
-<p>3^10&#x3D;(3 * 3) ^ 5</p>
-<p>3^10&#x3D;9 ^ 5</p>
-<p>现在我们的问题是如何把指数5变成原来的一半，5是一个奇数，5的一半是2.5，但是我们知道，指数不能为小数，因此我们不能这么简单粗暴的直接执行5&#x2F;2，然而，这里还有另一种方法能表示9^5</p>
-<p>9^5&#x3D;（ 9^4 ）*（ 9^1 ）</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">quick_power</span><span class="params">(<span class="type">int</span> base, <span class="type">int</span> power)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">long</span> <span class="type">long</span> ans = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (power &gt; <span class="number">0</span>)           <span class="comment">//指数大于0进行指数折半，底数变其平方的操作</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (power &amp; <span class="number">1</span>)     <span class="comment">//指数为奇数</span></span><br><span class="line">		&#123;</span><br><span class="line">			power -= <span class="number">1</span>;         <span class="comment">//指数减一,不写也可以int自动取整</span></span><br><span class="line">			ans *= base % mod;     <span class="comment">//分离出当前项并累乘</span></span><br><span class="line">		&#125;</span><br><span class="line">		power &gt;&gt;= <span class="number">1</span>;         <span class="comment">//指数折半</span></span><br><span class="line">		base *= base % mod;       <span class="comment">//底数变其平方</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans % mod;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="二进制"><a href="#二进制" class="headerlink" title="二进制"></a>二进制</h1><p>比如n的11次,把11用二进制拆分,8+0+2+1,即1011.</p>
-<p>从低位开始递推,1次<em>1次等于2次,2次</em>2次等于4次……</p>
-<p>不过代码本质也是在做底数翻倍,比如2 ^ 1到2 ^ 2就是2 ^ 1到4 ^ 1,和指数折半是一样的</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">quick_power</span><span class="params">(<span class="type">int</span> base, <span class="type">int</span> power)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> ans = <span class="number">1</span>;   <span class="comment">//用于存储项累乘与返回最终结果，由于要存储累乘所以要初始化为1</span></span><br><span class="line">    <span class="keyword">while</span> (power &gt; <span class="number">0</span>)           <span class="comment">//指数大于0说明指数的二进制位并没有被左移舍弃完毕</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (power &amp; <span class="number">1</span>)&#123;          <span class="comment">//当前位为1</span></span><br><span class="line">            ans *= base % mod;     <span class="comment">//累乘当前项并存储</span></span><br><span class="line">        &#125;</span><br><span class="line">        power &gt;&gt;= <span class="number">1</span>;            <span class="comment">//指数位右移(区别主要就在这一步的理解上)</span></span><br><span class="line">        base *= base % mod;           <span class="comment">//递推,如n的2次变为n的4次</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans % mod;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
-      <a class="article-more-link" href="/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/%E5%BF%AB%E9%80%9F%E5%B9%82/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-   
-  
-</article>
-
     
     <article
   id="post-gcd和lcm和裴蜀定理"
@@ -818,6 +744,74 @@
 </article>
 
     
+    <article
+  id="post-单调栈"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/%E7%AE%97%E6%B3%95/%E5%8D%95%E8%B0%83%E6%A0%88/%E5%8D%95%E8%B0%83%E6%A0%88/"
+    >单调栈</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/%E7%AE%97%E6%B3%95/%E5%8D%95%E8%B0%83%E6%A0%88/%E5%8D%95%E8%B0%83%E6%A0%88/" class="article-date">
+  <time datetime="2023-12-07T07:04:44.959Z" itemprop="datePublished">2023-12-07</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a> / <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/%E5%8D%95%E8%B0%83%E6%A0%88/">单调栈</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>通常是一维数组,记录任一个元素右(左)边第一个比自身大(小)的元素的下标.</p>
+<h2 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h2><p>分为正序构造和逆序构造两种方式.</p>
+<p>下面我以寻找右边第一个比较自己大的单调栈为例</p>
+<blockquote>
+<p>请注意,本文中所提及的栈的单调情况都是基于栈底到栈顶的顺序.如下图为一个单调减小的栈</p>
+</blockquote>
+<p><img src="/%E7%AE%97%E6%B3%95/%E5%8D%95%E8%B0%83%E6%A0%88/%E5%8D%95%E8%B0%83%E6%A0%88/%E5%8D%95%E8%B0%83%E5%87%8F%E5%B0%8F%E6%A0%88%E4%BE%8B%E5%9B%BE.png"></p>
+<p>正序和逆序只是角度不同,简单来说</p>
+<p>正序是把待比较的元素放到栈里,保持栈的单调递减</p>
+<p>逆序是把已经比较过的元素放到栈里,保持栈的单调递减</p>
+<p>无论正序逆天,都要保证栈的有序,并且需要及时去除无用数据</p> 
+      <a class="article-more-link" href="/%E7%AE%97%E6%B3%95/%E5%8D%95%E8%B0%83%E6%A0%88/%E5%8D%95%E8%B0%83%E6%A0%88/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+  
+</article>
+
+    
   </article>
   
 
@@ -866,8 +860,6 @@
       <li>
         <!-- cnzz统计 -->
         
-        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
-        
       </li>
     </ul>
   </div>
@@ -907,6 +899,10 @@
     
     <li class="nav-item">
       <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
     </li>
     
     <li class="nav-item">
