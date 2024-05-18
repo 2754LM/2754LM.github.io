@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>数位dp |  Kano</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/images/ayer.png" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    <link rel="alternate" href="/atom.xml" title="Kano" type="application/atom+xml">
+</head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-digital-dp"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  数位dp
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/digital-dp/" class="article-date">
+  <time datetime="2023-12-11T12:37:46.178Z" itemprop="datePublished">2023-12-11</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a> / <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/dp/">dp</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.4k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">10 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="写在开头"><a href="#写在开头" class="headerlink" title="写在开头"></a>写在开头</h1><p>本文dp数组基础讲的比较简略,看不懂请另查文章. 求解代码部分比较详细.</p>
+<p>这篇写的累死我了(雾</p>
+<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>洛谷p2602数字计数<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2602">https://www.luogu.com.cn/problem/P2602</a></p>
+<p>给定两个正整数 a 和 b，求在 [a,b] 中的所有整数中，每个数码(digit)各出现了多少次。</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>分别求[0,a]和[0,b]各个数码出现的次数,然后cnt[b] - cnt[a]就行了,这题a,b范围能到10^12^暴力显然超时,因为000-099和100-199和600-699这种后面两位中数码出现的次数是一样的,自然想到DP记录多少位对应多少次</p>
+<h1 id="dp预处理"><a href="#dp预处理" class="headerlink" title="dp预处理"></a>dp预处理</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>dp[i]定义为i位数的每种数字有多少个(例如dp[2]代表00到99中某个数出现的次数,此处加前导0是为了使0和其他数一样)</p>
+<p>一图流</p>
+<p><img src="/digital-dp/%E6%95%B0%E4%BD%8Ddp.jpg" alt="数位dp"></p>
+<span id="more"></span>
+
+<h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><p>dp[i] &#x3D; dp[i-1]*10 + 10^i-1^</p>
+<p>递推公式是如何推导来的呢?</p>
+<p>下面以数字2的出现举几个栗子(定义一下dp[0] &#x3D; 0)</p>
+<blockquote>
+<p>0到9,2只出现了一次dp[1] &#x3D; dp[0]*10 + 10^0^</p>
+<p>00到99呢, 我们分成两部分</p>
+<p>一部分是小一位次数即dp[1]*10(因为0到9是1次, 10到19是一次,一共10次所以乘以10)</p>
+<p>另一部分则是当前位次数即10^1^(因为20到29,一共有10^1^次)</p>
+<p>所以我们得到了dp[2] &#x3D; dp[1]*10 + 10^1^ </p>
+<p>最后看一下000到999</p>
+<p>第一部分dp[2]*10(即000到099,100到199直到999一共十次)</p>
+<p>第二部分10^2^(即200到299一共100次)</p>
+<p><em><strong>强调一下22是2次,因为题目求的是2出现的次数,不是有2的数字出现的次数</strong></em></p>
+</blockquote>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>dp[0] &#x3D; 0</p>
+<h2 id="递推顺序"><a href="#递推顺序" class="headerlink" title="递推顺序"></a>递推顺序</h2><p>正序</p>
+<h2 id="举例推导"><a href="#举例推导" class="headerlink" title="举例推导"></a>举例推导</h2><p>公式部分已有列出(强烈建议看下文的一图流)</p>
+<h1 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h1><h2 id="数位限制"><a href="#数位限制" class="headerlink" title="数位限制"></a>数位限制</h2><p>如23,</p>
+<p>01,02,03…09中0出现十次其他0到9的数出现1次</p>
+<p>11,12…..19中1出现十次其他0到9的数都1次</p>
+<p>21…23</p>
+<p>2为数位限制,需特判</p>
+<h2 id="前导0"><a href="#前导0" class="headerlink" title="前导0"></a>前导0</h2><p>01到99时,01,02这种前面的0是多余的,对0要特判</p>
+<h1 id="求解代码"><a href="#求解代码" class="headerlink" title="求解代码"></a>求解代码</h1><h2 id="递推"><a href="#递推" class="headerlink" title="递推"></a>递推</h2><p>我们先设数字为ABCD</p>
+<p>看A000，如果我们要求出它所有数位之和，我们会怎么求？</p>
+<p>鉴于我们其实已经求出了0-9,0-99,0-999。。。上所有数字个数（f[i],且没有考虑前导0）我们何不把这个A000看成0000-1000-2000…A000对于不考虑首位每一个式子的数字的出现个数为 A*f[3]。加上首位出现也就是小于A每一个数都出现了10^3次，再加上，我们就把A000处理完了。</p>
+<p>这样你以为就把第一位处理完了？不不不，首位A还出现了BCD+1次呢，也就是从A000~ABCD，这个A还出现了BCD+1次，所以再加上这些才行呢。那么你发现，我们成功把首位代表的所有数字个数求出来了，剩下的求解与A完全没有任何关系，只是BCD的求解，于是我们发现我们已经把一个大问题，化成了一个个小问题，也即是，对于一个这样n位的数，把他一位位的分离开来。</p>
+<p>当然你还需要处理前导0你会发现前导0一定是0001,0002。。。0012，0013。。。0101,0102.。。0999这样的数，一共出现了10<em>（i-1)+10</em>(i-2)+…10 (i表示数字位数），让0的统计减去这个值，那么恭喜你这道题做完了。</p>
+<p>一图流</p>
+<p><img src="/digital-dp/%E6%95%B0%E4%BD%8Ddp%E4%BE%8B.png" alt="数位dp例"></p>
+<p>首先dp预处理,然后我们分别求解a,b的数位出现次数,cnt[b[i]] - cnt[a[i]]就是a到b区间内数位i出现次数</p>
+<p>初始化dp代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">intit</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ten[<span class="number">0</span>] = <span class="number">1</span>; <span class="comment">//10的i次方</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        dp[i] = dp[i<span class="number">-1</span>]*<span class="number">10</span> + ten[i<span class="number">-1</span>];</span><br><span class="line">        ten[i] = <span class="number">10</span> * ten[i<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>求解[0,a]的数位出现次数代码(拆数)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">(<span class="type">long</span> <span class="type">long</span> a, vector&lt;<span class="type">long</span> <span class="type">long</span>&gt;cnt)</span></span>&#123;</span><br><span class="line">    <span class="comment">//数组按位存储a</span></span><br><span class="line">    <span class="type">int</span> num[n];<span class="comment">//num[i]定义a的第i位数组</span></span><br><span class="line">    <span class="type">int</span> len = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(a)&#123;</span><br><span class="line">        num[++len] = a%<span class="number">10</span>;</span><br><span class="line">        a/=<span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//按位处理a(这里正序逆序都是可以的,只不过逆序和我们上面推导的思路一样,更好理解)</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = len; i &gt;= <span class="number">1</span>; i--)&#123;</span><br><span class="line">        <span class="comment">//求(000-999)*A处理首位以外的数</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt;= <span class="number">9</span>; j++) cnt[j] += dp[i<span class="number">-1</span>] * nums[i];</span><br><span class="line">        <span class="comment">//求0000-A000即处理首位比A小的数,即ten[3]次,(如2,在2000到2999的首位出现1000次)</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; num[i]; j++) cnt[j] += ten[i<span class="number">-1</span>];</span><br><span class="line">        <span class="comment">//求A000到ABCD即求首位A的数,答案即BCD+1次</span></span><br><span class="line">		<span class="type">long</span> <span class="type">long</span> sum = <span class="number">0</span>;求<span class="function">BCD</span></span><br><span class="line"><span class="function">		<span class="title">for</span><span class="params">(<span class="type">int</span> j = i<span class="number">-1</span>; j &gt;= <span class="number">1</span>; j--)</span></span>&#123;</span><br><span class="line">			sum = sum*<span class="number">10</span> + num[j];</span><br><span class="line">		&#125; </span><br><span class="line">		cnt[num[i]] += sum+<span class="number">1</span>;<span class="comment">//A次数加BCD+1</span></span><br><span class="line">        <span class="comment">//特判前导0</span></span><br><span class="line">        cnt[<span class="number">0</span>] -= ten[i<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="记忆化搜索-dfs"><a href="#记忆化搜索-dfs" class="headerlink" title="记忆化搜索(dfs)"></a>记忆化搜索(dfs)</h2><p>每次查找完某一个数出现的次数</p>
+<h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>dp[pos] [sum] [lead] [limit]表示限制条件中某数码出现的次数</p>
+<p>pos表示最低要求的数前有几位</p>
+<p>sum表示要求数开始有几位</p>
+<blockquote>
+<p> 如要求2,dp[2] [1] 就是200-299, dp[2] [2] 表示2200-2299</p>
+</blockquote>
+<p>lead表示有无前导0</p>
+<blockquote>
+<p>有为true,否位false</p>
+</blockquote>
+<p>limit代表数位限制</p>
+<blockquote>
+<p>如果能取到0-9取false,不能则取true</p>
+</blockquote>
+<p>一图流(以处理324的2次数为例)</p>
+<p><img src="/digital-dp/%E6%95%B0%E4%BD%8Ddp%E8%AE%B0%E5%BF%86%E5%8C%96.png" alt="数位dp记忆化"></p>
+<p>看不懂没关系,跟着下面的代码一步步分析(求0-a的数码次数)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">long</span> <span class="type">long</span> dp[n][n][<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line"><span class="type">int</span> num[n];<span class="comment">//num[i]定义为a的第i位</span></span><br><span class="line"><span class="type">int</span> cur;<span class="comment">//当前统计的数字</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> pos, <span class="type">int</span> sum, <span class="type">bool</span> lead, <span class="type">bool</span> limit)</span></span>&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(pos == <span class="number">0</span>) <span class="keyword">return</span> sum; <span class="comment">//因为我们现在求的是cur,sum表示前面有几个cur,比如220求2,sum是2,那我们求221,223,224,225都可以直接用这个dp[pos][sum]...和上面的递推写法区别就在,这里我们返回的是某一个具体数中的数码出现次数,后面可以重复利用这个结论.而递推写法在一开始就推导出来20-29中2的次数,220到229可以推导出来</span></span><br><span class="line">    <span class="keyword">if</span>(dp[pos][sum][lead][limit] != <span class="number">-1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> dp[pos][sum][lead][limit];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> up; <span class="comment">//最高位</span></span><br><span class="line">    <span class="keyword">if</span>(limit) up = num[pos];<span class="comment">//如果有数位限制,那就等于当前数,如324,当前首位位百位的话,就为3</span></span><br><span class="line">    <span class="keyword">else</span> up = <span class="number">9</span>;<span class="comment">//如果无就为9,如324,当前首位为十位的话,没有限制就是9</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//假如我们在求0-324,cur为2,此时up为3</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt;= up; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i == <span class="number">0</span> &amp;&amp; lead) ans += <span class="built_in">dfs</span>(pos<span class="number">-1</span>, sum, <span class="literal">true</span>, limit &amp;&amp; (i==up));</span><br><span class="line">             <span class="comment">//求000-099(有前导0的),进下一层dfs是求000-009,010-019,020-029,......090-099(始终有前导0的)</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(i == cur) ans += <span class="built_in">dfs</span>(pos<span class="number">-1</span>, sum + <span class="number">1</span>, <span class="literal">false</span>, limit &amp;&amp; (i==up));</span><br><span class="line">             <span class="comment">//200-299(首位为要统计的数时),进一层(sum变成了1,代表首位固定是2了),下一层此处求的是220-229</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(i != cur) ans += <span class="built_in">dfs</span>(pos<span class="number">-1</span>, sum, <span class="literal">false</span>, limit &amp;&amp; (i==up));</span><br><span class="line">    	<span class="comment">//求100-199(首位不为要统计的数且无前导0时),进下一层是求110-119,130-139这样的(首位不为0且不为统计数的)</span></span><br><span class="line">       <span class="comment">//还有求300-324,因为此时i==up==3所以下一层还是有限制的,下一层求320-324</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//单独解释一下limit &amp;&amp; (i==up)这个条件,是专门处理300-324,20-24这种限制位的</span></span><br><span class="line">    dp[pos][sum][lead][limit] = ans;<span class="comment">//记忆化</span></span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//按位存a</span></span><br><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> len = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(a)&#123;</span><br><span class="line">        num[++len] = a%<span class="number">10</span>;</span><br><span class="line">        a/=<span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memset</span>(dp, <span class="number">-1</span>, <span class="built_in">sizeof</span>(dp));<span class="comment">//初始化</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">dfs</span>(len,<span class="number">0</span>,<span class="literal">true</span>,<span class="literal">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> a;</span><br><span class="line">    cin&gt;&gt;a;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">9</span>; i++) &#123;</span><br><span class="line">        cur = i;</span><br><span class="line">        cout&lt;&lt;<span class="built_in">solve</span>(a);<span class="comment">//依次输出0到9在[0,a]中出现的次数</span></span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="相关题目"><a href="#相关题目" class="headerlink" title="相关题目"></a>相关题目</h1><p>洛谷P4999 烦人的数学作业</p>
+<p>难度: 普及+&#x2F;提高</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4999">https://www.luogu.com.cn/problem/P4999</a></p>
+<p>洛谷P2657windy 数</p>
+<p>难度: 提高+&#x2F;省选-</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2657">https://www.luogu.com.cn/problem/P2657</a></p>
+<p>p2657的实现(用的记忆化模板)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std; </span><br><span class="line"><span class="type">const</span> <span class="type">int</span> n = <span class="number">15</span>;</span><br><span class="line"><span class="type">long</span> <span class="type">long</span> dp[n][n][<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line"><span class="type">int</span> num[n];</span><br><span class="line"><span class="comment">//last表示上一位</span></span><br><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> pos, <span class="type">int</span> last, <span class="type">bool</span> lead, <span class="type">bool</span> limit)</span></span>&#123;</span><br><span class="line">	<span class="type">long</span> <span class="type">long</span> ans= <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(pos == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(dp[pos][last][lead][limit] != <span class="number">-1</span>) <span class="keyword">return</span> dp[pos][last][lead][limit];</span><br><span class="line">	<span class="type">int</span> up = <span class="number">9</span>;</span><br><span class="line">	<span class="keyword">if</span>(limit) up = num[pos];</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt;= up; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">abs</span>(i-last) &lt; <span class="number">2</span>) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span>(i == <span class="number">0</span> &amp;&amp; lead) ans += <span class="built_in">dfs</span>(pos<span class="number">-1</span>,<span class="number">-2</span>,<span class="literal">true</span>,limit&amp;&amp;i==up);<span class="comment">//即都是前导0,后一位随便选..比如0012,0是前导0,当前也是0,1开始才有意义,1的位置随便选 </span></span><br><span class="line">		<span class="keyword">else</span> ans += <span class="built_in">dfs</span>(pos<span class="number">-1</span>,i,<span class="literal">false</span>,limit&amp;&amp;i==up); <span class="comment">//其他情况,哪怕有前导0这里也要记为没有,因为0123的1还是会限制2的选择</span></span><br><span class="line">	&#125;</span><br><span class="line">	dp[pos][last][lead][limit] = ans;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">solve</span><span class="params">(<span class="type">int</span> a)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> len = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(a)&#123;</span><br><span class="line">        num[++len] = a%<span class="number">10</span>;</span><br><span class="line">        a/=<span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memset</span>(dp, <span class="number">-1</span>, <span class="built_in">sizeof</span>(dp));<span class="comment">//初始化</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">dfs</span>(len,<span class="number">-2</span>,<span class="literal">true</span>,<span class="literal">true</span>);<span class="comment">//-2代表随便选 ,首位肯定随便选 </span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> a,b;</span><br><span class="line">    cin&gt;&gt;a&gt;&gt;b;</span><br><span class="line">    cout&lt;&lt;<span class="built_in">solve</span>(b) - <span class="built_in">solve</span>(a<span class="number">-1</span>)&lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>洛谷P4124 手机号码</p>
+<p>难度:提高+&#x2F;省选-</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4124">https://www.luogu.com.cn/problem/P4124</a></p>
+<p>洛谷p4798 卡尔文球锦标赛</p>
+<p>难度:省选&#x2F;NOI-</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4798">https://www.luogu.com.cn/problem/P4798</a></p>
+<p>洛谷P3281 数数</p>
+<p>难度:省选&#x2F;NOI-</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3281">https://www.luogu.com.cn/problem/P3281</a></p>
+<p>洛谷p2518 计数</p>
+<p>难度:省选&#x2F;NOI-</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2518">https://www.luogu.com.cn/problem/P2518</a></p>
+<p>洛谷p3286 方伯伯的商场之旅</p>
+<p>难度:省选&#x2F;NOI-</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3286">https://www.luogu.com.cn/problem/P3286</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/digital-dp/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/binary-heap/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            二叉堆
+          
+        </div>
+      </a>
+    
+    
+      <a href="/monotonic-stack/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">单调栈</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "WslTM0VN87nS2ewDXkwnCgsY-gzGzoHsz",
+    app_key: "nwDtZNo22vfGD9LdTbgejkJ3",
+    path: window.location.pathname,
+    avatar: "identicon",
+    placeholder: "有什么问题喵？",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+  
+    
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2023-2024
+        <i class="ri-heart-fill heart_icon"></i> Kano
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer.png" alt="Kano"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">引流喵</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>

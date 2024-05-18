@@ -57,7 +57,7 @@
     
   <div class="cover-frame">
     <div class="bg-box">
-      <img src="/images/2.jpg" alt="image frame" />
+      <img src="/images/5.jpg" alt="image frame" />
     </div>
     <div class="cover-inner text-center text-white">
       <h1><a href="/">Kano</a></h1>
@@ -160,7 +160,7 @@
     
     
     <article
-  id="post-快速幂"
+  id="post-quick-power"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -171,7 +171,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/%E5%BF%AB%E9%80%9F%E5%B9%82/"
+  <a class="article-title" href="/quick-power/"
     >快速幂</a> 
 </h2>
  
@@ -180,13 +180,32 @@
     </header>
      
     <div class="article-meta">
-      <a href="/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/%E5%BF%AB%E9%80%9F%E5%B9%82/" class="article-date">
+      <a href="/quick-power/" class="article-date">
   <time datetime="2024-01-18T09:32:22.018Z" itemprop="datePublished">2024-01-18</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a> / <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/">数论</a>
   </div>
-   
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">803</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">3 分钟</span>
+        </span>
+    </span>
+</div>
+ 
     </div>
       
     <div class="article-entry" itemprop="articleBody">
@@ -208,7 +227,7 @@
 <p>从低位开始递推,1次<em>1次等于2次,2次</em>2次等于4次……</p>
 <p>不过代码本质也是在做底数翻倍,比如2 ^ 1到2 ^ 2就是2 ^ 1到4 ^ 1,和指数折半是一样的</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">quick_power</span><span class="params">(<span class="type">int</span> base, <span class="type">int</span> power)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> ans = <span class="number">1</span>;   <span class="comment">//用于存储项累乘与返回最终结果，由于要存储累乘所以要初始化为1</span></span><br><span class="line">    <span class="keyword">while</span> (power &gt; <span class="number">0</span>)           <span class="comment">//指数大于0说明指数的二进制位并没有被左移舍弃完毕</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (power &amp; <span class="number">1</span>)&#123;          <span class="comment">//当前位为1</span></span><br><span class="line">            ans *= base % mod;     <span class="comment">//累乘当前项并存储</span></span><br><span class="line">        &#125;</span><br><span class="line">        power &gt;&gt;= <span class="number">1</span>;            <span class="comment">//指数位右移(区别主要就在这一步的理解上)</span></span><br><span class="line">        base *= base % mod;           <span class="comment">//递推,如n的2次变为n的4次</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans % mod;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
-      <a class="article-more-link" href="/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/%E5%BF%AB%E9%80%9F%E5%B9%82/"
+      <a class="article-more-link" href="/quick-power/"
         >阅读更多...</a
       >
        
@@ -234,7 +253,7 @@
 
     
     <article
-  id="post-gcd和lcm和裴蜀定理"
+  id="post-gcd-lcm"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -245,7 +264,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/gcd%E5%92%8Clcm%E5%92%8C%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86/"
+  <a class="article-title" href="/gcd-lcm/"
     >gcd和lcm和裴蜀定理</a> 
 </h2>
  
@@ -254,13 +273,32 @@
     </header>
      
     <div class="article-meta">
-      <a href="/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/gcd%E5%92%8Clcm%E5%92%8C%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86/" class="article-date">
+      <a href="/gcd-lcm/" class="article-date">
   <time datetime="2024-01-18T09:32:22.015Z" itemprop="datePublished">2024-01-18</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a> / <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/">数论</a>
   </div>
-   
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">258</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">1 分钟</span>
+        </span>
+    </span>
+</div>
+ 
     </div>
       
     <div class="article-entry" itemprop="articleBody">
@@ -273,7 +311,7 @@
 <h1 id="lcm-最小公倍数"><a href="#lcm-最小公倍数" class="headerlink" title="lcm( 最小公倍数)"></a>lcm( 最小公倍数)</h1><p>a 乘 b 除以 gcd(a,b) &#x3D; lcm</p>
 <h1 id="裴蜀定理"><a href="#裴蜀定理" class="headerlink" title="裴蜀定理"></a>裴蜀定理</h1><p>属于gcd的拓展</p>
 <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>a,b为整数,则有整数x和y,使得ax + by &#x3D; d*gcd(a,b)</p> 
-      <a class="article-more-link" href="/%E7%AE%97%E6%B3%95/%E6%95%B0%E8%AE%BA/gcd%E5%92%8Clcm%E5%92%8C%E8%A3%B4%E8%9C%80%E5%AE%9A%E7%90%86/"
+      <a class="article-more-link" href="/gcd-lcm/"
         >阅读更多...</a
       >
        
@@ -299,7 +337,7 @@
 
     
     <article
-  id="post-ST表"
+  id="post-ST"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -310,7 +348,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/ST%E8%A1%A8/ST%E8%A1%A8/"
+  <a class="article-title" href="/ST/"
     >ST表</a> 
 </h2>
  
@@ -319,13 +357,32 @@
     </header>
      
     <div class="article-meta">
-      <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/ST%E8%A1%A8/ST%E8%A1%A8/" class="article-date">
+      <a href="/ST/" class="article-date">
   <time datetime="2023-12-28T14:14:44.000Z" itemprop="datePublished">2023-12-28</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/ST%E8%A1%A8/">ST表</a>
   </div>
-   
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">416</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">2 分钟</span>
+        </span>
+    </span>
+</div>
+ 
     </div>
       
     <div class="article-entry" itemprop="articleBody">
@@ -338,7 +395,7 @@
 <h1 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h1><p>先谈一下为什么开log2啊? 如果不开,你长度都是2,4,6这样访问,不浪费空间吗?N*N稍微大点直接爆内存了</p>
 <p>而且你初始化个数组查某个数的最大2的次数, 这样和log2比不方便,何况懒得写log2还有自带的函数.</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span>+<span class="number">5</span>;</span><br><span class="line"><span class="type">int</span> st[N][<span class="number">21</span>]; <span class="comment">//st[i][j],i记录的是现在遍历的下标,j记录的是log2(长度)</span></span><br><span class="line"><span class="type">int</span> lg[N]; <span class="comment">//因为二进制就是2的i次,所以用来记录很方便,位移就可以了.</span></span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	lg[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">		lg[i] = lg[i&gt;&gt;<span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">		cin&gt;&gt;st[i][<span class="number">0</span>];</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= lg[n]; j++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n - (<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>)) +<span class="number">1</span>; i++)&#123;</span><br><span class="line">			st[i][j] = <span class="built_in">min</span>(st[i][j<span class="number">-1</span>], st[i + (<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>))][j<span class="number">-1</span>]); <span class="comment">//j-1就是上一个log2(上一层长度),我们&lt;&lt;位移就为了展开来定下i的位置</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">query</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> k = lg[r-l+<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">min</span>(st[l][k], st[r-(<span class="number">1</span>&lt;&lt;k)+<span class="number">1</span>][k]); <span class="comment">//和初始化是同理的,log2上一层就是k</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line">	cin.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="built_in">init</span>();</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i&lt; m; i++)&#123;</span><br><span class="line">		<span class="type">int</span> l,r;</span><br><span class="line">		cin&gt;&gt;l&gt;&gt;r;</span><br><span class="line">		cout&lt;&lt;<span class="built_in">query</span>(l,r)&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
-      <a class="article-more-link" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/ST%E8%A1%A8/ST%E8%A1%A8/"
+      <a class="article-more-link" href="/ST/"
         >阅读更多...</a
       >
        
@@ -375,7 +432,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/manacher/"
+  <a class="article-title" href="/manacher/"
     >manacher</a> 
 </h2>
  
@@ -384,13 +441,32 @@
     </header>
      
     <div class="article-meta">
-      <a href="/%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/manacher/" class="article-date">
+      <a href="/manacher/" class="article-date">
   <time datetime="2023-12-28T14:14:44.000Z" itemprop="datePublished">2023-12-28</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a> / <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</a>
   </div>
-   
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">422</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">2 分钟</span>
+        </span>
+    </span>
+</div>
+ 
     </div>
       
     <div class="article-entry" itemprop="articleBody">
@@ -408,7 +484,7 @@
 <p>最大的p[i] - 1就是答案,此处为p[5]-1 &#x3D; 5- 1 &#x3D; 4</p>
 <p>马拉车主要解决求p的过程,核心思想是<strong>回文的镜像也是回文</strong></p>
 <p>懒得写了,直接看代码吧</p> 
-      <a class="article-more-link" href="/%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/manacher/"
+      <a class="article-more-link" href="/manacher/"
         >阅读更多...</a
       >
        
@@ -434,7 +510,7 @@
 
     
     <article
-  id="post-树形dp"
+  id="post-tree-dp"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -445,7 +521,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/%E7%AE%97%E6%B3%95/dp/%E6%A0%91%E5%BD%A2dp/"
+  <a class="article-title" href="/tree-dp/"
     >树形dp</a> 
 </h2>
  
@@ -454,13 +530,32 @@
     </header>
      
     <div class="article-meta">
-      <a href="/%E7%AE%97%E6%B3%95/dp/%E6%A0%91%E5%BD%A2dp/" class="article-date">
+      <a href="/tree-dp/" class="article-date">
   <time datetime="2023-12-25T13:06:27.549Z" itemprop="datePublished">2023-12-25</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a> / <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/dp/">dp</a>
   </div>
-   
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">778</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">4 分钟</span>
+        </span>
+    </span>
+</div>
+ 
     </div>
       
     <div class="article-entry" itemprop="articleBody">
@@ -469,7 +564,7 @@
 <p>一般自底向上类似dfs,即先遍历到底</p>
 <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><h2 id="洛谷p1352上司的舞会-经典"><a href="#洛谷p1352上司的舞会-经典" class="headerlink" title="洛谷p1352上司的舞会(经典)"></a>洛谷p1352上司的舞会(经典)</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1352">https://www.luogu.com.cn/problem/P1352</a></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">6005</span>;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; G[N];</span><br><span class="line"><span class="type">int</span> dp[N][<span class="number">2</span>],val[N],father[N];</span><br><span class="line"></span><br><span class="line"><span class="comment">//dp定义,dp[i][j]选或不选i节点的值(j为1选,0不选) </span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u)</span></span>&#123;</span><br><span class="line">	dp[u][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">	dp[u][<span class="number">1</span>] = val[u];</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i : G[u])&#123;</span><br><span class="line">		<span class="built_in">dfs</span>(i);<span class="comment">//遍历子节点</span></span><br><span class="line">		dp[u][<span class="number">1</span>] += dp[i][<span class="number">0</span>];<span class="comment">//父选子不选 </span></span><br><span class="line">		dp[u][<span class="number">0</span>] += <span class="built_in">max</span>(dp[i][<span class="number">0</span>], dp[i][<span class="number">1</span>]);<span class="comment">//父不选,子选或不选 </span></span><br><span class="line">	&#125;	</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> n;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">		cin&gt;&gt;val[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">		<span class="type">int</span> to,from;</span><br><span class="line">		cin&gt;&gt;to&gt;&gt;from;</span><br><span class="line">		G[from].<span class="built_in">push_back</span>(to);</span><br><span class="line">		father[to] = from;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> t = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(father[t]) t = father[t];<span class="comment">//找根节点</span></span><br><span class="line">	<span class="built_in">dfs</span>(t);</span><br><span class="line">	cout&lt;&lt;<span class="built_in">max</span>(dp[t][<span class="number">0</span>], dp[t][<span class="number">1</span>]);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure> 
-      <a class="article-more-link" href="/%E7%AE%97%E6%B3%95/dp/%E6%A0%91%E5%BD%A2dp/"
+      <a class="article-more-link" href="/tree-dp/"
         >阅读更多...</a
       >
        
@@ -506,7 +601,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/%E6%97%A5%E8%AE%B0/2023-12-24/"
+  <a class="article-title" href="/2023-12-24/"
     >2023/12/24</a> 
 </h2>
  
@@ -515,13 +610,32 @@
     </header>
      
     <div class="article-meta">
-      <a href="/%E6%97%A5%E8%AE%B0/2023-12-24/" class="article-date">
+      <a href="/2023-12-24/" class="article-date">
   <time datetime="2023-12-24T03:37:08.865Z" itemprop="datePublished">2023-12-24</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E6%97%A5%E8%AE%B0/">日记</a>
   </div>
-   
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">160</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">1 分钟</span>
+        </span>
+    </span>
+</div>
+ 
     </div>
       
     <div class="article-entry" itemprop="articleBody">
@@ -531,7 +645,7 @@
 <p>单周赛的Q3是最短路问题, 记得前段时间哪次周赛Q3和这个很像. 一开始直接用dij写,但超时,后面加了个记忆化就过了</p>
 <p>蓝桥小白赛Q4取余,首数组没有处理好.</p>
 <p>计划这两天把这三题整理一下</p> 
-      <a class="article-more-link" href="/%E6%97%A5%E8%AE%B0/2023-12-24/"
+      <a class="article-more-link" href="/2023-12-24/"
         >阅读更多...</a
       >
        
@@ -557,7 +671,7 @@
 
     
     <article
-  id="post-二叉树的对称dfs"
+  id="post-symmetric-dfs-binarytree"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -568,7 +682,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/%E7%AE%97%E6%B3%95/%E6%9D%82%E8%B0%88/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%AF%B9%E7%A7%B0dfs/"
+  <a class="article-title" href="/symmetric-dfs-binarytree/"
     >二叉树的对称dfs</a> 
 </h2>
  
@@ -577,13 +691,32 @@
     </header>
      
     <div class="article-meta">
-      <a href="/%E7%AE%97%E6%B3%95/%E6%9D%82%E8%B0%88/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%AF%B9%E7%A7%B0dfs/" class="article-date">
+      <a href="/symmetric-dfs-binarytree/" class="article-date">
   <time datetime="2023-12-17T11:19:42.231Z" itemprop="datePublished">2023-12-17</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a> / <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/%E6%9D%82%E8%B0%88/">杂谈</a>
   </div>
-   
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">192</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">1 分钟</span>
+        </span>
+    </span>
+</div>
+ 
     </div>
       
     <div class="article-entry" itemprop="articleBody">
@@ -599,8 +732,8 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">reverseOddLevels</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">dfs</span>(root-&gt;left, root-&gt;right, <span class="literal">true</span>);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(TreeNode *l, TreeNode *r, <span class="type">bool</span> jud)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (l == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (jud) &#123;</span><br><span class="line">            <span class="built_in">swap</span>(l-&gt;val, r-&gt;val);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">dfs</span>(l-&gt;left, r-&gt;right, !jud);</span><br><span class="line">        <span class="built_in">dfs</span>(l-&gt;right, r-&gt;left, !jud);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>画个图</p>
-<p><img src="/%E7%AE%97%E6%B3%95/%E6%9D%82%E8%B0%88/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%AF%B9%E7%A7%B0dfs/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%AF%B9%E7%A7%B0.png"></p> 
-      <a class="article-more-link" href="/%E7%AE%97%E6%B3%95/%E6%9D%82%E8%B0%88/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%AF%B9%E7%A7%B0dfs/"
+<p><img src="/symmetric-dfs-binarytree/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%AF%B9%E7%A7%B0.png"></p> 
+      <a class="article-more-link" href="/symmetric-dfs-binarytree/"
         >阅读更多...</a
       >
        
@@ -637,7 +770,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/%E6%97%A5%E8%AE%B0/2023-12-13/"
+  <a class="article-title" href="/2023-12-13/"
     >2023/12/13</a> 
 </h2>
  
@@ -646,13 +779,32 @@
     </header>
      
     <div class="article-meta">
-      <a href="/%E6%97%A5%E8%AE%B0/2023-12-13/" class="article-date">
+      <a href="/2023-12-13/" class="article-date">
   <time datetime="2023-12-12T12:44:01.809Z" itemprop="datePublished">2023-12-12</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E6%97%A5%E8%AE%B0/">日记</a>
   </div>
-   
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">181</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">1 分钟</span>
+        </span>
+    </span>
+</div>
+ 
     </div>
       
     <div class="article-entry" itemprop="articleBody">
@@ -665,7 +817,7 @@
 <p>接下来干什么呢</p>
 <p>算法继续写着，基础算法要复习复习，dp的话理论还差个区间dp写完，多练练。高级数据结构线段树什么的要学一手，还有图论，看一次忘一次，下次系统的写的最短路什么的。</p>
 <p>哦，还有cet4,425就行（</p> 
-      <a class="article-more-link" href="/%E6%97%A5%E8%AE%B0/2023-12-13/"
+      <a class="article-more-link" href="/2023-12-13/"
         >阅读更多...</a
       >
        
@@ -691,7 +843,7 @@
 
     
     <article
-  id="post-二叉堆"
+  id="post-binary-heap"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -702,7 +854,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E5%A0%86/%E4%BA%8C%E5%8F%89%E5%A0%86/"
+  <a class="article-title" href="/binary-heap/"
     >二叉堆</a> 
 </h2>
  
@@ -711,24 +863,43 @@
     </header>
      
     <div class="article-meta">
-      <a href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E5%A0%86/%E4%BA%8C%E5%8F%89%E5%A0%86/" class="article-date">
+      <a href="/binary-heap/" class="article-date">
   <time datetime="2023-12-12T12:35:43.156Z" itemprop="datePublished">2023-12-12</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a> / <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E5%A0%86/">二叉堆</a>
   </div>
-   
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">434</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">2 分钟</span>
+        </span>
+    </span>
+</div>
+ 
     </div>
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>平常都用priority_queue,今天来手搓一下</p>
-<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>二叉堆肯定是个完全二叉树(父节点有左右两节点最底层除外,最底层保证从左到右的连续就可)</p>
+  <p>平常都用priority_queue,今天来手搓一下</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>二叉堆肯定是个完全二叉树(父节点有左右两节点最底层除外,最底层保证从左到右的连续就可)</p>
 <p>用数组a来存二叉树吧,一共n个节点, a[1]是根节点,i节点的左节点是2i,右节点是2i+1,如果大于了n就没有子节点.同样反过来i的父节点就是i&#x2F;2</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p>实现一个最小堆吧.</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>实现一个最小堆吧.</p>
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3378%E6%B4%9B%E8%B0%B7%E7%9A%84%E5%A0%86%E6%A8%A1%E6%9D%BF">https://www.luogu.com.cn/problem/P3378洛谷的堆模板</a></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e6</span>;</span><br><span class="line"><span class="type">int</span> a[N];</span><br><span class="line"><span class="type">int</span> len = <span class="number">0</span>;<span class="comment">//记现有节点数的 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">push</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;<span class="comment">//上浮(提高优先级的) 添加的优先级最低 </span></span><br><span class="line">	a[++len] = x;</span><br><span class="line">	<span class="type">int</span> i = len;</span><br><span class="line">	<span class="keyword">while</span>(i &gt; <span class="number">1</span> &amp;&amp; a[i] &lt; a[i/<span class="number">2</span>])&#123; <span class="comment">//子比父,父不如子啊 </span></span><br><span class="line">		<span class="built_in">swap</span>(a[i], a[i/<span class="number">2</span>]); <span class="comment">//老登,辈分该改了</span></span><br><span class="line">		i/=<span class="number">2</span>; <span class="comment">//看看爷爷 </span></span><br><span class="line">	&#125; </span><br><span class="line">&#125; ;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pop</span><span class="params">()</span></span>&#123; <span class="comment">//下沉(降低优先级的) 删除的那个优先级最高 </span></span><br><span class="line">	a[<span class="number">1</span>] = a[len--]; <span class="comment">//根节点直接换成叶子节点(因为叶子无牵无挂)</span></span><br><span class="line">	<span class="type">int</span> i = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(i * <span class="number">2</span> &lt;= len)&#123;<span class="comment">//父比子(至少有左子) </span></span><br><span class="line">		<span class="type">int</span> sonL = i * <span class="number">2</span>;<span class="comment">//左子 </span></span><br><span class="line">		<span class="type">int</span> sonR = i * <span class="number">2</span> + <span class="number">1</span>;<span class="comment">//右子 </span></span><br><span class="line">		<span class="keyword">if</span>(a[i] &lt; a[sonL] || a[i] &lt; a[sonR])&#123;</span><br><span class="line">			<span class="keyword">if</span>(a[sonL] &lt; a[sonR] || sonR &gt;= len) &#123;<span class="comment">//左子好或者右子死掉了</span></span><br><span class="line">				<span class="built_in">swap</span>(a[i], a[sonL]); </span><br><span class="line">				i = sonL;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;<span class="comment">//右子好 </span></span><br><span class="line">				<span class="built_in">swap</span>(a[i], a[sonR]);</span><br><span class="line">				i = sonR;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">break</span>; <span class="comment">//父强,不用看了 </span></span><br><span class="line">	&#125; </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//懒狗,不想封个类了,就用一次 </span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> n;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	<span class="keyword">while</span>(n--)&#123;</span><br><span class="line">		<span class="type">int</span> jud;</span><br><span class="line">		cin&gt;&gt;jud;</span><br><span class="line">		<span class="keyword">if</span>(jud == <span class="number">1</span>) &#123;</span><br><span class="line">			<span class="type">int</span> x;</span><br><span class="line">			cin&gt;&gt;x;</span><br><span class="line">			<span class="built_in">push</span>(x); </span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(jud == <span class="number">2</span>) cout&lt;&lt;a[<span class="number">1</span>]&lt;&lt;endl;</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">pop</span>(); </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure> 
-      <a class="article-more-link" href="/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E5%A0%86/%E4%BA%8C%E5%8F%89%E5%A0%86/"
+      <a class="article-more-link" href="/binary-heap/"
         >阅读更多...</a
       >
        
@@ -754,7 +925,7 @@
 
     
     <article
-  id="post-数位dp"
+  id="post-digital-dp"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -765,7 +936,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/%E7%AE%97%E6%B3%95/dp/%E6%95%B0%E4%BD%8Ddp/"
+  <a class="article-title" href="/digital-dp/"
     >数位dp</a> 
 </h2>
  
@@ -774,13 +945,32 @@
     </header>
      
     <div class="article-meta">
-      <a href="/%E7%AE%97%E6%B3%95/dp/%E6%95%B0%E4%BD%8Ddp/" class="article-date">
+      <a href="/digital-dp/" class="article-date">
   <time datetime="2023-12-11T12:37:46.178Z" itemprop="datePublished">2023-12-11</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a> / <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95/dp/">dp</a>
   </div>
-   
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.4k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">10 分钟</span>
+        </span>
+    </span>
+</div>
+ 
     </div>
       
     <div class="article-entry" itemprop="articleBody">
@@ -792,8 +982,8 @@
 <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>分别求[0,a]和[0,b]各个数码出现的次数,然后cnt[b] - cnt[a]就行了,这题a,b范围能到10^12^暴力显然超时,因为000-099和100-199和600-699这种后面两位中数码出现的次数是一样的,自然想到DP记录多少位对应多少次</p>
 <h1 id="dp预处理"><a href="#dp预处理" class="headerlink" title="dp预处理"></a>dp预处理</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>dp[i]定义为i位数的每种数字有多少个(例如dp[2]代表00到99中某个数出现的次数,此处加前导0是为了使0和其他数一样)</p>
 <p>一图流</p>
-<p><img src="/%E7%AE%97%E6%B3%95/dp/%E6%95%B0%E4%BD%8Ddp/%E6%95%B0%E4%BD%8Ddp.jpg" alt="数位dp"></p> 
-      <a class="article-more-link" href="/%E7%AE%97%E6%B3%95/dp/%E6%95%B0%E4%BD%8Ddp/"
+<p><img src="/digital-dp/%E6%95%B0%E4%BD%8Ddp.jpg" alt="数位dp"></p> 
+      <a class="article-more-link" href="/digital-dp/"
         >阅读更多...</a
       >
        
@@ -874,10 +1064,6 @@
     <div class="float_btns">
       <div class="totop" id="totop">
   <i class="ri-arrow-up-line"></i>
-</div>
-
-<div class="todark" id="todark">
-  <i class="ri-moon-line"></i>
 </div>
 
     </div>
