@@ -91,8 +91,6 @@
         const bgImg = document.querySelector(".bg-img");
         const titleGroup = document.querySelector(".title-group");
         const tiaozhuan = document.querySelector(".tiaozhuan");
-        const music = document.getElementById("bgm");
-        music.volume = 0.2;
         let isActive = false;
         let lastScrollTime = 0;
         const scrollCooldown = 500;
@@ -128,8 +126,6 @@
 
           isActive = show;
 
-          if (music.paused) music.play();
-
           bgImg.style.filter = isActive ? "blur(5px)" : "blur(0)";
 
           titleGroup.style.transform = isActive
@@ -150,10 +146,6 @@
     </script>
     <link rel="icon" href="favicon.png" type="image/png" />
   </head>
-
-  <audio controls loop id="bgm" style="display: none">
-    <source src="bgm.mp3" type="audio/mpeg" />
-  </audio>
 
   <body>
     <img src="bg.webp" class="bg-img" />
