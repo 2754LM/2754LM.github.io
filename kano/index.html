@@ -88,20 +88,20 @@
         const bgImg = document.querySelector(".bg-img");
         const titleGroup = document.querySelector(".title-group");
         const tiaozhuan = document.querySelector(".tiaozhuan");
-
+        const music = document.getElementById("bgm");
+        music.volume = 0.2;
         let isActive = false;
 
         body.addEventListener("click", function () {
+          if (music.paused) music.play();
           isActive = !isActive;
 
-          // 背景模糊效果
           bgImg.style.filter = isActive ? "blur(5px)" : "blur(0)";
 
           titleGroup.style.transform = isActive
             ? "translateY(-50%)"
             : "translateY(0)";
 
-          // 选项卡显示效果
           if (isActive) {
             tiaozhuan.style.opacity = "1";
             tiaozhuan.style.top = "50%";
@@ -114,13 +114,15 @@
         });
       });
     </script>
-    <head>
-      <link rel="icon" href="favicon.png" type="image/png" />
-    </head>
+    <link rel="icon" href="favicon.png" type="image/png" />
   </head>
+
+  <audio controls loop id="bgm" style="display: none">
+    <source src="bgm.mp3" type="audio/mpeg" />
+  </audio>
+
   <body>
     <img src="a.jpg" class="bg-img" />
-
     <div class="main-container">
       <div class="title-group">
         <h1>KANO</h1>
