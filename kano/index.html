@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>KANO</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        font-family: "楷体", serif;
+        cursor: pointer;
+      }
+
+      .bg-img {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+        transition: filter 0.5s ease;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ca6500;
+      }
+
+      .main-container {
+        position: relative;
+        width: 80%;
+        max-width: 800px;
+        text-align: center;
+      }
+
+      .title-group {
+        transition: all 0.5s ease;
+      }
+
+      h1 {
+        font-size: 110px;
+        margin: 0;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .subtitle {
+        font-size: 35px;
+        margin: 15px 0 40px;
+        font-style: italic;
+        color: #aa5500;
+      }
+
+      .tiaozhuan {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60%;
+        background: rgba(255, 255, 255, 0.192);
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        transition: all 0.5s ease;
+      }
+
+      .tiaozhuan a {
+        display: block;
+        font-size: 30px;
+        color: #aa0000;
+        text-decoration: none;
+        padding: 20px;
+        transition: all 0.3s ease;
+        border-left: 3px solid transparent;
+      }
+
+      .tiaozhuan a:hover {
+        transform: translateX(15px);
+        border-left: 3px solid #aa0000;
+        background: rgba(255, 255, 255, 0.322);
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const body = document.body;
+        const bgImg = document.querySelector(".bg-img");
+        const titleGroup = document.querySelector(".title-group");
+        const tiaozhuan = document.querySelector(".tiaozhuan");
+
+        let isActive = false;
+
+        body.addEventListener("click", function () {
+          isActive = !isActive;
+
+          // 背景模糊效果
+          bgImg.style.filter = isActive ? "blur(5px)" : "blur(0)";
+
+          titleGroup.style.transform = isActive
+            ? "translateY(-50%)"
+            : "translateY(0)";
+
+          // 选项卡显示效果
+          if (isActive) {
+            tiaozhuan.style.opacity = "1";
+            tiaozhuan.style.top = "50%";
+            tiaozhuan.style.pointerEvents = "auto";
+          } else {
+            tiaozhuan.style.opacity = "0";
+            tiaozhuan.style.top = "100%";
+            tiaozhuan.style.pointerEvents = "none";
+          }
+        });
+      });
+    </script>
+    <head>
+      <link rel="icon" href="favicon.png" type="image/png" />
+    </head>
+  </head>
+  <body>
+    <img src="a.jpg" class="bg-img" />
+
+    <div class="main-container">
+      <div class="title-group">
+        <h1>KANO</h1>
+        <div class="subtitle">"待到山花烂漫时，她在丛中笑"</div>
+      </div>
+
+      <div class="tiaozhuan">
+        <a href="person.html">个人介绍</a>
+        <a href="works.html">作品展示</a>
+        <a href="contact.html">联系支持</a>
+      </div>
+    </div>
+  </body>
+</html>
