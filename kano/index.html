@@ -10,6 +10,7 @@
         margin: 0;
         font-family: "楷体", serif;
         cursor: pointer;
+        overflow: hidden; /* 防止页面滚动 */
       }
 
       .bg-img {
@@ -51,6 +52,7 @@
         margin: 15px 0 40px;
         font-style: italic;
         color: #aa5500;
+        font-family: "华文行楷";
       }
 
       .tiaozhuan {
@@ -92,10 +94,41 @@
         const music = document.getElementById("bgm");
         music.volume = 0.2;
         let isActive = false;
+        let lastScrollTime = 0;
+        const scrollCooldown = 500;
 
         body.addEventListener("click", function () {
+          toggleMenu();
+        });
+
+        window.addEventListener(
+          "wheel",
+          function (e) {
+            const now = Date.now();
+            if (now - lastScrollTime < scrollCooldown) return;
+            lastScrollTime = now;
+
+            if (e.deltaY > 0) {
+              // 向下滚动
+              if (!isActive) toggleMenu(true);
+            } else {
+              // 向上滚动
+              if (isActive) toggleMenu(false);
+            }
+          },
+          { passive: true }
+        );
+
+        function toggleMenu(show) {
+          if (typeof show === "undefined") {
+            show = !isActive;
+          }
+
+          if (show === isActive) return;
+
+          isActive = show;
+
           if (music.paused) music.play();
-          isActive = !isActive;
 
           bgImg.style.filter = isActive ? "blur(5px)" : "blur(0)";
 
@@ -112,7 +145,7 @@
             tiaozhuan.style.top = "100%";
             tiaozhuan.style.pointerEvents = "none";
           }
-        });
+        }
       });
     </script>
     <link rel="icon" href="favicon.png" type="image/png" />
@@ -123,7 +156,7 @@
   </audio>
 
   <body>
-    <img src="a.jpg" class="bg-img" />
+    <img src="bg.webp" class="bg-img" />
     <div class="main-container">
       <div class="title-group">
         <h1>KANO</h1>
