@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>鹿乃 - 联系方式</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "楷体", serif;
+        color: #ca6500;
+        background: url("bg.webp") no-repeat fixed center/cover;
+        min-height: 100vh;
+      }
+
+      .main-container {
+        width: 85%;
+        max-width: 900px;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 20px;
+        padding: 30px;
+        backdrop-filter: blur(10px);
+        margin: 50px auto;
+        position: relative;
+      }
+
+      h1 {
+        font-size: 50px;
+        margin: 0 0 30px;
+        text-align: center;
+        color: #aa0000;
+      }
+
+      .back-arrow {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-size: 24px;
+        color: #aa0000;
+        text-decoration: none;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      .back-arrow:hover {
+        background: #aa0000;
+        color: white;
+        transform: scale(1.1);
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 25px;
+        padding: 10px;
+      }
+
+      .contact-card {
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .contact-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(170, 0, 0, 0.2);
+      }
+
+      .contact-card h2 {
+        color: #aa0000;
+        margin-bottom: 15px;
+        font-size: 22px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .contact-card i {
+        margin-right: 10px;
+      }
+
+      .contact-card a {
+        color: #aa0000;
+        text-decoration: none;
+      }
+
+      .contact-card a:hover {
+        color: #ff3333;
+        text-decoration: underline;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="icon" href="favicon.png" />
+  </head>
+  <body>
+    <div class="main-container">
+      <a href="index.html" class="back-arrow">←</a>
+      <h1>联系支持</h1>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h2><i class="fas fa-globe"></i>官方网站</h2>
+          <p>
+            <a href="https://kano-official.amebaownd.com/" target="_blank"
+              >鹿乃</a
+            >
+          </p>
+          <p>鹿乃的官方网站，包含最新动态、作品信息和活动公告。</p>
+        </div>
+
+        <div class="contact-card">
+          <h2><i class="fab fa-twitter"></i>Twitter</h2>
+          <p>
+            <a href="https://twitter.com/kano_2525" target="_blank"
+              >@kano_2525</a
+            >
+          </p>
+          <p>鹿乃的官方Twitter账号，更新日常和活动信息。</p>
+        </div>
+
+        <div class="contact-card">
+          <h2><i class="fab fa-youtube"></i>YouTube</h2>
+          <p>
+            <a
+              href="https://www.youtube.com/channel/UCZlDXzGoo7d44bwdNObFacg"
+              target="_blank"
+              >鹿乃Official</a
+            >
+          </p>
+          <p>官方YouTube频道，发布音乐视频和直播录像。</p>
+        </div>
+
+        <div class="contact-card">
+          <h2><i class="fas fa-video"></i>哔哩哔哩</h2>
+          <p>
+            <a href="https://space.bilibili.com/316381099" target="_blank"
+              >鹿乃Official</a
+            >
+          </p>
+          <p>鹿乃的B站官方账号，发布中文内容和中国限定活动。</p>
+        </div>
+
+        <div class="contact-card">
+          <h2><i class="fab fa-instagram"></i>Instagram</h2>
+          <p>
+            <a href="https://www.instagram.com/kano_2525/" target="_blank"
+              >@kano_2525</a
+            >
+          </p>
+          <p>分享生活和活动幕后花絮。</p>
+        </div>
+
+        <div class="contact-card">
+          <h2><i class="fas fa-book"></i>萌娘百科</h2>
+          <p>
+            <a
+              href="https://mzh.moegirl.org.cn/%E9%B9%BF%E4%B9%83"
+              target="_blank"
+              >鹿乃</a
+            >
+          </p>
+          <p>鹿乃的萌娘百科页面，包含鹿乃的相关信息。</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

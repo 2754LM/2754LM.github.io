@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>作品展示</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "楷体", serif;
+        background: url("bg.webp") no-repeat center/cover fixed;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ca6500;
+      }
+
+      .main-container {
+        position: relative;
+        width: 85%;
+        max-width: 900px;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 20px;
+        padding: 30px;
+        backdrop-filter: blur(10px);
+      }
+
+      h1 {
+        font-size: 50px;
+        margin: 0 0 30px;
+        text-align: center;
+        color: #aa0000;
+      }
+
+      .back-arrow {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: #aa0000;
+        text-decoration: none;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        z-index: 10;
+      }
+
+      .back-arrow:hover {
+        background: #aa0000;
+        color: white;
+        transform: scale(1.1);
+        box-shadow: 0 3px 8px rgba(170, 0, 0, 0.3);
+      }
+
+      .albums-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 25px;
+        padding: 10px;
+      }
+
+      .album-card {
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 15px;
+        padding: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        text-align: center;
+      }
+
+      .album-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(170, 0, 0, 0.2);
+      }
+
+      .album-cover {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 12px;
+        border: 3px solid rgba(255, 200, 150, 0.7);
+      }
+
+      .album-title {
+        font-size: 20px;
+        color: #aa0000;
+        margin: 5px 0;
+      }
+
+      .album-year {
+        font-size: 16px;
+        color: #ca6500;
+        margin: 5px 0;
+      }
+    </style>
+    <link rel="icon" href="favicon.png" type="image/png" />
+  </head>
+
+  <body>
+    <div class="main-container">
+      <a href="index.html" class="back-arrow">←</a>
+      <h1>专辑作品</h1>
+
+      <div class="albums-grid" id="cd-container"></div>
+    </div>
+    <script>
+      const cd = [
+        {
+          name: "ばんび〜の",
+          year: "2011年01月16日",
+        },
+        {
+          name: "Sweet Ices Cream",
+          year: "2011年11月19日",
+        },
+        {
+          name: "终末一般论",
+          year: "2011年12月31日",
+        },
+        {
+          name: "暧昧ばんび～な",
+          year: "2012年08月19日",
+        },
+        {
+          name: "すきなの。",
+          year: "2012年12月31日",
+        },
+        {
+          name: "戯言クライン",
+          year: "2013年8月16日",
+        },
+        {
+          name: "或る街の白昼梦",
+          year: "2014年1月5日",
+        },
+        {
+          name: "グッドハロー",
+          year: "2014年12月30日",
+        },
+        {
+          name: "Stella-rium",
+          year: "2015年5月20日",
+        },
+        {
+          name: "ディアブレイブ",
+          year: "2015年11月18日",
+        },
+        {
+          name: "メリー",
+          year: "2015年12月31日",
+        },
+        {
+          name: "nowhere",
+          year: "2016年5月11日",
+        },
+        {
+          name: "nameless",
+          year: "2016年9月7日",
+        },
+        {
+          name: "day by day",
+          year: "2017年5月24日",
+        },
+        {
+          name: "アルストロメリア",
+          year: "2017年12月20日",
+        },
+        {
+          name: "one",
+          year: "2017年12月29日",
+        },
+        {
+          name: "two",
+          year: "2018年8月10日",
+        },
+        {
+          name: "rye",
+          year: "2018年12月19日",
+        },
+        {
+          name: "three",
+          year: "2019年8月12日",
+        },
+        {
+          name: "Blue",
+          year: "2019年8月12日",
+        },
+        {
+          name: "いつかの约束を君に",
+          year: "2019年9月25日",
+        },
+        {
+          name: "光の道标",
+          year: "2019年11月27日",
+        },
+        {
+          name: "yuanfen",
+          year: "2020年3月4日",
+        },
+        {
+          name: "なだめスかし Negotiation",
+          year: "2020年9月2日",
+        },
+        {
+          name: "コンパスソング",
+          year: "2021年1月27日",
+        },
+        {
+          name: "情书",
+          year: "2021年8月10日",
+        },
+      ];
+      const container = document.getElementById("cd-container");
+      cd.forEach((album) => {
+        const card = document.createElement("div");
+        card.className = "album-card";
+        card.innerHTML = `
+      <img src="cd/${cd.indexOf(album) + 1}.webp" class="album-cover" />
+      <h3 class="album-title">${album.name}</h3>
+      <p class="album-year">${album.year}</p>
+      `;
+        container.appendChild(card);
+      });
+    </script>
+  </body>
+</html>
