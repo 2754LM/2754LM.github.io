@@ -104,7 +104,7 @@ deploy:
   type: 'git'
   repo: https://github.com/2754LM/2754LM.github.io.git
   branch: page
-  token: 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
+  token: github_pat_REVOKED_LEAKED_REMOVE_ME
 
 feed:
   type: atom

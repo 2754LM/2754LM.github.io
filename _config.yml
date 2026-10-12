@@ -103,9 +103,10 @@ theme: ayer
 deploy:
   type: 'git'
   repo: https://github.com/2754LM/2754LM.github.io.git
-  branch: page
-  token: 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
-
+  branch: page  # 这里原本硬编码了一个 GitHub PAT 并已泄露到公开仓库，现已删除。
+  # 本地 hexo deploy 请改用 SSH：
+  #   repo: git@github.com:2754LM/2754LM.github.io.git
+  # 或者改成 GitHub Actions 自动发布，这样任何地方都不需要保存密钥。
 feed:
   type: atom
   path: atom.xml
